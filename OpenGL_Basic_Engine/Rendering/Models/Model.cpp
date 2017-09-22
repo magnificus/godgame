@@ -19,6 +19,11 @@ void Model::Draw()
 	//this is abstract, we don't continue to override this method
 }
 
+void Model::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
+{
+
+}
+
 void Model::Update()
 {
 	//this is abstract, we don't continue to override this method

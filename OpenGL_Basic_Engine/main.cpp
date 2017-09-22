@@ -1,8 +1,10 @@
 ﻿#pragma once
 #include "Core\Init\Init_GLUT.h"
 #include "Managers\Scene_Manager.h"
-#pragma comment(lib, "freeglut.lib")
-#pragma comment(lib, "glew32.lib")
+
+
+//#pragma comment(lib, "freeglut.lib")
+//#pragma comment(lib, "glew32.lib")
 
 using namespace Core;
 using namespace Init;
