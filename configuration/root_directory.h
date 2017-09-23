@@ -1,0 +1,1 @@
+const char * logl_root = "C:/Users/Tobbe/Desktop/godgame2/godgame2";

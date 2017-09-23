@@ -1,0 +1,7 @@
+﻿  camera.cpp
+c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\filesystem.h(2): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+  c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\filesystem.h(2): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_s.h(52): warning C4101: 'infoLog': unreferenced local variable
+c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_s.h(51): warning C4101: 'success': unreferenced local variable
+  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.exe
+  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.pdb (Partial PDB)
