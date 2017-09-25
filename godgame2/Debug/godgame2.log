@@ -1,16 +1,3 @@
-﻿  main.cpp
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\filesystem.h(2): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
-  c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\filesystem.h(2): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(223): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(266): warning C4244: 'initializing': conversion from 'clock_t' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(321): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(322): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(326): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(327): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(329): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(330): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(339): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+﻿  Cube.cpp
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.pdb (Partial PDB)

@@ -12,7 +12,7 @@ uniform float time;
 void main()
 {
 	pos = vec2(aPos.x, aPos.y);
-	gl_Position = projection * view * model * vec4(aPos, 1.0f) + vec4(pos, 0.0, 0.0)*sin(time);
+	gl_Position = projection * view * model * vec4(aPos, 1.0f);// + vec4(pos, 0.0, 0.0)*sin(time);
 
 	//TexCoord = vec2(aTexCoord.x, aTexCoord.y);
 }

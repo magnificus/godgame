@@ -12,5 +12,5 @@ uniform float time;
 void main()
 {
 	// linearly interpolate between both textures (80% container, 20% awesomeface)
-	FragColor = vec4(pos, 1.0,1.0); //mix(texture(texture1, TexCoord), texture(texture2, TexCoord), 0.2);
+	FragColor = vec4(sin(time), sin(time/2), sin(time/3),1.0); //mix(texture(texture1, TexCoord), texture(texture2, TexCoord), 0.2);
 }
