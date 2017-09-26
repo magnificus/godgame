@@ -14,7 +14,7 @@
 #include <ctime>
 
 #include "Cube.h"
-
+#include "Plane.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -82,33 +82,57 @@ int main()
 
 
 	Cube c;
+	Plane p;
 	std::vector<glm::vec3> vertices = c.getVertices();
-	//for (glm::vec3 &v : vertices)
-	//	v += glm::vec3(0, 0, -1);
+	std::vector<glm::vec3> vertices2 = p.getVertices();
+	//vertices.insert(vertices.end(), vertices2.begin(), vertices2.end());
+
+	std::vector<glm::vec3> normals = c.getNormals();
+	//for (int i = 0; i < vertices.size(); i++)
+	//	normals.push_back(glm::vec3(i%2, (i%3)/3, (i % 4) / 4));
+
+
 	std::vector<unsigned int> indices = c.getIndicies();
+	std::vector<unsigned int> indices2 = p.getIndicies();
+	for (unsigned int &i : indices2) {
+		i += indices.size();
+	}
+	//indices.insert(indices.end(), indices2.begin(), indices2.end());
 
+	std::vector<glm::vec3> finalPositions;
+	for (int i = 0; i < vertices.size(); i++) {
+		finalPositions.push_back(vertices[i]);
+		finalPositions.push_back(normals[i]);
+	}
 
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	unsigned int VBO, VAO, EBO;
-	glGenVertexArrays(1, &VAO);
+	//finalPositions = vertices;
+	//finalPositions.insert(finalPositions.end(), normals.begin(), normals.end());
+	unsigned int VBO, cubeVAO, planeVAO, EBO;
+	glGenVertexArrays(1, &cubeVAO);
+	glGenVertexArrays(1, &planeVAO);
+
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
 
-	glBindVertexArray(VAO);
+	glBindVertexArray(cubeVAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_DYNAMIC_DRAW);
+
+
+	// position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	// normals
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_DYNAMIC_DRAW);
 
-	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
 	clock_t start = 0;
-	//glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);
 	// render loop
 	// -----------
@@ -144,13 +168,20 @@ int main()
 		ourShader.setMat4("view", view);
 
 		// render boxes
-		glBindVertexArray(VAO);
+		glBindVertexArray(cubeVAO);
 
 		glm::mat4 model;
-		//model = glm::translate(model, glm::vec3(0.0, 0.0, -1.0));
+		model = glm::translate(model, c.worldPos);
 		ourShader.setMat4("model", model);
 		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
-		glBindVertexArray(0);
+		//model = glm::mat4();
+		//model = glm::translate(model, p.worldPos);
+		//ourShader.setMat4("model", model);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, );
+
+		//glBindVertexArray(0);
+		//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+		//glBindVertexArray(0);
 
 		//glDrawArrays(GL_TRIANGLES, 0, vertices.size() * 3);
 		//for (unsigned int i = 0; i < 10; i++)
@@ -176,7 +207,7 @@ int main()
 
 	// optional: de-allocate all resources once they've outlived their purpose:
 	// ------------------------------------------------------------------------
-	glDeleteVertexArrays(1, &VAO);
+	glDeleteVertexArrays(1, &cubeVAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
 
