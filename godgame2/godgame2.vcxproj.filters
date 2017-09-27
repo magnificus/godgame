@@ -57,10 +57,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="mongoshader.fs">
+    <None Include="standard_shader.vs">
       <Filter>Source Files\shaders</Filter>
     </None>
-    <None Include="mongoshader.vs">
+    <None Include="standard_shader.fs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="standard_shader_blue.fs">
       <Filter>Source Files\shaders</Filter>
     </None>
   </ItemGroup>

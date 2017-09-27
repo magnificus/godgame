@@ -132,8 +132,9 @@
     <ResourceCompile Include="godgame2.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="mongoshader.fs" />
-    <None Include="mongoshader.vs" />
+    <None Include="standard_shader.fs" />
+    <None Include="standard_shader.vs" />
+    <None Include="standard_shader_blue.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

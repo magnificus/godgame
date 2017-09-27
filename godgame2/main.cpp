@@ -73,10 +73,14 @@ int main()
 	// configure global opengl state
 	// -----------------------------
 	glEnable(GL_DEPTH_TEST);
+	//glDepthFunc(GL_ALWAYS);
+
 
 	// build and compile our shader zprogram
 	// ------------------------------------
-	Shader ourShader("mongoshader.vs", "mongoshader.fs");
+	Shader shader1("standard_shader.vs", "standard_shader.fs");
+	Shader shader2("standard_shader.vs", "standard_shader_blue.fs");
+
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	// ------------------------------------------------------------------
@@ -85,10 +89,17 @@ int main()
 
 	ModelHandler modelHandler;
 	Cube c;
+	Cube c2;
+	c2.shader = &shader1;
+	c.shader = &shader1;
+	c.worldPos.x -= 2;
+	c.worldPos.z += 1;
 	Plane p;
+	p.shader = &shader2;
 	p.worldPos.y -= 0.5;
 	modelHandler.addModel(&c);
 	modelHandler.addModel(&p);
+	modelHandler.addModel(&c2);
 
 	RenderInfo info = modelHandler.getRenderInfo();
 
@@ -149,24 +160,34 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// activate shader
-		ourShader.use();
+		//ourShader.use();
 
 		// pass projection matrix to shader (note that in this case it could change every frame)
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		ourShader.setMat4("projection", projection);
+		
 
 		// camera/view transformation
 		glm::mat4 view = camera.GetViewMatrix();
-		ourShader.setMat4("view", view);
 
-		// render boxes
+		// render everything
 		glBindVertexArray(VAO);
 		unsigned int prev = 0;
+		float toUse = (std::clock() - start);
+
 		for (int i = 0; i < modelHandler.cutoffPositions.size(); i++) {
 			Model *model = modelHandler.models[i];
+
+			// set up shader
+			Shader currentShader = *model->shader;
+			currentShader.use();
+			currentShader.setMat4("projection", projection);
+			currentShader.setMat4("view", view);
+			currentShader.setFloat("time", toUse / 100);
+
+
 			glm::mat4 spaceModel;
 			spaceModel = glm::translate(spaceModel, model->worldPos);
-			ourShader.setMat4("model", spaceModel);
+			currentShader.setMat4("model", spaceModel);
 			glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
 			prev = modelHandler.cutoffPositions[i];
 		}
@@ -178,9 +199,7 @@ int main()
 		//model = glm::translate(model, p.worldPos);
 		//ourShader.setMat4("model", model);
 		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, );
-		float toUse = (std::clock()  - start);
 		//std::cout << toUse << std::endl;
-		ourShader.setFloat("time", toUse/100);
 
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

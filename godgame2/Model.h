@@ -1,5 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
+#include <learnopengl/shader_m.h>
 #include <vector>
 
 class Model {
@@ -10,6 +11,9 @@ public:
 	virtual std::vector<unsigned int> getIndicies() = 0;
 	virtual std::vector<glm::vec3> getNormals() = 0;
 	unsigned int VAO;
+	Shader *shader;
+
 private:
 	std::vector<glm::vec3> vertices;
+
 };
