@@ -118,11 +118,13 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelHandler.cpp" />
     <ClCompile Include="Plane.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelHandler.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

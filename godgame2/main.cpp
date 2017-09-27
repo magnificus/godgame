@@ -15,6 +15,7 @@
 
 #include "Cube.h"
 #include "Plane.h"
+#include "ModelHandler.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -22,8 +23,8 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1920;
+const unsigned int SCR_HEIGHT = 1080;
 
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -46,7 +47,7 @@ int main()
 
 	// glfw window creation
 	// --------------------
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Game", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -80,41 +81,29 @@ int main()
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	// ------------------------------------------------------------------
 
+	std::vector<glm::vec3> finalPositions;
 
+	ModelHandler modelHandler;
 	Cube c;
 	Plane p;
-	std::vector<glm::vec3> vertices = c.getVertices();
-	std::vector<glm::vec3> vertices2 = p.getVertices();
-	//vertices.insert(vertices.end(), vertices2.begin(), vertices2.end());
+	p.worldPos.y -= 0.5;
+	modelHandler.addModel(&c);
+	modelHandler.addModel(&p);
 
-	std::vector<glm::vec3> normals = c.getNormals();
-	//for (int i = 0; i < vertices.size(); i++)
-	//	normals.push_back(glm::vec3(i%2, (i%3)/3, (i % 4) / 4));
+	RenderInfo info = modelHandler.getRenderInfo();
 
-
-	std::vector<unsigned int> indices = c.getIndicies();
-	std::vector<unsigned int> indices2 = p.getIndicies();
-	for (unsigned int &i : indices2) {
-		i += indices.size();
-	}
-	//indices.insert(indices.end(), indices2.begin(), indices2.end());
-
-	std::vector<glm::vec3> finalPositions;
-	for (int i = 0; i < vertices.size(); i++) {
-		finalPositions.push_back(vertices[i]);
-		finalPositions.push_back(normals[i]);
+	for (int i = 0; i < info.vertices.size(); i++) {
+		finalPositions.push_back(info.vertices[i]);
+		finalPositions.push_back(info.normals[i]);
 	}
 
-	//finalPositions = vertices;
-	//finalPositions.insert(finalPositions.end(), normals.begin(), normals.end());
-	unsigned int VBO, cubeVAO, planeVAO, EBO;
-	glGenVertexArrays(1, &cubeVAO);
-	glGenVertexArrays(1, &planeVAO);
+	unsigned int VBO, VAO, EBO;
+	glGenVertexArrays(1, &VAO);
 
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
 
-	glBindVertexArray(cubeVAO);
+	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_DYNAMIC_DRAW);
@@ -130,15 +119,18 @@ int main()
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_DYNAMIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, info.indices.size() * sizeof(unsigned int), &info.indices[0], GL_DYNAMIC_DRAW);
+
+	//glBindVertexArray(planeVAO);
 
 	clock_t start = 0;
 	glEnable(GL_CULL_FACE);
+	//glEnable(GL_BLEND);
+
 	// render loop
 	// -----------
 	while (!glfwWindowShouldClose(window))
 	{
-		//vertices[0] += 0.01;
 		//glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_DYNAMIC_DRAW);
 
 		// per-frame time logic
@@ -168,32 +160,24 @@ int main()
 		ourShader.setMat4("view", view);
 
 		// render boxes
-		glBindVertexArray(cubeVAO);
-
-		glm::mat4 model;
-		model = glm::translate(model, c.worldPos);
-		ourShader.setMat4("model", model);
-		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+		glBindVertexArray(VAO);
+		unsigned int prev = 0;
+		for (int i = 0; i < modelHandler.cutoffPositions.size(); i++) {
+			Model *model = modelHandler.models[i];
+			glm::mat4 spaceModel;
+			spaceModel = glm::translate(spaceModel, model->worldPos);
+			ourShader.setMat4("model", spaceModel);
+			glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
+			prev = modelHandler.cutoffPositions[i];
+		}
+		//glm::mat4 model;
+		//model = glm::translate(model, c.worldPos);
+		//ourShader.setMat4("model", model);
+		//glDrawElements(GL_TRIANGLES, info.indices.size(), GL_UNSIGNED_INT, 0);
 		//model = glm::mat4();
 		//model = glm::translate(model, p.worldPos);
 		//ourShader.setMat4("model", model);
 		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, );
-
-		//glBindVertexArray(0);
-		//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-		//glBindVertexArray(0);
-
-		//glDrawArrays(GL_TRIANGLES, 0, vertices.size() * 3);
-		//for (unsigned int i = 0; i < 10; i++)
-		//{
-		//	// calculate the model matrix for each object and pass it to shader before drawing
-		//	glm::mat4 model;
-		//	model = glm::translate(model, cubePositions[i]);
-		//	float angle = 20.0f * i;
-		//	model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-		//	ourShader.setMat4("model", model);
-		//	glDrawArrays(GL_TRIANGLES, 0, 36);
-		//}
 		float toUse = (std::clock()  - start);
 		//std::cout << toUse << std::endl;
 		ourShader.setFloat("time", toUse/100);
@@ -207,7 +191,7 @@ int main()
 
 	// optional: de-allocate all resources once they've outlived their purpose:
 	// ------------------------------------------------------------------------
-	glDeleteVertexArrays(1, &cubeVAO);
+	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
 

@@ -13,7 +13,7 @@ uniform float time;
 void main()
 {
 	// linearly interpolate between both textures (80% container, 20% awesomeface)
-	vec3 lightOrigin = vec3(0, 1, 1);
+	vec3 lightOrigin = vec3(1, 1, 1);
 	float dist = distance(lightOrigin, realPos);
 	float mp = 1;//100 / pow(dist,2);
 	float mp2 = dot(normalize(lightOrigin - realPos), normal);
