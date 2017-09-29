@@ -16,6 +16,13 @@ std::vector<glm::vec3> getPlane(int fstRotateIndex, unsigned int sndRotateIndex,
 
 }
 
+Cube::Cube()
+{
+	vertices = getVertices();
+	indicies = getIndicies();
+	normals = getNormals();
+}
+
 std::vector<glm::vec3> Cube::getVertices() {
 
 	std::vector<glm::vec3> points;

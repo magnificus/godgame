@@ -5,9 +5,9 @@ RenderInfo ModelHandler::getRenderInfo()
 	RenderInfo info;
 	cutoffPositions.clear();
 	for (Model *m : models) {
-		auto currVerts = m->getVertices();
-		auto currIndices = m->getIndicies();
-		auto currNormals = m->getNormals();
+		auto currVerts = m->vertices;
+		auto currIndices = m->indicies;
+		auto currNormals = m->normals;
 
 		for (unsigned int &i : currIndices)
 			i += info.vertices.size();

@@ -120,21 +120,27 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelHandler.cpp" />
     <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="inputHandler.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelHandler.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Sphere.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="godgame2.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="depth_quad_shader.fs" />
+    <None Include="depth_quad_shader.vs" />
+    <None Include="shadow_shader.fs" />
+    <None Include="shadow_shader.vs" />
     <None Include="standard_shader.fs" />
     <None Include="standard_shader.vs" />
-    <None Include="standard_shader_blue.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

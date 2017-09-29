@@ -33,6 +33,12 @@
     <ClInclude Include="Plane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inputHandler.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="godgame2.rc">
@@ -55,6 +61,9 @@
     <ClCompile Include="ModelHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="standard_shader.vs">
@@ -63,7 +72,16 @@
     <None Include="standard_shader.fs">
       <Filter>Source Files\shaders</Filter>
     </None>
-    <None Include="standard_shader_blue.fs">
+    <None Include="shadow_shader.vs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shadow_shader.fs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="depth_quad_shader.vs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="depth_quad_shader.fs">
       <Filter>Source Files\shaders</Filter>
     </None>
   </ItemGroup>
