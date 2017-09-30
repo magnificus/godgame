@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="Cube.h" />
     <ClInclude Include="inputHandler.h" />
+    <ClInclude Include="point_shadows_shader.vs" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelHandler.h" />
     <ClInclude Include="Plane.h" />
@@ -137,8 +138,11 @@
   <ItemGroup>
     <None Include="depth_quad_shader.fs" />
     <None Include="depth_quad_shader.vs" />
+    <None Include="point_shadows_shader.gs" />
+    <None Include="point_shadows_shader.fs" />
     <None Include="shadow_shader.fs" />
     <None Include="shadow_shader.vs" />
+    <None Include="simple_shader.fs" />
     <None Include="standard_shader.fs" />
     <None Include="standard_shader.vs" />
   </ItemGroup>

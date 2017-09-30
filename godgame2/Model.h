@@ -12,6 +12,7 @@ public:
 	std::vector<glm::vec3> normals;
 	Shader *shader;
 	glm::vec3 color = glm::vec3(1.0,1.0,1.0);
+	bool castShadows = true;
 
 
 private:

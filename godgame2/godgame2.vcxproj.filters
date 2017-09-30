@@ -39,6 +39,9 @@
     <ClInclude Include="Sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="point_shadows_shader.vs">
+      <Filter>Source Files\shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="godgame2.rc">
@@ -82,6 +85,15 @@
       <Filter>Source Files\shaders</Filter>
     </None>
     <None Include="depth_quad_shader.fs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="point_shadows_shader.gs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="point_shadows_shader.fs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="simple_shader.fs">
       <Filter>Source Files\shaders</Filter>
     </None>
   </ItemGroup>

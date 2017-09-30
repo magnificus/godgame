@@ -4,7 +4,8 @@
 
 std::vector<glm::vec3> Plane::getVertices() {
 
-	return std::vector<glm::vec3>{glm::vec3{ -50.5f, 0.0f, -50.5f }, glm::vec3{ -50.5f, 0.0f, 50.5f }, glm::vec3{ 50.5f, 0.0f, 50.5f }, glm::vec3{ 50.5f, 0.f, -50.5f }
+	float dist = 10.0f;
+	return std::vector<glm::vec3>{glm::vec3{ -dist, 0.0f, -dist }, glm::vec3{ -dist, 0.0f, dist }, glm::vec3{ dist, 0.0f,dist }, glm::vec3{dist, 0.f, -dist }
 	};
 }
 std::vector<unsigned int> Plane::getIndicies() {
