@@ -1,0 +1,14 @@
+﻿  Cube.cpp
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\Model.h(2): fatal error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  main.cpp
+main.cpp(2): fatal error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  Model.cpp
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\Model.h(2): fatal error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  ModelHandler.cpp
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\Model.h(2): fatal error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  PhysicsHandler.cpp
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\Model.h(2): fatal error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  Plane.cpp
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\Model.h(2): fatal error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory
+  Sphere.cpp
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\Model.h(2): fatal error C1083: Cannot open include file: 'glm/glm.hpp': No such file or directory

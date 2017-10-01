@@ -76,10 +76,18 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet\src;C:\Users\Tobbe\Desktop\godgame2\godgame2\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;glfw3.lib;opengl32.lib;assimp.lib;Debug\STB_IMAGE.lib;Debug\GLAD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Debug\GLAD.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -149,11 +157,11 @@
     <None Include="standard_shader.vs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\bullet\src\Bullet3Collision\Bullet3Collision.vcxproj">
-      <Project>{2d93873f-db6c-3bb0-818e-19e5790e1479}</Project>
+    <ProjectReference Include="..\..\bullet\src\BulletCollision\BulletCollision.vcxproj">
+      <Project>{c6e63250-05df-3a12-9b1c-a03c3950bc53}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\bullet\src\Bullet3Dynamics\Bullet3Dynamics.vcxproj">
-      <Project>{48b7a238-7d62-3582-a57b-2c00c77f0731}</Project>
+    <ProjectReference Include="..\..\bullet\src\BulletDynamics\BulletDynamics.vcxproj">
+      <Project>{6992674d-2ff8-37aa-9a30-22cdeb8d453c}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\bullet\src\LinearMath\LinearMath.vcxproj">
       <Project>{3a523149-18d1-3734-94ea-9c2d6f1ecccb}</Project>

@@ -18,7 +18,9 @@
 #include "btBulletDynamicsCommon.h"
 
 
-
+//#pragma comment(lib, "Bullet3Collision_Debug.lib")
+//#pragma comment(lib, "Bullet3Dynamics_Debug.lib")
+//#pragma comment(lib, "LinearMath_Debug.lib")
 void renderModels(glm::mat4 projection, glm::mat4 view, glm::vec3 viewPos,  glm::vec3 lightPos, float far_plane, float start, ModelHandler &modelHandler,  Shader *overrideShader = nullptr) {
 	unsigned int prev = 0;
 	float time = (std::clock() - start);
