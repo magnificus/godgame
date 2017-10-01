@@ -28,7 +28,7 @@ float ShadowCalculation(vec3 fragPos)
     float currentDepth = length(fragToLight);
     // now test for shadows
     float bias = 0.05; 
-    float shadow = currentDepth -  bias > closestDepth ? 1.0 : 0.0;
+    float shadow = currentDepth -  bias > closestDepth? 1.0 : 0.0;
 
     return shadow;
 }  
@@ -48,7 +48,7 @@ void main()
     vec3 viewDir = normalize(viewPos - fs_in.FragPos);
     vec3 reflectDir = reflect(-lightDir, normal);
     vec3 halfwayDir = normalize(lightDir + viewDir);  
-    float spec = pow(max(dot(normal, halfwayDir), 0.0), 16.0);
+    float spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
     vec3 specular = spec * lightColor;    
     // calculate shadow
     float shadow = ShadowCalculation(fs_in.FragPos);                      

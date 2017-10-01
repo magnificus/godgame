@@ -4,6 +4,6 @@
 class Sphere : public Model {
 
 public:
-	Sphere();
+	Sphere(Shader *s);
 
 };

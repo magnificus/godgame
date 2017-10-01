@@ -6,6 +6,9 @@
 class Model {
 
 public:
+	Model(Shader *s) {
+		shader = s;
+	}
 	glm::vec3 worldPos = glm::vec3(0,0,0);
 	std::vector<glm::vec3> vertices;
 	std::vector<unsigned int> indicies;

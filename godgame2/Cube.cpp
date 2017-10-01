@@ -16,7 +16,7 @@ std::vector<glm::vec3> getPlane(int fstRotateIndex, unsigned int sndRotateIndex,
 
 }
 
-Cube::Cube()
+Cube::Cube(Shader *s) : Model(s)
 {
 	vertices = getVertices();
 	indicies = getIndicies();

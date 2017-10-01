@@ -97,7 +97,7 @@ IndexedMesh make_icosphere(int subdivisions)
 	return{ vertices, triangles };
 }
 
-Sphere::Sphere()
+Sphere::Sphere(Shader *s) : Model(s)
 {
 	IndexedMesh mesh = make_icosphere(3);
 	vertices = mesh.vertList;

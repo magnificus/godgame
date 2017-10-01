@@ -3,7 +3,7 @@
 class Plane : public Model {
 
 public:
-	Plane() {
+	Plane(Shader *s) : Model(s) {
 		indicies = getIndicies();
 		vertices = getVertices();
 		normals = getNormals();

@@ -15,6 +15,7 @@
 #include "Sphere.h"
 #include "ModelHandler.h"
 #include "inputHandler.h"
+#include "btBulletDynamicsCommon.h"
 
 
 
@@ -106,31 +107,26 @@ int main()
 	std::vector<glm::vec3> finalPositions;
 
 	ModelHandler modelHandler;
-	Cube c;
+	Cube c(&shader1);
 	c.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	Cube light;
+	Cube light(&shader1);
 	light.color = glm::vec3(10, 10, 10);
 	light.worldPos = glm::vec3(0, 3, 0);
-	light.shader = &simpleShader;
 	//light.castShadows = false;
 	for (glm::vec3 &vec: light.vertices) {
 		vec *= 0.5;
 
 	}
-	Sphere s;
-	s.shader = &shader1;
+	Sphere s(&shader1);
 	s.worldPos = glm::vec3(-4, 0.5, 2);
 	s.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	Cube c2;
+	Cube c2(&shader1);
 	c2.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	c2.worldPos.y += 1;
-	c2.shader = &shader1;
-	c.shader = &shader1;
 	c.worldPos.x -= 2;
 	c.worldPos.z += 1;
-	Plane p;
+	Plane p(&shader1);
 	p.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	p.shader = &shader1;
 	p.worldPos.y -= 0.5;
 	modelHandler.addModel(&s);
 	modelHandler.addModel(&light);

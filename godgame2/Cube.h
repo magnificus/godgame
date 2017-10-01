@@ -3,7 +3,7 @@
 
 class Cube : public Model {
 public:
-	Cube();
+	Cube(Shader *s);
 protected:
 	virtual std::vector<glm::vec3> getVertices();
 	virtual std::vector<unsigned int> getIndicies();
