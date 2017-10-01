@@ -74,7 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\godgame2\godgame2\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet\src;C:\Users\Tobbe\Desktop\godgame2\godgame2\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -119,12 +119,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelHandler.cpp" />
+    <ClCompile Include="PhysicsHandler.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
     <ClInclude Include="inputHandler.h" />
+    <ClInclude Include="PhysicsHandler.h" />
     <ClInclude Include="point_shadows_shader.vs" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelHandler.h" />
@@ -145,6 +147,17 @@
     <None Include="simple_shader.fs" />
     <None Include="standard_shader.fs" />
     <None Include="standard_shader.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\bullet\src\Bullet3Collision\Bullet3Collision.vcxproj">
+      <Project>{2d93873f-db6c-3bb0-818e-19e5790e1479}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\bullet\src\Bullet3Dynamics\Bullet3Dynamics.vcxproj">
+      <Project>{48b7a238-7d62-3582-a57b-2c00c77f0731}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\bullet\src\LinearMath\LinearMath.vcxproj">
+      <Project>{3a523149-18d1-3734-94ea-9c2d6f1ecccb}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

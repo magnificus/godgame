@@ -40,9 +40,7 @@ void renderModels(glm::mat4 projection, glm::mat4 view, glm::vec3 viewPos,  glm:
 			currentShader.setVec3("color", model->color);
 		}
 		// send in model
-		glm::mat4 spaceModel;
-		spaceModel = glm::translate(spaceModel, model->worldPos);
-		currentShader.setMat4("model", spaceModel);
+		currentShader.setMat4("model", model->transform);
 		glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
 		
 
@@ -111,23 +109,20 @@ int main()
 	c.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	Cube light(&shader1);
 	light.color = glm::vec3(10, 10, 10);
-	light.worldPos = glm::vec3(0, 3, 0);
-	//light.castShadows = false;
-	for (glm::vec3 &vec: light.vertices) {
-		vec *= 0.5;
+	light.transform *= 0.5;
+	light.transform[3] = glm::vec4(0, 3, 0, 1);
 
-	}
 	Sphere s(&shader1);
-	s.worldPos = glm::vec3(-4, 0.5, 2);
+	s.transform[3] = glm::vec4(-4, 0.5, 2, 1);
 	s.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	Cube c2(&shader1);
 	c2.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	c2.worldPos.y += 1;
-	c.worldPos.x -= 2;
-	c.worldPos.z += 1;
+	c2.transform[3] = glm::vec4(-2, 1, 0, 1);
+	c.transform[3] = glm::vec4(2, 0, 1, 1);
 	Plane p(&shader1);
 	p.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	p.worldPos.y -= 0.5;
+	p.transform[3] = glm::vec4(0, -0.5, 0, 1);
+
 	modelHandler.addModel(&s);
 	modelHandler.addModel(&light);
 	modelHandler.addModel(&c);
@@ -220,8 +215,7 @@ int main()
 		// -----
 		processInput(window);
 
-		light.worldPos.z = sin(currentFrame) * 3;
-		light.worldPos.x = cos(currentFrame) * 2;
+		light.transform[3] = glm::vec4(cos(currentFrame) * 2, sin(currentFrame/2) +4, sin(currentFrame) * 3, 1);
 
 		// update models
 		RenderInfo info = modelHandler.getRenderInfo();
@@ -243,12 +237,13 @@ int main()
 		float far_plane = 25.0f;
 		glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), (float)SHADOW_WIDTH / (float)SHADOW_HEIGHT, near_plane, far_plane);
 		std::vector<glm::mat4> shadowTransforms;
-		shadowTransforms.push_back(shadowProj * glm::lookAt(light.worldPos, light.worldPos + glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
-		shadowTransforms.push_back(shadowProj * glm::lookAt(light.worldPos, light.worldPos + glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
-		shadowTransforms.push_back(shadowProj * glm::lookAt(light.worldPos, light.worldPos + glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
-		shadowTransforms.push_back(shadowProj * glm::lookAt(light.worldPos, light.worldPos + glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f)));
-		shadowTransforms.push_back(shadowProj * glm::lookAt(light.worldPos, light.worldPos + glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
-		shadowTransforms.push_back(shadowProj * glm::lookAt(light.worldPos, light.worldPos + glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
+		glm::vec3 lightLocation = glm::vec3(light.transform[3][0], light.transform[3][1], light.transform[3][2]);
+		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
+		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
+		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
+		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f)));
+		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
+		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
 
 
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -261,8 +256,8 @@ int main()
 			for (unsigned int i = 0; i < 6; ++i)
 				simpleDepthShader.setMat4("shadowMatrices[" + std::to_string(i) + "]", shadowTransforms[i]);
 			simpleDepthShader.setFloat("far_plane", far_plane);
-			simpleDepthShader.setVec3("lightPos", light.worldPos);
-			renderModels(projection, view, camera.Position, light.worldPos, far_plane, start, modelHandler, &simpleDepthShader);
+			simpleDepthShader.setVec3("lightPos", lightLocation);
+			renderModels(projection, view, camera.Position, lightLocation, far_plane, start, modelHandler, &simpleDepthShader);
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 		// render everything
@@ -273,7 +268,7 @@ int main()
 		glBindTexture(GL_TEXTURE_2D, depthMapFBO);
 		glBindVertexArray(VAO);
 
-		renderModels(projection, view, camera.Position, light.worldPos, far_plane, start, modelHandler);
+		renderModels(projection, view, camera.Position, lightLocation, far_plane, start, modelHandler);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------

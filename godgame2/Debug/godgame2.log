@@ -10,14 +10,17 @@ c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(62): warning C4
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(64): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(65): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(74): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(24): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(138): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\bullet\src\linearmath\btidebugdraw.h(169): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+c:\users\tobbe\desktop\bullet\src\linearmath\btidebugdraw.h(170): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+c:\users\tobbe\desktop\bullet\src\linearmath\btidebugdraw.h(171): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(25): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(134): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(200): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(204): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(208): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(209): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(215): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(229): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(264): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(275): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(205): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(211): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(226): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(262): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(273): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.pdb (Partial PDB)
