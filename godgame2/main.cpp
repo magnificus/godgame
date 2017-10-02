@@ -14,13 +14,10 @@
 #include "Plane.h"
 #include "Sphere.h"
 #include "ModelHandler.h"
+#include "PhysicsHandler.h"
 #include "inputHandler.h"
 #include "btBulletDynamicsCommon.h"
 
-
-//#pragma comment(lib, "Bullet3Collision_Debug.lib")
-//#pragma comment(lib, "Bullet3Dynamics_Debug.lib")
-//#pragma comment(lib, "LinearMath_Debug.lib")
 void renderModels(glm::mat4 projection, glm::mat4 view, glm::vec3 viewPos,  glm::vec3 lightPos, float far_plane, float start, ModelHandler &modelHandler,  Shader *overrideShader = nullptr) {
 	unsigned int prev = 0;
 	float time = (std::clock() - start);
@@ -96,17 +93,11 @@ int main()
 	// ------------------------------------
 	Shader shader1("standard_shader.vs", "standard_shader.fs");
 	Shader simpleShader("standard_shader.vs", "standard_shader.fs");
-	//Shader shadowShader("shadow_shader.vs", "shadow_shader.fs");
-	//Shader debugDepthQuad("depth_quad_shader.vs", "depth_quad_shader.fs");
 	Shader simpleDepthShader("point_shadows_shader.vs", "point_shadows_shader.fs", "point_shadows_shader.gs");
 
 
-	// set up vertex data (and buffer(s)) and configure vertex attributes
-	// ------------------------------------------------------------------
-
-	std::vector<glm::vec3> finalPositions;
-
 	ModelHandler modelHandler;
+	PhysicsHandler physicsHandler;
 	Cube c(&shader1);
 	c.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	Cube light(&shader1);
@@ -115,11 +106,11 @@ int main()
 	light.transform[3] = glm::vec4(0, 3, 0, 1);
 
 	Sphere s(&shader1);
-	s.transform[3] = glm::vec4(-4, 0.5, 2, 1);
+	s.transform[3] = glm::vec4(-4, 5.0, 2, 1);
 	s.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	Cube c2(&shader1);
 	c2.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	c2.transform[3] = glm::vec4(-2, 1, 0, 1);
+	c2.transform[3] = glm::vec4(-2, 7, 0, 1);
 	c.transform[3] = glm::vec4(2, 0, 1, 1);
 	Plane p(&shader1);
 	p.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
@@ -131,6 +122,13 @@ int main()
 	modelHandler.addModel(&p);
 	modelHandler.addModel(&c2);
 
+	//physicsHandler.addMPC(ModelPhysicsCoordinator(&s));
+
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::cube, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::cube, 1));
+
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::sphere, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&p, CollisionType::plane, 0));
 	RenderInfo info = modelHandler.getRenderInfo();
 
 	for (int i = 0; i < info.vertices.size(); i++) {
@@ -213,6 +211,10 @@ int main()
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
+
+		// physics
+		physicsHandler.simulationTick(deltaTime);
+
 		// input
 		// -----
 		processInput(window);

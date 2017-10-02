@@ -127,6 +127,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelHandler.cpp" />
+    <ClCompile Include="ModelPhysicsCoordinator.cpp" />
     <ClCompile Include="PhysicsHandler.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Sphere.cpp" />
@@ -134,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="Cube.h" />
     <ClInclude Include="inputHandler.h" />
+    <ClInclude Include="ModelPhysicsCoordinator.h" />
     <ClInclude Include="PhysicsHandler.h" />
     <ClInclude Include="point_shadows_shader.vs" />
     <ClInclude Include="Model.h" />

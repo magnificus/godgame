@@ -45,6 +45,9 @@
     <ClInclude Include="PhysicsHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ModelPhysicsCoordinator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="godgame2.rc">
@@ -71,6 +74,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelPhysicsCoordinator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
