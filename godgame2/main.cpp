@@ -13,10 +13,12 @@
 #include "Cube.h"
 #include "Plane.h"
 #include "Sphere.h"
+#include "EmptyModel.h"
 #include "ModelHandler.h"
 #include "PhysicsHandler.h"
 #include "inputHandler.h"
 #include "btBulletDynamicsCommon.h"
+#include "Player.h"
 
 void renderModels(glm::mat4 projection, glm::mat4 view, glm::vec3 viewPos,  glm::vec3 lightPos, float far_plane, float start, ModelHandler &modelHandler,  Shader *overrideShader = nullptr) {
 	unsigned int prev = 0;
@@ -96,11 +98,17 @@ int main()
 	Shader simpleDepthShader("point_shadows_shader.vs", "point_shadows_shader.fs", "point_shadows_shader.gs");
 
 
+	// set up vertex data (and buffer(s)) and configure vertex attributes
+	// ------------------------------------------------------------------
+
+
 	ModelHandler modelHandler;
 	PhysicsHandler physicsHandler;
+
+	// set up all of our game objects
 	Cube c(&shader1);
 	c.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	Cube light(&shader1);
+	Sphere light(&shader1);
 	light.color = glm::vec3(10, 10, 10);
 	light.transform *= 0.5;
 	light.transform[3] = glm::vec4(0, 3, 0, 1);
@@ -115,6 +123,12 @@ int main()
 	Plane p(&shader1);
 	p.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	p.transform[3] = glm::vec4(0, -0.5, 0, 1);
+	
+	// player dont have to be rendered
+	EmptyModel player;
+	player.transform[3] = glm::vec4(camera.Position, 1);
+
+	// add them to the handlers
 
 	modelHandler.addModel(&s);
 	modelHandler.addModel(&light);
@@ -122,14 +136,20 @@ int main()
 	modelHandler.addModel(&p);
 	modelHandler.addModel(&c2);
 
-	//physicsHandler.addMPC(ModelPhysicsCoordinator(&s));
+
 
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::cube, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::cube, 1));
-
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::sphere, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&p, CollisionType::plane, 0));
+
+	auto playerMCP = ModelPhysicsCoordinator(&player, CollisionType::capsule, 1);
+	btRigidBody *playerBt = playerMCP.btModel;
+
+	physicsHandler.addMPC(playerMCP);
 	RenderInfo info = modelHandler.getRenderInfo();
+
+	std::vector<glm::vec3> finalPositions;
 
 	for (int i = 0; i < info.vertices.size(); i++) {
 		finalPositions.push_back(info.vertices[i]);
@@ -162,7 +182,7 @@ int main()
 
 
 	// shadows
-	const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
+	const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
 	unsigned int depthMapFBO;
 	glGenFramebuffers(1, &depthMapFBO);
 	// create depth cubemap texture
@@ -196,6 +216,8 @@ int main()
 	// -----------
 
 
+
+
 	unsigned int count = 0;
 	float prev = glfwGetTime();
 	while (!glfwWindowShouldClose(window))
@@ -214,7 +236,7 @@ int main()
 
 		// physics
 		physicsHandler.simulationTick(deltaTime);
-
+		camera.Position = glm::vec3(player.transform[3][0], player.transform[3][1], player.transform[3][2] );
 		// input
 		// -----
 		processInput(window);
@@ -238,7 +260,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		float near_plane = 1.0f;
-		float far_plane = 25.0f;
+		float far_plane = 250.0f;
 		glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), (float)SHADOW_WIDTH / (float)SHADOW_HEIGHT, near_plane, far_plane);
 		std::vector<glm::mat4> shadowTransforms;
 		glm::vec3 lightLocation = glm::vec3(light.transform[3][0], light.transform[3][1], light.transform[3][2]);

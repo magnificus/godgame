@@ -2,6 +2,7 @@
 #include <learnopengl/camera.h>
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include "btBulletDynamicsCommon.h"
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------

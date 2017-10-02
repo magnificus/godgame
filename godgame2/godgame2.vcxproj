@@ -130,13 +130,17 @@
     <ClCompile Include="ModelPhysicsCoordinator.cpp" />
     <ClCompile Include="PhysicsHandler.cpp" />
     <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="EmptyModel.cpp" />
+    <ClInclude Include="EmptyModel.h" />
     <ClInclude Include="inputHandler.h" />
     <ClInclude Include="ModelPhysicsCoordinator.h" />
     <ClInclude Include="PhysicsHandler.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="point_shadows_shader.vs" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelHandler.h" />

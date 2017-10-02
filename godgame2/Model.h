@@ -17,10 +17,4 @@ public:
 	glm::vec3 color = glm::vec3(1.0,1.0,1.0);
 	bool castShadows = true;
 
-
-private:
-	//virtual std::vector<glm::vec3> getVertices() = 0;
-	//virtual std::vector<unsigned int> getIndicies() = 0;
-	//virtual std::vector<glm::vec3> getNormals() = 0;
-
 };
