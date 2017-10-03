@@ -75,13 +75,13 @@ void PhysicsHandler::addMPC(ModelPhysicsCoordinator mpc) {
 
 }
 
-void PhysicsHandler::addModel(Model * m)
-{
-	ModelPhysicsCoordinator mpc(m);
-	models.push_back(mpc);
-	//mpc.btModel->setRestitution(1);
-
-	dynamicsWorld->addRigidBody(mpc.btModel);
-
-
-}
+//void PhysicsHandler::addModel(Model * m)
+//{
+//	ModelPhysicsCoordinator mpc(m);
+//	models.push_back(mpc);
+//	//mpc.btModel->setRestitution(1);
+//
+//	dynamicsWorld->addRigidBody(mpc.btModel);
+//
+//
+//}

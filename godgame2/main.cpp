@@ -20,6 +20,8 @@
 #include "btBulletDynamicsCommon.h"
 #include "Player.h"
 
+#define PI 3.14159
+
 void renderModels(glm::mat4 projection, glm::mat4 view, glm::vec3 viewPos,  glm::vec3 lightPos, float far_plane, float start, ModelHandler &modelHandler,  Shader *overrideShader = nullptr) {
 	unsigned int prev = 0;
 	float time = (std::clock() - start);
@@ -69,6 +71,10 @@ int main()
 		glfwTerminate();
 		return -1;
 	}
+
+	Player player;
+
+	camera = &(player.cam);
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
@@ -114,26 +120,53 @@ int main()
 	light.transform[3] = glm::vec4(0, 3, 0, 1);
 
 	Sphere s(&shader1);
-	s.transform[3] = glm::vec4(-4, 5.0, 2, 1);
+	Sphere s2(&shader1);
+	Sphere s3(&shader1);
+	s2.transform[3] = glm::vec4(-4, 1.0, 2, 1);
+	s3.transform[3] = glm::vec4(-4, 3, 2, 1);
+	//s3.transform *= 0.5;
+	s.transform[3] = glm::vec4(-4, 5, 2.01, 1);
 	s.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	Cube c2(&shader1);
 	c2.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	c2.transform[3] = glm::vec4(-2, 7, 0, 1);
 	c.transform[3] = glm::vec4(2, 0, 1, 1);
-	Plane p(&shader1);
-	p.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	p.transform[3] = glm::vec4(0, -0.5, 0, 1);
-	
-	// player dont have to be rendered
-	EmptyModel player;
-	player.transform[3] = glm::vec4(camera.Position, 1);
+
+	float planeSize = 10;
+	glm::vec3 planeColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+	Plane p1(&shader1);
+	p1.color = planeColor;
+	p1.transform[3] = glm::vec4(0, -0.5, 0, 1);
+	Plane p2(&shader1);
+
+	p2.color = planeColor;
+	p2.transform[3] = glm::vec4(0, -0.5, planeSize, 1);
+	Plane p3(&shader1);
+	p3.color = planeColor;
+	p3.transform[3] = glm::vec4(0, -0.5, -planeSize, 1);
+	Plane p4(&shader1);
+	p4.color = planeColor;
+	p4.transform[3] = glm::vec4(planeSize, -0.5, 0, 1);
+	Plane p5(&shader1);
+	p5.color = planeColor;
+	p5.transform[3] = glm::vec4(-planeSize, -0.5, 0, 1);
+
+	modelHandler.addModel(&p1);
+	modelHandler.addModel(&p2);
+	modelHandler.addModel(&p3);
+	modelHandler.addModel(&p4);
+	modelHandler.addModel(&p5);
+
+
 
 	// add them to the handlers
 
 	modelHandler.addModel(&s);
+	modelHandler.addModel(&s2);
+	modelHandler.addModel(&s3);
+
 	modelHandler.addModel(&light);
 	modelHandler.addModel(&c);
-	modelHandler.addModel(&p);
 	modelHandler.addModel(&c2);
 
 
@@ -141,12 +174,20 @@ int main()
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::cube, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::cube, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::sphere, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&p, CollisionType::plane, 0));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::sphere, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&s3, CollisionType::sphere, 1));
 
-	auto playerMCP = ModelPhysicsCoordinator(&player, CollisionType::capsule, 1);
-	btRigidBody *playerBt = playerMCP.btModel;
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&p1, CollisionType::plane, 0));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&p2, CollisionType::plane, 0, glm::vec3(0, -PI / 2,0)));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&p3, CollisionType::plane, 0, glm::vec3(0, PI / 2, 0)));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&p4, CollisionType::plane, 0, glm::vec3(0, 0, PI / 2)));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&p5, CollisionType::plane, 0, glm::vec3(0, 0, -PI / 2)));
 
-	physicsHandler.addMPC(playerMCP);
+
+
+	btRigidBody *playerBt = player.mpc.btModel;
+
+	physicsHandler.addMPC(player.mpc);
 	RenderInfo info = modelHandler.getRenderInfo();
 
 	std::vector<glm::vec3> finalPositions;
@@ -182,7 +223,7 @@ int main()
 
 
 	// shadows
-	const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
+	const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
 	unsigned int depthMapFBO;
 	glGenFramebuffers(1, &depthMapFBO);
 	// create depth cubemap texture
@@ -236,23 +277,25 @@ int main()
 
 		// physics
 		physicsHandler.simulationTick(deltaTime);
-		camera.Position = glm::vec3(player.transform[3][0], player.transform[3][1], player.transform[3][2] );
+		btVector3 trans = player.mpc.btModel->getWorldTransform().getOrigin();
+		camera->Position = glm::vec3(trans[0], trans[1], trans[2] + 1);
 		// input
 		// -----
-		processInput(window);
+		player.processInput(window, deltaTime);
+		//processInput(window);
 
 		light.transform[3] = glm::vec4(cos(currentFrame) * 2, sin(currentFrame/2) +4, sin(currentFrame) * 3, 1);
 
 		// update models
 		RenderInfo info = modelHandler.getRenderInfo();
 
-		finalPositions.clear();
-		for (int i = 0; i < info.vertices.size(); i++) {
-			finalPositions.push_back(info.vertices[i]);
-			finalPositions.push_back(info.normals[i]);
-		}
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_DYNAMIC_DRAW);
+		//finalPositions.clear();
+		//for (int i = 0; i < info.vertices.size(); i++) {
+		//	finalPositions.push_back(info.vertices[i]);
+		//	finalPositions.push_back(info.normals[i]);
+		//}
+		//glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		//glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_DYNAMIC_DRAW);
 
 		// render
 		// ------
@@ -272,8 +315,8 @@ int main()
 		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
 
 
-		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		glm::mat4 view = camera.GetViewMatrix();
+		glm::mat4 projection = glm::perspective(glm::radians(camera->Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		glm::mat4 view = camera->GetViewMatrix();
 
 		glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
 		glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
@@ -283,7 +326,7 @@ int main()
 				simpleDepthShader.setMat4("shadowMatrices[" + std::to_string(i) + "]", shadowTransforms[i]);
 			simpleDepthShader.setFloat("far_plane", far_plane);
 			simpleDepthShader.setVec3("lightPos", lightLocation);
-			renderModels(projection, view, camera.Position, lightLocation, far_plane, start, modelHandler, &simpleDepthShader);
+			renderModels(projection, view, camera->Position, lightLocation, far_plane, start, modelHandler, &simpleDepthShader);
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 		// render everything
@@ -294,7 +337,7 @@ int main()
 		glBindTexture(GL_TEXTURE_2D, depthMapFBO);
 		glBindVertexArray(VAO);
 
-		renderModels(projection, view, camera.Position, lightLocation, far_plane, start, modelHandler);
+		renderModels(projection, view, camera->Position, lightLocation, far_plane, start, modelHandler);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------

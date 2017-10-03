@@ -3,6 +3,6 @@
 
 class EmptyModel : public Model {
 public:
-	EmptyModel() : Model(nullptr) {};
+	EmptyModel() : Model(nullptr) { transform = glm::mat4(); transform[3][1] = 1; };
 
 };

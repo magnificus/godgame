@@ -9,10 +9,16 @@ class Player {
 
 public:
 	EmptyModel e;
-	ModelPhysicsCoordinator mpc = NULL;
+	ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(&e, CollisionType::capsule, 1);
 	Camera cam;
-	Player() { mpc = ModelPhysicsCoordinator(&e, CollisionType::capsule, 0); }
+	Player() { 
+	mpc.btModel->setAngularFactor(0);
+	//mpc.btModel->setLinearFactor(btVector3(1,0,1));
+	//mpc.btModel->setGravity(btVector3(0,0,0));
+	//mpc.btModel->setRestitution(0);
+	}
+	float movementSpeed = 0.05;
 
-	void processInput(GLFWwindow *window);
+	void processInput(GLFWwindow *window, float time);
 
 };

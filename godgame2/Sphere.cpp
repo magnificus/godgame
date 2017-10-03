@@ -99,7 +99,7 @@ IndexedMesh make_icosphere(int subdivisions)
 
 Sphere::Sphere(Shader *s) : Model(s)
 {
-	IndexedMesh mesh = make_icosphere(3);
+	IndexedMesh mesh = make_icosphere(2);
 	vertices = mesh.vertList;
 	//normals = mesh.vertList;
 	for (glm::vec3 t : mesh.vertList) {
