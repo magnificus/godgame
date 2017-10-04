@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="CustomShapeBuilder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelHandler.cpp" />
@@ -134,7 +135,9 @@
     <ClCompile Include="Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseLibrary.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="CustomShapeBuilder.h" />
     <ClInclude Include="EmptyModel.cpp" />
     <ClInclude Include="EmptyModel.h" />
     <ClInclude Include="inputHandler.h" />

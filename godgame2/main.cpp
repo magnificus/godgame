@@ -1,5 +1,4 @@
 //#include <stb_image.h>
-#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -19,6 +18,7 @@
 #include "inputHandler.h"
 #include "btBulletDynamicsCommon.h"
 #include "Player.h"
+#include "BaseLibrary.h"
 
 #define PI 3.14159
 
@@ -171,11 +171,11 @@ int main()
 
 
 
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::cube, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::cube, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::sphere, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::sphere, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&s3, CollisionType::sphere, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::custom, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::custom, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::custom, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::custom, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&s3, CollisionType::custom, 1));
 
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&p1, CollisionType::plane, 0));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&p2, CollisionType::plane, 0, glm::vec3(0, -PI / 2,0)));

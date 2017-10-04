@@ -19,13 +19,5 @@ c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(268): warning C4244: 
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(274): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(329): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(340): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
-  Generating Code...
-  Compiling...
-  Player.cpp
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\emptymodel.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.pdb (Partial PDB)
