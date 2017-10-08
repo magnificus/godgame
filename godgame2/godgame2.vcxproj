@@ -74,12 +74,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet\src;C:\Users\Tobbe\Desktop\godgame2\godgame2\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\quickhull;C:\Users\Tobbe\Desktop\bullet\src;C:\Users\Tobbe\Desktop\godgame2\godgame2\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -124,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="CustomShape.cpp" />
     <ClCompile Include="CustomShapeBuilder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -132,11 +134,14 @@
     <ClCompile Include="PhysicsHandler.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="quickhull\QuickHull.cpp" />
+    <ClCompile Include="quickhull\Tests\QuickHullTests.cpp" />
     <ClCompile Include="Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseLibrary.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="CustomShape.h" />
     <ClInclude Include="CustomShapeBuilder.h" />
     <ClInclude Include="EmptyModel.cpp" />
     <ClInclude Include="EmptyModel.h" />
@@ -148,7 +153,18 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelHandler.h" />
     <ClInclude Include="Plane.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="quickhull\ConvexHull.hpp" />
+    <ClInclude Include="quickhull\HalfEdgeMesh.hpp" />
+    <ClInclude Include="quickhull\MathUtils.hpp" />
+    <ClInclude Include="quickhull\QuickHull.hpp" />
+    <ClInclude Include="quickhull\Structs\Mesh.hpp" />
+    <ClInclude Include="quickhull\Structs\Plane.hpp" />
+    <ClInclude Include="quickhull\Structs\Pool.hpp" />
+    <ClInclude Include="quickhull\Structs\Ray.hpp" />
+    <ClInclude Include="quickhull\Structs\Vector3.hpp" />
+    <ClInclude Include="quickhull\Structs\VertexDataSource.hpp" />
+    <ClInclude Include="quickhull\Tests\QuickHullTests.hpp" />
+    <ClInclude Include="quickhull\Types.hpp" />
     <ClInclude Include="Sphere.h" />
   </ItemGroup>
   <ItemGroup>

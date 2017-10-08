@@ -2,5 +2,7 @@
 #include <vector>
 #include "BaseLibrary.h"
 class CustomShapeBuilder {
-	static RenderInfo buildShape();
+public:
+	static RenderInfo buildShape(shapeFunction * f);
+	static std::vector<glm::vec3> getSamplePositions(shapeFunction* f);
 };

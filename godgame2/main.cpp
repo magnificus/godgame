@@ -19,6 +19,9 @@
 #include "btBulletDynamicsCommon.h"
 #include "Player.h"
 #include "BaseLibrary.h"
+#include "QuickHull.hpp"
+//#include "CustomShapeBuilder.h"
+#include "CustomShape.h"
 
 #define PI 3.14159
 
@@ -50,6 +53,13 @@ void renderModels(glm::mat4 projection, glm::mat4 view, glm::vec3 viewPos,  glm:
 
 		prev = modelHandler.cutoffPositions[i];
 	}
+}
+
+float testFunction(float x, float y, float z) {
+	return - std::abs(x*x + y*y + z*z) + 1;
+}
+float testFunction2(float x, float y, float z) {
+	return -std::abs(x + y) + 1;
 }
 
 int main()
@@ -100,7 +110,6 @@ int main()
 	// build and compile our shader zprogram
 	// ------------------------------------
 	Shader shader1("standard_shader.vs", "standard_shader.fs");
-	Shader simpleShader("standard_shader.vs", "standard_shader.fs");
 	Shader simpleDepthShader("point_shadows_shader.vs", "point_shadows_shader.fs", "point_shadows_shader.gs");
 
 
@@ -133,12 +142,12 @@ int main()
 	c.transform[3] = glm::vec4(2, 0, 1, 1);
 
 	float planeSize = 10;
+
 	glm::vec3 planeColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	Plane p1(&shader1);
 	p1.color = planeColor;
 	p1.transform[3] = glm::vec4(0, -0.5, 0, 1);
 	Plane p2(&shader1);
-
 	p2.color = planeColor;
 	p2.transform[3] = glm::vec4(0, -0.5, planeSize, 1);
 	Plane p3(&shader1);
@@ -151,15 +160,19 @@ int main()
 	p5.color = planeColor;
 	p5.transform[3] = glm::vec4(-planeSize, -0.5, 0, 1);
 
+	shapeFunction asd = testFunction;
+	CustomShape custom(&shader1, &asd);
+	custom.transform[3] = glm::vec4(0, 4, 0, 1);
+
+
+	// add them to the handlers
+
+	modelHandler.addModel(&custom);
 	modelHandler.addModel(&p1);
 	modelHandler.addModel(&p2);
 	modelHandler.addModel(&p3);
 	modelHandler.addModel(&p4);
 	modelHandler.addModel(&p5);
-
-
-
-	// add them to the handlers
 
 	modelHandler.addModel(&s);
 	modelHandler.addModel(&s2);
@@ -176,6 +189,7 @@ int main()
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::custom, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::custom, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&s3, CollisionType::custom, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&custom, CollisionType::custom, 1));
 
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&p1, CollisionType::plane, 0));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&p2, CollisionType::plane, 0, glm::vec3(0, -PI / 2,0)));

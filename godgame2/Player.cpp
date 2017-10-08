@@ -17,13 +17,14 @@ void Player::processInput(GLFWwindow * window, float time)
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		toMove += cam.Right * movementSpeed;
 
-	toMove.y = 0;
+	//toMove.y = 0;
 
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)// && mpc.btModel->getLinearVelocity()[1] == 0.0f)
 		toMove += glm::vec3(0,1,0) *10.0f * time;
 
-	mpc.btModel->applyForce(btVector3(toMove[0], toMove[1], toMove[2])*100, mpc.btModel->getWorldTransform().getOrigin());
-	//mpc.btModel->translate(btVector3(toMove[0], toMove[1], toMove[2]));
+	//mpc.btModel->applyForce(btVector3(toMove[0], toMove[1], toMove[2])*100, mpc.btModel->getWorldTransform().getOrigin());
+	mpc.btModel->translate(btVector3(toMove[0], toMove[1], toMove[2]));
+	//mpc.btModel->setGravity(btVector3(0, -1, 0));
 	//mpc.btModel->setLinearVelocity(btVector3(toMove[0], toMove[1] + mpc.btModel->getLinearVelocity()[1], toMove[2]));
 
 

@@ -11,13 +11,12 @@ c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(63): warning C4
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(65): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(75): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(28): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(195): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(263): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(267): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(268): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(274): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(329): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(340): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
-  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.exe
-  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.pdb (Partial PDB)
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(31): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(163): error C2065: 'testFunction1': undeclared identifier
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(209): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(277): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(281): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(282): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(288): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(343): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(354): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data

@@ -28,11 +28,14 @@
     <Filter Include="Header Files\handlers">
       <UniqueIdentifier>{72247eee-5e74-4e71-94ba-0cc63bc67233}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\quickhull">
+      <UniqueIdentifier>{3be4af05-f5ad-4526-852f-1662d3000e44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\quickhull">
+      <UniqueIdentifier>{18861ee6-96d4-4dfb-afbc-612fd9d26a25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="point_shadows_shader.vs">
       <Filter>Source Files\shaders</Filter>
     </ClInclude>
@@ -75,6 +78,45 @@
     <ClInclude Include="BaseLibrary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CustomShape.h">
+      <Filter>Header Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\Structs\Plane.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\ConvexHull.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\HalfEdgeMesh.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\MathUtils.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\Structs\Mesh.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\Structs\Pool.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\QuickHull.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\Tests\QuickHullTests.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\Structs\Ray.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\Types.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\Structs\Vector3.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="quickhull\Structs\VertexDataSource.hpp">
+      <Filter>Header Files\quickhull</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="godgame2.rc">
@@ -111,6 +153,15 @@
     </ClCompile>
     <ClCompile Include="CustomShapeBuilder.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomShape.cpp">
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
+    <ClCompile Include="quickhull\QuickHull.cpp">
+      <Filter>Source Files\quickhull</Filter>
+    </ClCompile>
+    <ClCompile Include="quickhull\Tests\QuickHullTests.cpp">
+      <Filter>Source Files\quickhull</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
