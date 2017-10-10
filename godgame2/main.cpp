@@ -56,10 +56,16 @@ void renderModels(glm::mat4 projection, glm::mat4 view, glm::vec3 viewPos,  glm:
 }
 
 float testFunction(float x, float y, float z) {
-	return - std::abs(x*x + y*y + z*z) + 1;
+	return -x*x + -y*y + -z*z + 0.5;
+}
+float testFunction1(float x, float y, float z) {
+	return y < 0.5 && y > x;
 }
 float testFunction2(float x, float y, float z) {
-	return -std::abs(x + y) + 1;
+	return y < 0.5 && y < std::abs(x);
+}
+float testFunction3(float x, float y, float z) {
+	return - std::abs(x) - std::abs(y) - std::abs(z) + 1;
 }
 
 int main()
@@ -184,11 +190,11 @@ int main()
 
 
 
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::custom, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::custom, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::custom, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::custom, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&s3, CollisionType::custom, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::cube, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::cube, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::sphere, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::sphere, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&s3, CollisionType::sphere, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&custom, CollisionType::custom, 1));
 
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&p1, CollisionType::plane, 0));
@@ -265,6 +271,7 @@ int main()
 
 	clock_t start = 0;
 	glEnable(GL_CULL_FACE);
+
 	//glEnable(GL_BLEND);
 
 	// render loop
@@ -303,14 +310,6 @@ int main()
 		// update models
 		RenderInfo info = modelHandler.getRenderInfo();
 
-		//finalPositions.clear();
-		//for (int i = 0; i < info.vertices.size(); i++) {
-		//	finalPositions.push_back(info.vertices[i]);
-		//	finalPositions.push_back(info.normals[i]);
-		//}
-		//glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		//glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_DYNAMIC_DRAW);
-
 		// render
 		// ------
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -331,7 +330,7 @@ int main()
 
 		glm::mat4 projection = glm::perspective(glm::radians(camera->Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		glm::mat4 view = camera->GetViewMatrix();
-
+		glCullFace(GL_FRONT);
 		glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
 		glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
 			glClear(GL_DEPTH_BUFFER_BIT);
@@ -342,6 +341,7 @@ int main()
 			simpleDepthShader.setVec3("lightPos", lightLocation);
 			renderModels(projection, view, camera->Position, lightLocation, far_plane, start, modelHandler, &simpleDepthShader);
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glCullFace(GL_BACK);
 
 		// render everything
 		glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);

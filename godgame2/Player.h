@@ -17,7 +17,8 @@ public:
 	//mpc.btModel->setGravity(btVector3(0,0,0));
 	//mpc.btModel->setRestitution(0);
 	}
-	float movementSpeed = 0.05;
+	float movementSpeed = 1000;
+	float lastJump = 0;
 
 	void processInput(GLFWwindow *window, float time);
 

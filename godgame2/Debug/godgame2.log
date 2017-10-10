@@ -1,22 +1,6 @@
-﻿  main.cpp
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\filesystem.h(2): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
-  c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\filesystem.h(2): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader.h(65): warning C4101: 'infoLog': unreferenced local variable
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader.h(64): warning C4101: 'success': unreferenced local variable
+﻿  Player.cpp
+c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
+c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\emptymodel.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(62): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(63): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(65): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(66): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\inputhandler.h(75): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(31): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(163): error C2065: 'testFunction1': undeclared identifier
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(209): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(277): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(281): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(282): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(288): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(343): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\main.cpp(354): warning C4244: 'argument': conversion from 'clock_t' to 'float', possible loss of data
+  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.exe
+  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.pdb (Partial PDB)

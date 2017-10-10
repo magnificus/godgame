@@ -16,8 +16,6 @@ uniform float far_plane;
 
 float ShadowCalculation(vec3 fragPos)
 {
-	//if (closestDepth > 1)
-	//	return 0;
     // get vector between fragment position and light position
     vec3 fragToLight = fragPos - lightPos;
     // use the light to fragment vector to sample from the depth map    
@@ -27,8 +25,9 @@ float ShadowCalculation(vec3 fragPos)
     // now get current linear depth as the length between the fragment and light position
     float currentDepth = length(fragToLight);
     // now test for shadows
-    float bias = 0.05; 
+    float bias = 0.01; 
     float shadow = currentDepth -  bias > closestDepth? 1.0 : 0.0;
+
 
     return shadow;
 }  

@@ -22,6 +22,7 @@ RenderInfo CustomShapeBuilder::buildShape(shapeFunction * f)
 		glm::vec3 curr = glm::vec3(vertex.x, vertex.y, vertex.z);
 		center += curr;
 		toReturn.vertices.push_back(curr);
+		//toReturn.normals.push_back(glm::vec3(0, 1, 0));
 
 	}
 	center /= vertexBuffer.size();
@@ -29,8 +30,20 @@ RenderInfo CustomShapeBuilder::buildShape(shapeFunction * f)
 		toReturn.indices.push_back(indexBuffer[i]);
 	}
 	for (int i = 0; i < vertexBuffer.size(); i++) {
-		toReturn.normals.push_back(toReturn.vertices[i] - center);
+		glm::vec3 curr = toReturn.vertices[i] - center;
+		curr = glm::normalize(curr);
+		toReturn.normals.push_back(curr);
 	}
+	//for (int i = 0; i < toReturn.indices.size()-2; i+=3) {
+	//	glm::vec3 v1 = toReturn.vertices[toReturn.indices[i]];
+	//	glm::vec3 v2 = toReturn.vertices[toReturn.indices[i+1]];
+	//	glm::vec3 v3 = toReturn.vertices[toReturn.indices[i+2]];
+	//	glm::vec3 normal = glm::cross(v2 - v1, v3 - v1);
+	//	normal = glm::normalize(normal);
+	//	toReturn.normals[toReturn.indices[i]] = normal;
+	//	toReturn.normals[toReturn.indices[i+1]] = normal;
+	//	toReturn.normals[toReturn.indices[i+2]] = normal;
+	//}
 
 
 	return toReturn;
@@ -48,23 +61,64 @@ std::vector<glm::vec3> CustomShapeBuilder::getSamplePositions(shapeFunction * f)
 {
 	std::vector<VecVal> points;
 	std::vector<glm::vec3> acceptablePoints;
-	float incr = 0.05;
-	for (float x = -1; x <= 1; x += incr) {
-		for (float y = -1; y <= 1; y += incr) {
-			for (float z = -1; z <= 1; z += incr) {
-				VecVal curr;
-				curr.vec = glm::vec3(x, y, z);
-				curr.val = (*f)(x, y, z);
-				points.push_back(curr);
-				if (curr.val > 0)
+	float minFound = 100;
+	float maxFound = -100;
+	for (float i = -2.1f; i < 2; i+=0.01f) {
+		if ((*f)(i, 0, 0) > 0 || (*f)(0, i, 0) > 0 || (*f)(0, 0, i) > 0){
+			minFound = std::min(minFound, i);
+			maxFound = std::max(maxFound, i);
+
+		}
+	}
+
+	float scale = std::max(1.0f, maxFound - minFound);
+	float incr = 0.02*scale;
+	for (float x = minFound; x <= minFound+scale; x += incr) {
+		for (float y = minFound; y <= minFound + scale; y += incr) {
+			for (float z = minFound; z <= minFound + scale; z += incr) {
+				if ((*f)(x, y, z) > 0)
 					acceptablePoints.push_back(glm::vec3(x, y, z));
 			}
 		}
 	}
-	std::sort(points.begin(), points.end(), [](const VecVal & a,const  VecVal & b) {return a.val < b.val;});
-	std::vector<glm::vec3> toReturn;
-	for (int i = 0; i < points.size(); i++) {
-		toReturn.push_back(points[i].vec);
-	}
+	//std::sort(points.begin(), points.end(), [](const VecVal & a,const  VecVal & b) {return a.val < b.val;});
+	//std::vector<glm::vec3> toReturn;
+	//for (int i = 0; i < points.size(); i++) {
+	//	toReturn.push_back(points[i].vec);
+	//}
 	return acceptablePoints;
 }
+
+
+
+
+//std::vector<glm::vec3> CustomShapeBuilder::getSamplePositions(shapeFunction * f)
+//{
+//	std::vector<glm::vec3> acceptablePoints;
+//	float x = 0;
+//	float y = 0;
+//	float z = 0;
+//	// attempt to find corners
+//
+//	float initialRes = (*f)(0.0f, 0.0f, 0.0f);
+//	float epsilon = 0.01;
+//	while (initialRes > 0) {
+//		x *= 2;
+//		initialRes = (*f)(0.0f, 0.0f, 0.0f);
+//	}
+//	x /= 2;
+//	float toApply = x / 2;
+//	float res = (*f)(x, 0, 0);
+//	while (std::abs(res) > epsilon) {
+//		if (res > 0)
+//			toApply = -std::abs(toApply) / 2;
+//		else
+//			toApply = std::abs(toApply) / 2;
+//		x += toApply;
+//		res = (*f)(x, 0, 0);
+//	}
+//	//acceptablePoints.push_back
+//
+//	return acceptablePoints;
+//}
+
