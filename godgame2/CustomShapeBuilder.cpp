@@ -59,11 +59,10 @@ struct VecVal {
 
 std::vector<glm::vec3> CustomShapeBuilder::getSamplePositions(shapeFunction * f)
 {
-	std::vector<VecVal> points;
 	std::vector<glm::vec3> acceptablePoints;
 	float minFound = 100;
 	float maxFound = -100;
-	for (float i = -2.1f; i < 2; i+=0.01f) {
+	for (float i = -2; i <= 2; i+=0.01f) {
 		if ((*f)(i, 0, 0) > 0 || (*f)(0, i, 0) > 0 || (*f)(0, 0, i) > 0){
 			minFound = std::min(minFound, i);
 			maxFound = std::max(maxFound, i);
@@ -81,11 +80,6 @@ std::vector<glm::vec3> CustomShapeBuilder::getSamplePositions(shapeFunction * f)
 			}
 		}
 	}
-	//std::sort(points.begin(), points.end(), [](const VecVal & a,const  VecVal & b) {return a.val < b.val;});
-	//std::vector<glm::vec3> toReturn;
-	//for (int i = 0; i < points.size(); i++) {
-	//	toReturn.push_back(points[i].vec);
-	//}
 	return acceptablePoints;
 }
 

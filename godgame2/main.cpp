@@ -1,14 +1,10 @@
 //#include <stb_image.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include <learnopengl/filesystem.h>
 #include <learnopengl/shader.h>
-
 #include <iostream>
-
 #include <ctime>
-
 #include "Cube.h"
 #include "Plane.h"
 #include "Sphere.h"
@@ -20,36 +16,29 @@
 #include "Player.h"
 #include "BaseLibrary.h"
 #include "QuickHull.hpp"
-//#include "CustomShapeBuilder.h"
 #include "CustomShape.h"
+#include <ft2build.h>
+#include <map>
+#include "textHandler.h"
+#include FT_FREETYPE_H
 
 #define PI 3.14159
 
-void renderModels(glm::mat4 projection, glm::mat4 view, glm::vec3 viewPos,  glm::vec3 lightPos, float far_plane, float start, ModelHandler &modelHandler,  Shader *overrideShader = nullptr) {
+
+
+void renderModels(ModelHandler &modelHandler, Shader *overrideShader = nullptr) {
 	unsigned int prev = 0;
-	float time = (std::clock() - start);
 	for (int i = 0; i < modelHandler.cutoffPositions.size(); i++) {
 		Model *model = modelHandler.models[i];
 
 		Shader &currentShader = overrideShader ? *overrideShader : *model->shader;
 		if (!overrideShader) {
 			// set up shader
-			currentShader.use();
-			currentShader.setMat4("projection", projection);
-			currentShader.setMat4("view", view);
-			currentShader.setFloat("time", time / 100);
-			currentShader.setVec3("viewPos", viewPos);
-			currentShader.setVec3("lightPos", lightPos);
-			currentShader.setFloat("far_plane", far_plane);
-			currentShader.setInt("depthMap", 0);
-
 			currentShader.setVec3("color", model->color);
 		}
 		// send in model
 		currentShader.setMat4("model", model->transform);
 		glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
-		
-
 
 		prev = modelHandler.cutoffPositions[i];
 	}
@@ -68,6 +57,10 @@ float testFunction3(float x, float y, float z) {
 	return - std::abs(x) - std::abs(y) - std::abs(z) + 1;
 }
 
+
+
+
+
 int main()
 {
 	srand((unsigned)time(NULL));
@@ -80,7 +73,7 @@ int main()
 
 	// glfw window creation
 	// --------------------
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Game", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Game", glfwGetPrimaryMonitor(), NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -115,9 +108,9 @@ int main()
 
 	// build and compile our shader zprogram
 	// ------------------------------------
+	Shader textShader("text_shader.vs", "text_shader.fs");
 	Shader shader1("standard_shader.vs", "standard_shader.fs");
 	Shader simpleDepthShader("point_shadows_shader.vs", "point_shadows_shader.fs", "point_shadows_shader.gs");
-
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	// ------------------------------------------------------------------
@@ -271,13 +264,24 @@ int main()
 
 	clock_t start = 0;
 	glEnable(GL_CULL_FACE);
+	
+	// FREETYPE STUFF
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	//glEnable(GL_BLEND);
+	setUpCharacters();
+	glm::mat4 textProjection = glm::ortho(0.0f, 1920.0f, 0.0f, 1080.0f);
 
-	// render loop
-	// -----------
-
-
+	GLuint textVAO, textVBO;
+	glGenVertexArrays(1, &textVAO);
+	glGenBuffers(1, &textVBO);
+	glBindVertexArray(textVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, textVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 
 
 	unsigned int count = 0;
@@ -289,6 +293,7 @@ int main()
 			prev = glfwGetTime();
 			std::cout << "fps: " << 100 / frameTime;
 		}
+		glBindVertexArray(VAO);
 
 		// per-frame time logic
 		// --------------------
@@ -339,7 +344,7 @@ int main()
 				simpleDepthShader.setMat4("shadowMatrices[" + std::to_string(i) + "]", shadowTransforms[i]);
 			simpleDepthShader.setFloat("far_plane", far_plane);
 			simpleDepthShader.setVec3("lightPos", lightLocation);
-			renderModels(projection, view, camera->Position, lightLocation, far_plane, start, modelHandler, &simpleDepthShader);
+			renderModels(modelHandler, &simpleDepthShader);
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glCullFace(GL_BACK);
 
@@ -351,7 +356,30 @@ int main()
 		glBindTexture(GL_TEXTURE_2D, depthMapFBO);
 		glBindVertexArray(VAO);
 
-		renderModels(projection, view, camera->Position, lightLocation, far_plane, start, modelHandler);
+		float time = (std::clock() - start);
+		shader1.use();
+		shader1.setMat4("projection", projection);
+		shader1.setMat4("view", view);
+		shader1.setFloat("time", time / 100);
+		shader1.setVec3("viewPos", camera->Position);
+		shader1.setVec3("lightPos", lightLocation);
+		shader1.setFloat("far_plane", far_plane);
+		shader1.setInt("depthMap", 0);
+
+		//shader1.setVec3("color", model->color);
+
+		renderModels(modelHandler);
+
+
+		// text
+		if (player.isWriting) {
+			//std::cout << Player::written << std::endl;
+			RenderText(textShader, Player::written, 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+		}
+		else {
+			RenderText(textShader, "bazinga boys", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+		}
+		
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
@@ -370,5 +398,3 @@ int main()
 	glfwTerminate();
 	return 0;
 }
-
-

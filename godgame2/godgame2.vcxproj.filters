@@ -117,6 +117,12 @@
     <ClInclude Include="quickhull\Structs\VertexDataSource.hpp">
       <Filter>Header Files\quickhull</Filter>
     </ClInclude>
+    <ClInclude Include="textHandler.h">
+      <Filter>Header Files\handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="godgame2.rc">
@@ -163,6 +169,9 @@
     <ClCompile Include="quickhull\Tests\QuickHullTests.cpp">
       <Filter>Source Files\quickhull</Filter>
     </ClCompile>
+    <ClCompile Include="FunctionParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="standard_shader.vs">
@@ -190,6 +199,12 @@
       <Filter>Source Files\shaders</Filter>
     </None>
     <None Include="simple_shader.fs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="text_shader.fs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="text_shader.vs">
       <Filter>Source Files\shaders</Filter>
     </None>
   </ItemGroup>
