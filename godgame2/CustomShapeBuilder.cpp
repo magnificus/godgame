@@ -4,7 +4,7 @@
 //#include "Structs\Vector3.hpp"
 
 using namespace quickhull;
-RenderInfo CustomShapeBuilder::buildShape(shapeFunction * f)
+RenderInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 {
 	std::vector<glm::vec3> samples = getSamplePositions(f);
 	std::vector<quickhull::Vector3<float>> pointCloud;
@@ -34,17 +34,6 @@ RenderInfo CustomShapeBuilder::buildShape(shapeFunction * f)
 		curr = glm::normalize(curr);
 		toReturn.normals.push_back(curr);
 	}
-	//for (int i = 0; i < toReturn.indices.size()-2; i+=3) {
-	//	glm::vec3 v1 = toReturn.vertices[toReturn.indices[i]];
-	//	glm::vec3 v2 = toReturn.vertices[toReturn.indices[i+1]];
-	//	glm::vec3 v3 = toReturn.vertices[toReturn.indices[i+2]];
-	//	glm::vec3 normal = glm::cross(v2 - v1, v3 - v1);
-	//	normal = glm::normalize(normal);
-	//	toReturn.normals[toReturn.indices[i]] = normal;
-	//	toReturn.normals[toReturn.indices[i+1]] = normal;
-	//	toReturn.normals[toReturn.indices[i+2]] = normal;
-	//}
-
 
 	return toReturn;
 }
@@ -57,13 +46,13 @@ struct VecVal {
 };
 
 
-std::vector<glm::vec3> CustomShapeBuilder::getSamplePositions(shapeFunction * f)
+std::vector<glm::vec3> CustomShapeBuilder::getSamplePositions(CustomFunction &f)
 {
 	std::vector<glm::vec3> acceptablePoints;
 	float minFound = 100;
 	float maxFound = -100;
 	for (float i = -2; i <= 2; i+=0.01f) {
-		if ((*f)(i, 0, 0) > 0 || (*f)(0, i, 0) > 0 || (*f)(0, 0, i) > 0){
+		if (f.eval(i, 0, 0) > 0 || f.eval(0, i, 0) > 0 || f.eval(0, 0, i) > 0){
 			minFound = std::min(minFound, i);
 			maxFound = std::max(maxFound, i);
 
@@ -75,7 +64,7 @@ std::vector<glm::vec3> CustomShapeBuilder::getSamplePositions(shapeFunction * f)
 	for (float x = minFound; x <= minFound+scale; x += incr) {
 		for (float y = minFound; y <= minFound + scale; y += incr) {
 			for (float z = minFound; z <= minFound + scale; z += incr) {
-				if ((*f)(x, y, z) > 0)
+				if (f.eval(x, y, z) > 0)
 					acceptablePoints.push_back(glm::vec3(x, y, z));
 			}
 		}

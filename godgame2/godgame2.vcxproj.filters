@@ -120,8 +120,11 @@
     <ClInclude Include="textHandler.h">
       <Filter>Header Files\handlers</Filter>
     </ClInclude>
-    <ClInclude Include="FunctionParser.h">
+    <ClInclude Include="..\..\tinyexpr\tinyexpr.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyStruct.h">
+      <Filter>Header Files\handlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +172,7 @@
     <ClCompile Include="quickhull\Tests\QuickHullTests.cpp">
       <Filter>Source Files\quickhull</Filter>
     </ClCompile>
-    <ClCompile Include="FunctionParser.cpp">
+    <ClCompile Include="..\..\tinyexpr\tinyexpr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

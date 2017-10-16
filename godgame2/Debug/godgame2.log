@@ -1,6 +1,6 @@
-﻿  Player.cpp
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
-c:\users\tobbe\desktop\godgame2\godgame2\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\emptymodel.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+﻿  CustomShapeBuilder.cpp
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(29): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(32): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(63): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.pdb (Partial PDB)

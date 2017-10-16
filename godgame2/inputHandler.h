@@ -3,7 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include "btBulletDynamicsCommon.h"
-
+#include "KeyStruct.h"
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 
@@ -23,20 +23,18 @@ bool firstMouse = true;
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
-//void processInput(GLFWwindow *window)
-//{
-//	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-//		glfwSetWindowShouldClose(window, true);
-//
-//	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-//		camera.ProcessKeyboard(FORWARD, deltaTime);
-//	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-//		camera.ProcessKeyboard(BACKWARD, deltaTime);
-//	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-//		camera.ProcessKeyboard(LEFT, deltaTime);
-//	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-//		camera.ProcessKeyboard(RIGHT, deltaTime);
-//}
+std::vector<unsigned int> char_callbacks = std::vector<unsigned int>();
+std::vector<KeyStruct> key_callbacks = std::vector<KeyStruct>();
+
+
+void charCallback(GLFWwindow *window, unsigned int keyCode) {
+	char_callbacks.push_back(keyCode);
+}
+
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	key_callbacks.push_back(KeyStruct{ key, scancode, action, mods });
+}
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------

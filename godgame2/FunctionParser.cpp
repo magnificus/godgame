@@ -1,6 +1,6 @@
 #include "FunctionParser.h"
 
-shapeFunction FunctionParser::parse(std::string string)
-{
-	return shapeFunction();
-}
+//shapeFunction FunctionParser::parse(std::string string)
+//{
+//	return shapeFunction();
+//}

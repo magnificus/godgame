@@ -70,7 +70,6 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
 	// glfw window creation
 	// --------------------
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Game", glfwGetPrimaryMonitor(), NULL);
@@ -82,12 +81,16 @@ int main()
 	}
 
 	Player player;
+	//glfwSetInputMode(window, GLFW_STICKY_KEYS, 1);
 
 	camera = &(player.cam);
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
+	glfwSetKeyCallback(window, keyCallback);
+	glfwSetCharCallback(window, charCallback);
+
 
 	// tell GLFW to capture our mouse
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -128,10 +131,10 @@ int main()
 	light.transform[3] = glm::vec4(0, 3, 0, 1);
 
 	Sphere s(&shader1);
-	Sphere s2(&shader1);
-	Sphere s3(&shader1);
-	s2.transform[3] = glm::vec4(-4, 1.0, 2, 1);
-	s3.transform[3] = glm::vec4(-4, 3, 2, 1);
+	//Sphere s2(&shader1);
+	//Sphere s3(&shader1);
+	//s2.transform[3] = glm::vec4(-4, 1.0, 2, 1);
+	//s3.transform[3] = glm::vec4(-4, 3, 2, 1);
 	//s3.transform *= 0.5;
 	s.transform[3] = glm::vec4(-4, 5, 2.01, 1);
 	s.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
@@ -159,14 +162,15 @@ int main()
 	p5.color = planeColor;
 	p5.transform[3] = glm::vec4(-planeSize, -0.5, 0, 1);
 
-	shapeFunction asd = testFunction;
-	CustomShape custom(&shader1, &asd);
-	custom.transform[3] = glm::vec4(0, 4, 0, 1);
+	//shapeFunction asd = testFunction;
+	//CustomFunction test = CustomFunction("x+y+z");
+	//CustomShape custom(&shader1, test);
+	//custom.transform[3] = glm::vec4(0, 4, 0, 1);
 
 
 	// add them to the handlers
 
-	modelHandler.addModel(&custom);
+	//modelHandler.addModel(&custom);
 	modelHandler.addModel(&p1);
 	modelHandler.addModel(&p2);
 	modelHandler.addModel(&p3);
@@ -174,8 +178,8 @@ int main()
 	modelHandler.addModel(&p5);
 
 	modelHandler.addModel(&s);
-	modelHandler.addModel(&s2);
-	modelHandler.addModel(&s3);
+	//modelHandler.addModel(&s2);
+	//modelHandler.addModel(&s3);
 
 	modelHandler.addModel(&light);
 	modelHandler.addModel(&c);
@@ -186,9 +190,9 @@ int main()
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::cube, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::cube, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::sphere, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::sphere, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&s3, CollisionType::sphere, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&custom, CollisionType::custom, 1));
+	//physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::sphere, 1));
+	//physicsHandler.addMPC(ModelPhysicsCoordinator(&s3, CollisionType::sphere, 1));
+	//physicsHandler.addMPC(ModelPhysicsCoordinator(&custom, CollisionType::custom, 1));
 
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&p1, CollisionType::plane, 0));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&p2, CollisionType::plane, 0, glm::vec3(0, -PI / 2,0)));
@@ -204,7 +208,6 @@ int main()
 	RenderInfo info = modelHandler.getRenderInfo();
 
 	std::vector<glm::vec3> finalPositions;
-
 	for (int i = 0; i < info.vertices.size(); i++) {
 		finalPositions.push_back(info.vertices[i]);
 		finalPositions.push_back(info.normals[i]);
@@ -307,7 +310,6 @@ int main()
 		camera->Position = glm::vec3(trans[0], trans[1], trans[2] + 1);
 		// input
 		// -----
-		player.processInput(window, deltaTime);
 		//processInput(window);
 
 		light.transform[3] = glm::vec4(cos(currentFrame) * 2, sin(currentFrame/2) +4, sin(currentFrame) * 3, 1);
@@ -371,15 +373,42 @@ int main()
 		renderModels(modelHandler);
 
 
+		if (player.processInput(window, char_callbacks, key_callbacks, deltaTime, modelHandler, physicsHandler, &shader1) || true) {
+			finalPositions.clear();
+			for (int i = 0; i < info.vertices.size(); i++) {
+				finalPositions.push_back(info.vertices[i]);
+				finalPositions.push_back(info.normals[i]);
+			}
+
+			glBindBuffer(GL_ARRAY_BUFFER, VBO);
+			glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_DYNAMIC_DRAW);
+
+
+			// position attribute
+			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+			glEnableVertexAttribArray(0);
+
+			// normals
+			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+			glEnableVertexAttribArray(1);
+
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, info.indices.size() * sizeof(unsigned int), &info.indices[0], GL_DYNAMIC_DRAW);
+		}
+
 		// text
 		if (player.isWriting) {
 			//std::cout << Player::written << std::endl;
-			RenderText(textShader, Player::written, 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+			RenderText(textShader, player.written, 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
 		}
 		else {
 			RenderText(textShader, "bazinga boys", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
 		}
 		
+
+
+
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------

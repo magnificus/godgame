@@ -3,6 +3,7 @@
 #include <learnopengl/shader.h>
 #include "BaseLibrary.h"
 #include <map>
+#include "KeyStruct.h"
 #include FT_FREETYPE_H
 
 struct Character {

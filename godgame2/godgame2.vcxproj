@@ -124,10 +124,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\tinyexpr\tinyexpr.c" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CustomShape.cpp" />
     <ClCompile Include="CustomShapeBuilder.cpp" />
-    <ClCompile Include="FunctionParser.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelHandler.cpp" />
@@ -140,14 +140,15 @@
     <ClCompile Include="Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\tinyexpr\tinyexpr.h" />
     <ClInclude Include="BaseLibrary.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CustomShape.h" />
     <ClInclude Include="CustomShapeBuilder.h" />
     <ClInclude Include="EmptyModel.cpp" />
     <ClInclude Include="EmptyModel.h" />
-    <ClInclude Include="FunctionParser.h" />
     <ClInclude Include="inputHandler.h" />
+    <ClInclude Include="KeyStruct.h" />
     <ClInclude Include="ModelPhysicsCoordinator.h" />
     <ClInclude Include="PhysicsHandler.h" />
     <ClInclude Include="Player.h" />
