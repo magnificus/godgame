@@ -312,7 +312,7 @@ int main()
 		// -----
 		//processInput(window);
 
-		light.transform[3] = glm::vec4(cos(currentFrame) * 2, sin(currentFrame/2) +4, sin(currentFrame) * 3, 1);
+		light.transform[3] = glm::vec4(cos(currentFrame) * 2, sin(currentFrame/2) +7, sin(currentFrame) * 3, 1);
 
 		// update models
 		RenderInfo info = modelHandler.getRenderInfo();

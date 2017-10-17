@@ -29,7 +29,6 @@ public:
 	double lastEnter = 0.0;
 
 	// returns true if world is changed
-	static void addToString(GLFWwindow *window, unsigned int keyCode);
 	bool processInput(GLFWwindow * window, std::vector<unsigned int>& char_callbacks, std::vector<KeyStruct>& key_callbacks, float time, ModelHandler & modelHandler, PhysicsHandler & physicsHandler, Shader * s);
 	bool swapWriting() {};
 

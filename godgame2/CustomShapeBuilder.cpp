@@ -1,6 +1,8 @@
 #include "CustomShapeBuilder.h"
 #include <algorithm>
 #include "QuickHull.hpp"
+#include <map>
+#include <set>
 //#include "Structs\Vector3.hpp"
 
 using namespace quickhull;
@@ -18,6 +20,9 @@ RenderInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 
 	RenderInfo toReturn;
 	glm::vec3 center;
+
+	//std::map<unsigned int, unsigned int> 
+	std::set<unsigned int> found;
 	for (auto vertex : vertexBuffer) {
 		glm::vec3 curr = glm::vec3(vertex.x, vertex.y, vertex.z);
 		center += curr;
@@ -27,12 +32,36 @@ RenderInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 	}
 	center /= vertexBuffer.size();
 	for (int i = 0; i < indexBuffer.size(); i++) {
-		toReturn.indices.push_back(indexBuffer[i]);
+		if (found.count(indexBuffer[i])) {
+			toReturn.indices.push_back(indexBuffer[i]);
+			found.insert(indexBuffer[i]);
+		}
+		else {
+
+			toReturn.vertices.push_back(toReturn.vertices[indexBuffer[i]]);
+			toReturn.indices.push_back(toReturn.vertices.size() - 1);
+
+		}
+
 	}
-	for (int i = 0; i < vertexBuffer.size(); i++) {
+	for (int i = 0; i < toReturn.vertices.size(); i++) {
 		glm::vec3 curr = toReturn.vertices[i] - center;
 		curr = glm::normalize(curr);
 		toReturn.normals.push_back(curr);
+	}
+
+	for (int i = 0; i < toReturn.indices.size() - 2; i+=3) {
+		glm::vec3 v1 = toReturn.vertices[toReturn.indices[i]];
+		glm::vec3 v2 = toReturn.vertices[toReturn.indices[i+1]];
+		glm::vec3 v3 = toReturn.vertices[toReturn.indices[i+2]];
+
+		glm::vec3 norm = glm::cross(v1 - v2, v1 - v3);
+
+		norm = glm::normalize(norm);
+
+		toReturn.normals[toReturn.indices[i]] = norm;
+		toReturn.normals[toReturn.indices[i+1]] = norm;
+		toReturn.normals[toReturn.indices[i+2]] = norm;
 	}
 
 	return toReturn;
@@ -59,13 +88,23 @@ std::vector<glm::vec3> CustomShapeBuilder::getSamplePositions(CustomFunction &f)
 		}
 	}
 
-	float scale = std::max(1.0f, maxFound - minFound);
-	float incr = 0.02*scale;
+	float scale =  maxFound - minFound;
+	float incr = 0.04*scale;
 	for (float x = minFound; x <= minFound+scale; x += incr) {
 		for (float y = minFound; y <= minFound + scale; y += incr) {
+			float encounteredZ = minFound + scale;
 			for (float z = minFound; z <= minFound + scale; z += incr) {
-				if (f.eval(x, y, z) > 0)
+				if (f.eval(x, y, z) > 0) {
 					acceptablePoints.push_back(glm::vec3(x, y, z));
+					encounteredZ = z;
+					break;
+				}
+			}
+			for (float z = minFound + scale; z >= encounteredZ; z -= incr) {
+				if (f.eval(x, y, z) > 0) {
+					acceptablePoints.push_back(glm::vec3(x, y, z));
+					break;
+				}
 			}
 		}
 	}
