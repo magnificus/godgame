@@ -175,6 +175,9 @@
     <ClCompile Include="..\..\tinyexpr\tinyexpr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BaseLibrary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="standard_shader.vs">

@@ -9,7 +9,7 @@ struct RenderInfo {
 	std::vector<unsigned int> indices;
 };
 
-//typedef float(*shapeFunction)(float x, float y, float z);
+double getHullVolume(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices);
 
 struct CustomFunction {
 

@@ -140,7 +140,7 @@ int main()
 	s.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	Cube c2(&shader1);
 	c2.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	c2.transform[3] = glm::vec4(-2, 7, 0, 1);
+	c2.transform[3] = glm::vec4(-2, 0, 0, 1);
 	c.transform[3] = glm::vec4(2, 0, 1, 1);
 
 	float planeSize = 10;

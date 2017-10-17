@@ -27,7 +27,7 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 					shape->transform[3] = glm::vec4(0, 6, 0, 1);
 					shape->color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 					modelHandler.addModel(shape);
-					physicsHandler.addMPC(ModelPhysicsCoordinator(shape, CollisionType::custom, 1));
+					physicsHandler.addMPC(ModelPhysicsCoordinator(shape, CollisionType::custom, getHullVolume(shape->vertices, shape->indicies)));
 				}
 				written = "";
 			}

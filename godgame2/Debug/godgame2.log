@@ -1,7 +1,7 @@
 ﻿  CustomShapeBuilder.cpp
 c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(34): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(46): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(52): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(91): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(38): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(44): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame2\godgame2\godgame2\customshapebuilder.cpp(109): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame2\godgame2\Debug\godgame2.pdb (Partial PDB)

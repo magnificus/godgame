@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\tinyexpr\tinyexpr.c" />
+    <ClCompile Include="BaseLibrary.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CustomShape.cpp" />
     <ClCompile Include="CustomShapeBuilder.cpp" />
