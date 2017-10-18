@@ -6,7 +6,7 @@
 
 bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_callbacks, std::vector<KeyStruct> &key_callbacks, float time, ModelHandler &modelHandler, PhysicsHandler &physicsHandler, Shader *s)
 {
-	bool didPlace = false;
+	bool didPlaceObject = false;
 	if (isWriting) {
 		for (unsigned int i : char_callbacks) {
 			written += (char)i;
@@ -35,7 +35,7 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 					physicsHandler.addMPC(ModelPhysicsCoordinator(shape, CollisionType::custom, getHullVolume(shape->vertices, shape->indicies)));
 				}
 				written = "";
-				didPlace = true;
+				didPlaceObject = true;
 			}
 		}
 
@@ -57,15 +57,34 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 
 
 		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && glfwGetTime() - lastJump > 0.2) {// && mpc.btModel->getLinearVelocity()[1] == 0.0f)
-			btVector3 start = mpc.btModel->getWorldTransform().getOrigin() + btVector3(0, 0, 0);
+			btVector3 start = mpc.btModel->getWorldTransform().getOrigin();
 			btVector3 end = start + btVector3(0, -2.2, 0);
 
 			btCollisionWorld::ClosestRayResultCallback RayCallback(start, end);
 			physicsHandler.dynamicsWorld->rayTest(start, end, RayCallback);
-			//RayCallback.m_collisionObject->is;
 			if (RayCallback.hasHit()) {
 				toMove += glm::vec3(0, 1, 0) * 5.0f;
 				lastJump = glfwGetTime();
+			}
+
+		}
+
+		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+			btVector3 start = mpc.btModel->getWorldTransform().getOrigin();
+			glm::vec3 offset = cross(cam.Up, cam.Right) * 100.0f;
+			btVector3 end = start + btVector3(offset.x, offset.y, offset.z);
+			btCollisionWorld::ClosestRayResultCallback RayCallback(start, end);
+			physicsHandler.dynamicsWorld->rayTest(start, end, RayCallback);
+			if (RayCallback.hasHit()) {
+				btRigidBody *body = (btRigidBody*)RayCallback.m_collisionObject;
+				if (body) {
+					//std::cout << "applying force to body" << std::endl;
+					//body->setFlags(DISABLE_SIMULATION);
+					//body->setig
+					body->applyCentralForce(btVector3(offset.x, offset.y, offset.z));
+
+
+				}
 			}
 
 		}
@@ -73,12 +92,12 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 		//mpc.btModel->applyCentralForce(btVector3(toMove[0], toMove[1], toMove[2]) * 1000 * time);
 		
 		//mpc.btModel->translate(btVector3(toMove[0], toMove[1], toMove[2]));
-		mpc.btModel->setLinearVelocity(btVector3(toMove[0], toMove[1] + mpc.btModel->getLinearVelocity()[1], toMove[2]));
+		mpc.btModel->setLinearVelocity(btVector3(toMove[0], min(toMove[1] + mpc.btModel->getLinearVelocity()[1], 5.0f), toMove[2]));
 		mpc.btModel->activate();
 		}
 	key_callbacks.clear();
 	char_callbacks.clear();
-	return didPlace;
+	return didPlaceObject;
 
 
 }

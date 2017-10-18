@@ -26,13 +26,14 @@ public:
 		}
 		btVector3 fallInertia(0, 0, 0);
 		shape->calculateLocalInertia(mass, fallInertia);
-		btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI(mass, motionState, shape, fallInertia);
-		btRigidBody* fallRigidBody = new btRigidBody(fallRigidBodyCI);
-		btModel = fallRigidBody;
+		btRigidBody::btRigidBodyConstructionInfo bodyCI(mass, motionState, shape, fallInertia);
+		btRigidBody* body = new btRigidBody(bodyCI);
+		//shape->setUserPointer(body);
+		btModel = body;
 
 	}
 
-	ModelPhysicsCoordinator(Model *m, btRigidBody *body) : model(m), btModel(body) {};
+	//ModelPhysicsCoordinator(Model *m, btRigidBody *body) : model(m), btModel(body) {};
 	void updateModel();
 
 	Model *model;

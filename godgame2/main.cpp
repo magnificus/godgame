@@ -304,7 +304,7 @@ int main()
 		// physics
 		physicsHandler.simulationTick(deltaTime);
 		btVector3 trans = player.mpc.btModel->getWorldTransform().getOrigin();
-		camera->Position = glm::vec3(trans[0], trans[1], trans[2] + 1);
+		camera->Position = glm::vec3(trans[0], trans[1], trans[2]);
 		// input
 		// -----
 		//processInput(window);
