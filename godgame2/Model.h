@@ -10,6 +10,8 @@ public:
 	Model(Shader *s) {
 		shader = s;
 	}
+
+	void scale(glm::vec3 modifier);
 	glm::mat4 transform;
 	std::vector<glm::vec3> vertices;
 	std::vector<unsigned int> indicies;

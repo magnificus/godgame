@@ -4,7 +4,7 @@
 
 std::vector<glm::vec3> Plane::getVertices() {
 
-	float dist = 10.0f;
+	float dist = 30.0f;
 	return std::vector<glm::vec3>{glm::vec3{ -dist, 0.0f, -dist }, glm::vec3{ -dist, 0.0f, dist }, glm::vec3{ dist, 0.0f,dist }, glm::vec3{dist, 0.f, -dist }
 	};
 }

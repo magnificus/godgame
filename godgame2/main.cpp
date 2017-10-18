@@ -79,7 +79,7 @@ int main()
 		glfwTerminate();
 		return -1;
 	}
-
+	glfwSwapInterval(0);
 	Player player;
 	//glfwSetInputMode(window, GLFW_STICKY_KEYS, 1);
 
@@ -131,19 +131,15 @@ int main()
 	light.transform[3] = glm::vec4(0, 3, 0, 1);
 
 	Sphere s(&shader1);
-	//Sphere s2(&shader1);
-	//Sphere s3(&shader1);
-	//s2.transform[3] = glm::vec4(-4, 1.0, 2, 1);
-	//s3.transform[3] = glm::vec4(-4, 3, 2, 1);
-	//s3.transform *= 0.5;
-	s.transform[3] = glm::vec4(-4, 5, 2.01, 1);
+	s.transform[3] = glm::vec4(-4, 5, 2, 1);
 	s.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	Cube c2(&shader1);
 	c2.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	c2.transform[3] = glm::vec4(-2, 0, 0, 1);
-	c.transform[3] = glm::vec4(2, 0, 1, 1);
+	c.transform[3] = glm::vec4(30, 1, 1, 1);
+	c.scale(glm::vec3(10.0f, 10.0f, 70.0f));
 
-	float planeSize = 10;
+	float planeSize = 30;
 
 	glm::vec3 planeColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 	Plane p1(&shader1);
@@ -186,8 +182,8 @@ int main()
 	modelHandler.addModel(&c2);
 
 
-
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::cube, 1));
+	//ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(&c, CollisionType::custom, 0);
+	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::custom, 0));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::cube, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::sphere, 1));
 	//physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::sphere, 1));
@@ -239,7 +235,7 @@ int main()
 
 
 	// shadows
-	const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
+	const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
 	unsigned int depthMapFBO;
 	glGenFramebuffers(1, &depthMapFBO);
 	// create depth cubemap texture
@@ -289,13 +285,14 @@ int main()
 
 	unsigned int count = 0;
 	float prev = glfwGetTime();
+	std::string fpsString = "";
 	while (!glfwWindowShouldClose(window))
 	{
-		if (++count % 100 == 0) {
-			float frameTime = glfwGetTime() - prev;
-			prev = glfwGetTime();
-			std::cout << "fps: " << 100 / frameTime;
-		}
+		//if (++count % 100 == 0) {
+		//	float frameTime = glfwGetTime() - prev;
+		//	prev = glfwGetTime();
+		//	std::cout << "fps: " << 100 / frameTime;
+		//}
 		glBindVertexArray(VAO);
 
 		// per-frame time logic
@@ -370,15 +367,15 @@ int main()
 
 		//shader1.setVec3("color", model->color);
 
-		renderModels(modelHandler);
 
-
-		if (player.processInput(window, char_callbacks, key_callbacks, deltaTime, modelHandler, physicsHandler, &shader1) || true) {
+		if (player.processInput(window, char_callbacks, key_callbacks, deltaTime, modelHandler, physicsHandler, &shader1)) {
 			finalPositions.clear();
+			info = modelHandler.getRenderInfo();
 			for (int i = 0; i < info.vertices.size(); i++) {
 				finalPositions.push_back(info.vertices[i]);
 				finalPositions.push_back(info.normals[i]);
 			}
+			//glBindVertexArray(VAO);
 
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_DYNAMIC_DRAW);
@@ -397,14 +394,27 @@ int main()
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, info.indices.size() * sizeof(unsigned int), &info.indices[0], GL_DYNAMIC_DRAW);
 		}
 
+		renderModels(modelHandler);
+
+
+
 		// text
 		if (player.isWriting) {
 			//std::cout << Player::written << std::endl;
 			RenderText(textShader, player.written, 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
 		}
 		else {
-			RenderText(textShader, "bazinga boys", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+			RenderText(textShader, "ENTER to write", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
 		}
+
+		if (++count % 100 == 0) {
+			float frameTime = glfwGetTime() - prev;
+			prev = glfwGetTime();
+			fpsString = "fps: " + std::to_string((100 / frameTime));
+		}
+		RenderText(textShader, fpsString, 25.0f, 800.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+		
+		
 		
 
 

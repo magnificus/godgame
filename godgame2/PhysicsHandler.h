@@ -16,7 +16,6 @@ public:
 	void addMPC(ModelPhysicsCoordinator mpc);
 
 
-private:
 	btBroadphaseInterface* broadphase;
 	btDefaultCollisionConfiguration* collisionConfiguration;
 	btCollisionDispatcher* dispatcher;

@@ -22,7 +22,7 @@ public:
 		case cube: shape = new btBoxShape(btVector3(0.5,0.5,0.5)); break;
 		case sphere: shape = new btSphereShape(1); break;
 		case plane: shape = new btStaticPlaneShape(btVector3(0, 1, 0), 0); break;
-		case capsule: shape = new btCapsuleShape(1, 1.8);
+		case capsule: shape = new btCapsuleShape(1.0, 1.8);
 		}
 		btVector3 fallInertia(0, 0, 0);
 		shape->calculateLocalInertia(mass, fallInertia);

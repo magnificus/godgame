@@ -2,15 +2,19 @@
 #include "BaseLibrary.h"
 #include "tinyexpr.h"
 #include "CustomShape.h"
-
+#include <set>
 
 bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_callbacks, std::vector<KeyStruct> &key_callbacks, float time, ModelHandler &modelHandler, PhysicsHandler &physicsHandler, Shader *s)
 {
+	bool didPlace = false;
 	if (isWriting) {
 		for (unsigned int i : char_callbacks) {
 			written += (char)i;
 		}
 	}
+
+	// remove duplicates
+
 	for (KeyStruct k : key_callbacks) {
 		if (k.key == GLFW_KEY_BACKSPACE && k.action == GLFW_PRESS && isWriting) {
 			if (written.size() > 0)
@@ -24,44 +28,57 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 				CustomFunction func(written);
 				if (func.expr) {
 					CustomShape *shape = new CustomShape(s, func);
-					shape->transform[3] = glm::vec4(0, 6, 0, 1);
+					glm::vec3 offset = cross(cam.Up, cam.Right) * 5.0f;
+					shape->transform[3] = mpc.model->transform[3] + glm::vec4(offset.x, offset.y, offset.z, 0);
 					shape->color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 					modelHandler.addModel(shape);
 					physicsHandler.addMPC(ModelPhysicsCoordinator(shape, CollisionType::custom, getHullVolume(shape->vertices, shape->indicies)));
 				}
 				written = "";
+				didPlace = true;
 			}
 		}
 
 		if (k.key == GLFW_KEY_ESCAPE && k.action == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
 		}
-		if (!isWriting) {
-			glm::vec3 toMove;
-			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-				toMove += cam.Front * movementSpeed * time;
-			if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-				toMove -= cam.Front * movementSpeed * time;
-			if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-				toMove -= cam.Right * movementSpeed * time;
-			if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-				toMove += cam.Right * movementSpeed * time;
+	if (!isWriting) {
+		glm::vec3 toMove;
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+			toMove += cam.Front * movementSpeed * time;
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+			toMove -= cam.Front * movementSpeed * time;
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+			toMove -= cam.Right * movementSpeed * time;
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+			toMove += cam.Right * movementSpeed * time;
 
-			toMove.y = 0;
+		toMove.y = 0;
 
-			if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && glfwGetTime() - lastJump > 1.0) {// && mpc.btModel->getLinearVelocity()[1] == 0.0f)
-				toMove += glm::vec3(0, 1, 0) * 1000.0f * time;
+
+		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && glfwGetTime() - lastJump > 0.2) {// && mpc.btModel->getLinearVelocity()[1] == 0.0f)
+			btVector3 start = mpc.btModel->getWorldTransform().getOrigin() + btVector3(0, 0, 0);
+			btVector3 end = start + btVector3(0, -2.2, 0);
+
+			btCollisionWorld::ClosestRayResultCallback RayCallback(start, end);
+			physicsHandler.dynamicsWorld->rayTest(start, end, RayCallback);
+			//RayCallback.m_collisionObject->is;
+			if (RayCallback.hasHit()) {
+				toMove += glm::vec3(0, 1, 0) * 5.0f;
 				lastJump = glfwGetTime();
 			}
 
-			//mpc.btModel->applyForce(btVector3(toMove[0], toMove[1], toMove[2])*100, mpc.btModel->getWorldTransform().getOrigin());
-			//mpc.btModel->translate(btVector3(toMove[0], toMove[1], toMove[2]));
-			mpc.btModel->setLinearVelocity(btVector3(toMove[0], toMove[1] + mpc.btModel->getLinearVelocity()[1], toMove[2]));
-			mpc.btModel->activate();
+		}
+		//mpc.btModel->getTotalForce()
+		//mpc.btModel->applyCentralForce(btVector3(toMove[0], toMove[1], toMove[2]) * 1000 * time);
+		
+		//mpc.btModel->translate(btVector3(toMove[0], toMove[1], toMove[2]));
+		mpc.btModel->setLinearVelocity(btVector3(toMove[0], toMove[1] + mpc.btModel->getLinearVelocity()[1], toMove[2]));
+		mpc.btModel->activate();
 		}
 	key_callbacks.clear();
 	char_callbacks.clear();
-	return false;
+	return didPlace;
 
 
 }

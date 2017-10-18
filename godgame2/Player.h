@@ -17,14 +17,15 @@ public:
 	bool isCarrying;
 
 	EmptyModel e;
-	ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(&e, CollisionType::capsule, 1);
+	ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(&e, CollisionType::capsule, 0.1);
 	Camera cam;
 	Player() { 
 	mpc.btModel->setAngularFactor(0);
+	mpc.btModel->setFriction(0);
 	//mpc.btModel->setLinearFactor(btVector3(1,0,1));
 	//mpc.btModel->setRestitution(0);
 	}
-	float movementSpeed = 1000;
+	float movementSpeed = 2000;
 	double lastJump = 0.0;
 	double lastEnter = 0.0;
 
