@@ -3,16 +3,16 @@
 #include "Model.h"
 #include "btBulletDynamicsCommon.h"
 #include "ModelPhysicsCoordinator.h"
-
+#include <map>
+#include <set>
 class PhysicsHandler {
 
 public:
 	PhysicsHandler();
 	~PhysicsHandler();
-	std::vector<ModelPhysicsCoordinator> models;
-
+	std::set<ModelPhysicsCoordinator> models;
+	std::map<btRigidBody*, ModelPhysicsCoordinator*>  btModelMap;
 	void simulationTick(float time);
-	void addModel(Model *m);
 	void addMPC(ModelPhysicsCoordinator mpc);
 
 

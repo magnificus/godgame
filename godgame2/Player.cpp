@@ -3,9 +3,19 @@
 #include "tinyexpr.h"
 #include "CustomShape.h"
 #include <set>
-
+#include <algorithm>
 bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_callbacks, std::vector<KeyStruct> &key_callbacks, float time, ModelHandler &modelHandler, PhysicsHandler &physicsHandler, Shader *s)
 {
+
+	if (carrying) {
+		glm::vec3 offset = cross(cam.Up, cam.Right) * 3.0f;
+		btVector3 newLoc = mpc.btModel->getWorldTransform().getOrigin() + btVector3(offset.x, offset.y, offset.z);
+		auto &trans = carrying->getWorldTransform();
+		trans.setOrigin(newLoc);
+		carrying->activate();
+
+	}
+
 	bool didPlaceObject = false;
 	if (isWriting) {
 		for (unsigned int i : char_callbacks) {
@@ -41,6 +51,37 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 
 		if (k.key == GLFW_KEY_ESCAPE && k.action == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
+
+
+		if (k.key == GLFW_KEY_E && k.action == GLFW_PRESS) {
+			if (!carrying) {
+				glm::vec3 offset = cross(cam.Up, cam.Right) * 10.0f;
+				btVector3 start = mpc.btModel->getWorldTransform().getOrigin() + btVector3(offset.x, offset.y, offset.z)*0.1;
+				btVector3 end = start + btVector3(offset.x, offset.y, offset.z);
+				btCollisionWorld::ClosestRayResultCallback RayCallback(start, end);
+				physicsHandler.dynamicsWorld->rayTest(start, end, RayCallback);
+				if (RayCallback.hasHit()) {
+					btRigidBody *body = (btRigidBody*)RayCallback.m_collisionObject;
+					if (body) {
+						carrying = body;
+						prevFlags = body->getCollisionFlags();
+						//body->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
+						body->setLinearVelocity(btVector3(0, 0, 0));
+						body->setAngularVelocity(btVector3(0, 0, 0));
+						body->setGravity(btVector3(0, 0, 0));
+
+					}
+				}
+			}
+			else {
+				//carrying->btModel->setWorldArrayIndex(-1);
+				//carrying->setCollisionFlags(prevFlags);
+				carrying->setGravity(btVector3(0,-9.81, 0));
+				//physicsHandler.models.insert(*carrying);
+				//physicsHandler.dynamicsWorld->addRigidBody(carrying->btModel);
+				carrying = nullptr;
+			}
+		}
 		}
 	if (!isWriting) {
 		glm::vec3 toMove;
@@ -65,26 +106,6 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 			if (RayCallback.hasHit()) {
 				toMove += glm::vec3(0, 1, 0) * 5.0f;
 				lastJump = glfwGetTime();
-			}
-
-		}
-
-		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
-			btVector3 start = mpc.btModel->getWorldTransform().getOrigin();
-			glm::vec3 offset = cross(cam.Up, cam.Right) * 100.0f;
-			btVector3 end = start + btVector3(offset.x, offset.y, offset.z);
-			btCollisionWorld::ClosestRayResultCallback RayCallback(start, end);
-			physicsHandler.dynamicsWorld->rayTest(start, end, RayCallback);
-			if (RayCallback.hasHit()) {
-				btRigidBody *body = (btRigidBody*)RayCallback.m_collisionObject;
-				if (body) {
-					//std::cout << "applying force to body" << std::endl;
-					//body->setFlags(DISABLE_SIMULATION);
-					//body->setig
-					body->applyCentralForce(btVector3(offset.x, offset.y, offset.z));
-
-
-				}
 			}
 
 		}

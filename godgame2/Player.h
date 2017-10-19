@@ -14,7 +14,9 @@ class Player {
 public:
 	std::string written;
 	bool isWriting;
-	bool isCarrying;
+	//bool isCarrying = false;
+	btRigidBody *carrying = nullptr;
+	int prevFlags;
 
 	EmptyModel e;
 	ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(&e, CollisionType::capsule, 0.1);

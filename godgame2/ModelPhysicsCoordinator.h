@@ -33,6 +33,29 @@ public:
 
 	}
 
+	bool operator==(ModelPhysicsCoordinator rhs) const {
+		return rhs.btModel == btModel;
+	}
+	bool operator==(ModelPhysicsCoordinator *rhs) const {
+		return rhs->btModel == btModel;
+	}
+	bool operator!=(ModelPhysicsCoordinator rhs) const {
+		return rhs.btModel != btModel;
+	}
+	bool operator<(ModelPhysicsCoordinator rhs) const {
+		return rhs.btModel < btModel;
+	}
+	bool operator>(ModelPhysicsCoordinator rhs) const {
+		return rhs.btModel > btModel;
+	}
+	bool operator>=(ModelPhysicsCoordinator rhs) const {
+		return rhs.btModel >= btModel;
+	}
+	bool operator<=(ModelPhysicsCoordinator rhs) const {
+		return rhs.btModel <= btModel;
+	}
+
+
 	//ModelPhysicsCoordinator(Model *m, btRigidBody *body) : model(m), btModel(body) {};
 	void updateModel();
 
