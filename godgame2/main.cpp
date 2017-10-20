@@ -402,9 +402,22 @@ int main()
 		if (player.isWriting) {
 			//std::cout << Player::written << std::endl;
 			RenderText(textShader, player.written, 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+			RenderText(textShader, "Available methods:", 25.0f, 750.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+			RenderText(textShader, "< > + - / * ^ %", 25.0f, 700.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+			RenderText(textShader, "min, max, abs, acos, asin, atan, atan2, ceil, cos, cosh,", 25.0f, 650.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+			RenderText(textShader, "exp, floor, ln, log, log10, pow, sin, sinh, sqrt, tan, tanh", 25.0f, 600.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+			RenderText(textShader, "constans: pi, e", 25.0f, 550.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+
+
+			//RenderText(textShader, "Available methods:", 25.0f, 800.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+			//RenderText(textShader, "Available methods:", 25.0f, 800.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+			//RenderText(textShader, "Available methods:", 25.0f, 800.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+
+
 		}
 		else {
 			RenderText(textShader, "ENTER to write", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+
 		}
 
 		if (++count % 100 == 0) {
@@ -412,7 +425,7 @@ int main()
 			prev = glfwGetTime();
 			fpsString = "fps: " + std::to_string((100 / frameTime));
 		}
-		RenderText(textShader, fpsString, 25.0f, 800.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
+		RenderText(textShader, fpsString, 25.0f, 1000.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
 		
 		
 		

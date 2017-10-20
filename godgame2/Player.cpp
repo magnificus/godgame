@@ -62,8 +62,10 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 				physicsHandler.dynamicsWorld->rayTest(start, end, RayCallback);
 				if (RayCallback.hasHit()) {
 					btRigidBody *body = (btRigidBody*)RayCallback.m_collisionObject;
-					if (body) {
+					if (body && 1/body->getInvMass() < 1.5f) {
+						std::cout << "mass: " << 1 / body->getInvMass() << std::endl;
 						carrying = body;
+						//body->mass
 						prevFlags = body->getCollisionFlags();
 						//body->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
 						body->setLinearVelocity(btVector3(0, 0, 0));

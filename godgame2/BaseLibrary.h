@@ -33,3 +33,10 @@ struct CustomFunction {
 	}
 
 };
+
+struct TextStruct{
+	int x;
+	int y;
+	std::string text;
+	float destroyTime;
+};
