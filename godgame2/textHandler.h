@@ -4,6 +4,7 @@
 #include "BaseLibrary.h"
 #include <map>
 #include "KeyStruct.h"
+#include <queue>
 #include FT_FREETYPE_H
 
 struct Character {
@@ -14,6 +15,7 @@ struct Character {
 };
 
 std::map<GLchar, Character> Characters;
+std::queue<TextStruct> texts;
 
 static void RenderText(Shader &s, std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color, unsigned int VAO, unsigned int VBO, glm::mat4 textProjection)
 {

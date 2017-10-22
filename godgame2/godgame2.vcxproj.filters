@@ -126,6 +126,9 @@
     <ClInclude Include="KeyStruct.h">
       <Filter>Header Files\handlers</Filter>
     </ClInclude>
+    <ClInclude Include="LevelBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="godgame2.rc">
@@ -176,6 +179,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BaseLibrary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -129,6 +129,7 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CustomShape.cpp" />
     <ClCompile Include="CustomShapeBuilder.cpp" />
+    <ClCompile Include="LevelBuilder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelHandler.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="EmptyModel.h" />
     <ClInclude Include="inputHandler.h" />
     <ClInclude Include="KeyStruct.h" />
+    <ClInclude Include="LevelBuilder.h" />
     <ClInclude Include="ModelPhysicsCoordinator.h" />
     <ClInclude Include="PhysicsHandler.h" />
     <ClInclude Include="Player.h" />

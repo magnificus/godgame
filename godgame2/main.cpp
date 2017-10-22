@@ -20,6 +20,7 @@
 #include <ft2build.h>
 #include <map>
 #include "textHandler.h"
+#include "LevelBuilder.h"
 #include FT_FREETYPE_H
 
 #define PI 3.14159
@@ -123,78 +124,15 @@ int main()
 	PhysicsHandler physicsHandler;
 
 	// set up all of our game objects
-	Cube c(&shader1);
-	c.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	Sphere light(&shader1);
-	light.color = glm::vec3(10, 10, 10);
-	light.transform *= 0.5;
-	light.transform[3] = glm::vec4(0, 3, 0, 1);
 
-	Sphere s(&shader1);
-	s.transform[3] = glm::vec4(-4, 5, 2, 1);
-	s.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	Cube c2(&shader1);
-	c2.color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	c2.transform[3] = glm::vec4(-2, 0, 0, 1);
-	c.transform[3] = glm::vec4(30, 1, 1, 1);
-	c.scale(glm::vec3(10.0f, 10.0f, 70.0f));
+	Sphere *light = new Sphere(&shader1);
+	light->color = glm::vec3(10, 10, 10);
+	light->transform *= 0.5;
+	light->transform[3] = glm::vec4(0, 3, 0, 1);
 
-	float planeSize = 30;
+	modelHandler.addModel(light);
 
-	glm::vec3 planeColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	Plane p1(&shader1);
-	p1.color = planeColor;
-	p1.transform[3] = glm::vec4(0, -0.5, 0, 1);
-	Plane p2(&shader1);
-	p2.color = planeColor;
-	p2.transform[3] = glm::vec4(0, -0.5, planeSize, 1);
-	Plane p3(&shader1);
-	p3.color = planeColor;
-	p3.transform[3] = glm::vec4(0, -0.5, -planeSize, 1);
-	Plane p4(&shader1);
-	p4.color = planeColor;
-	p4.transform[3] = glm::vec4(planeSize, -0.5, 0, 1);
-	Plane p5(&shader1);
-	p5.color = planeColor;
-	p5.transform[3] = glm::vec4(-planeSize, -0.5, 0, 1);
-
-	//shapeFunction asd = testFunction;
-	//CustomFunction test = CustomFunction("x+y+z");
-	//CustomShape custom(&shader1, test);
-	//custom.transform[3] = glm::vec4(0, 4, 0, 1);
-
-
-	// add them to the handlers
-
-	//modelHandler.addModel(&custom);
-	modelHandler.addModel(&p1);
-	modelHandler.addModel(&p2);
-	modelHandler.addModel(&p3);
-	modelHandler.addModel(&p4);
-	modelHandler.addModel(&p5);
-
-	modelHandler.addModel(&s);
-	//modelHandler.addModel(&s2);
-	//modelHandler.addModel(&s3);
-
-	modelHandler.addModel(&light);
-	modelHandler.addModel(&c);
-	modelHandler.addModel(&c2);
-
-
-	//ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(&c, CollisionType::custom, 0);
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&c, CollisionType::custom, 0));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&c2, CollisionType::cube, 1));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&s, CollisionType::sphere, 1));
-	//physicsHandler.addMPC(ModelPhysicsCoordinator(&s2, CollisionType::sphere, 1));
-	//physicsHandler.addMPC(ModelPhysicsCoordinator(&s3, CollisionType::sphere, 1));
-	//physicsHandler.addMPC(ModelPhysicsCoordinator(&custom, CollisionType::custom, 1));
-
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&p1, CollisionType::plane, 0));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&p2, CollisionType::plane, 0, glm::vec3(0, -PI / 2,0)));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&p3, CollisionType::plane, 0, glm::vec3(0, PI / 2, 0)));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&p4, CollisionType::plane, 0, glm::vec3(0, 0, PI / 2)));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(&p5, CollisionType::plane, 0, glm::vec3(0, 0, -PI / 2)));
+	LevelBuilder::getLevel1(physicsHandler, modelHandler, shader1);
 
 
 
@@ -309,7 +247,7 @@ int main()
 		// -----
 		//processInput(window);
 
-		light.transform[3] = glm::vec4(cos(currentFrame) * 2, sin(currentFrame/2) +7, sin(currentFrame) * 3, 1);
+		light->transform[3] = glm::vec4(cos(currentFrame) * 2, sin(currentFrame/2) +7, sin(currentFrame) * 3, 1);
 
 		// update models
 		RenderInfo info = modelHandler.getRenderInfo();
@@ -323,7 +261,7 @@ int main()
 		float far_plane = 250.0f;
 		glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), (float)SHADOW_WIDTH / (float)SHADOW_HEIGHT, near_plane, far_plane);
 		std::vector<glm::mat4> shadowTransforms;
-		glm::vec3 lightLocation = glm::vec3(light.transform[3][0], light.transform[3][1], light.transform[3][2]);
+		glm::vec3 lightLocation = glm::vec3(light->transform[3][0], light->transform[3][1], light->transform[3][2]);
 		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
 		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
 		shadowTransforms.push_back(shadowProj * glm::lookAt(lightLocation, lightLocation + glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
@@ -409,11 +347,6 @@ int main()
 			RenderText(textShader, "constans: pi, e", 25.0f, 550.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
 
 
-			//RenderText(textShader, "Available methods:", 25.0f, 800.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
-			//RenderText(textShader, "Available methods:", 25.0f, 800.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
-			//RenderText(textShader, "Available methods:", 25.0f, 800.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
-
-
 		}
 		else {
 			RenderText(textShader, "ENTER to write", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
@@ -427,11 +360,6 @@ int main()
 		}
 		RenderText(textShader, fpsString, 25.0f, 1000.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f), textVAO, textVBO, textProjection);
 		
-		
-		
-
-
-
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
@@ -445,6 +373,11 @@ int main()
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
 
+	for (Model *m : modelHandler.models)
+		delete m;
+
+	for (ModelPhysicsCoordinator b : physicsHandler.models)
+		delete b.btModel;
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------
 	glfwTerminate();

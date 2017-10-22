@@ -76,11 +76,7 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 				}
 			}
 			else {
-				//carrying->btModel->setWorldArrayIndex(-1);
-				//carrying->setCollisionFlags(prevFlags);
 				carrying->setGravity(btVector3(0,-9.81, 0));
-				//physicsHandler.models.insert(*carrying);
-				//physicsHandler.dynamicsWorld->addRigidBody(carrying->btModel);
 				carrying = nullptr;
 			}
 		}
@@ -111,10 +107,6 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 			}
 
 		}
-		//mpc.btModel->getTotalForce()
-		//mpc.btModel->applyCentralForce(btVector3(toMove[0], toMove[1], toMove[2]) * 1000 * time);
-		
-		//mpc.btModel->translate(btVector3(toMove[0], toMove[1], toMove[2]));
 		mpc.btModel->setLinearVelocity(btVector3(toMove[0], min(toMove[1] + mpc.btModel->getLinearVelocity()[1], 5.0f), toMove[2]));
 		mpc.btModel->activate();
 		}
