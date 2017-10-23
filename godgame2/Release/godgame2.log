@@ -1,8 +1,2 @@
-﻿  tinyexpr.c
-..\..\tinyexpr\tinyexpr.c(159): error C2099: initializer is not a constant
-..\..\tinyexpr\tinyexpr.c(159): warning C4047: 'initializing': 'const void *' differs in levels of indirection from 'int'
-..\..\tinyexpr\tinyexpr.c(165): error C2099: initializer is not a constant
-..\..\tinyexpr\tinyexpr.c(165): warning C4047: 'initializing': 'const void *' differs in levels of indirection from 'int'
-..\..\tinyexpr\tinyexpr.c(460): warning C4090: 'initializing': different 'const' qualifiers
-..\..\tinyexpr\tinyexpr.c(477): warning C4090: 'initializing': different 'const' qualifiers
-..\..\tinyexpr\tinyexpr.c(492): warning C4090: 'initializing': different 'const' qualifiers
+﻿  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Release\godgame2.exe
+  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Release\godgame2.pdb (Full PDB)

@@ -22,6 +22,7 @@ void LevelBuilder::getLevel1(PhysicsHandler &physicsHandler, ModelHandler &model
 	float planeSize = 30;
 
 	glm::vec3 planeColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+	planeColor = glm::normalize(planeColor);
 	Plane *p1 = new Plane(&shader1);
 	p1->color = planeColor;
 	p1->transform[3] = glm::vec4(0, -0.5, 0, 1);
@@ -54,7 +55,7 @@ void LevelBuilder::getLevel1(PhysicsHandler &physicsHandler, ModelHandler &model
 
 
 	physicsHandler.addMPC(ModelPhysicsCoordinator(c, CollisionType::custom, 0));
-	physicsHandler.addMPC(ModelPhysicsCoordinator(c2, CollisionType::cube, 1));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(c2, CollisionType::custom, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(s, CollisionType::sphere, 1));
 
 	physicsHandler.addMPC(ModelPhysicsCoordinator(p1, CollisionType::plane, 0));

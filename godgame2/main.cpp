@@ -24,7 +24,8 @@
 
 #define PI 3.14159
 
-#pragma comment(lib, "freetype271.lib")
+//#pragma comment(lib, "freetype271.lib")
+//#pragma comment(lib, "GLAD.lib")
 void renderModels(ModelHandler &modelHandler, Shader *overrideShader = nullptr) {
 	unsigned int prev = 0;
 	for (int i = 0; i < modelHandler.cutoffPositions.size(); i++) {
@@ -43,20 +44,6 @@ void renderModels(ModelHandler &modelHandler, Shader *overrideShader = nullptr) 
 	}
 }
 
-float testFunction(float x, float y, float z) {
-	return -x*x + -y*y + -z*z + 0.5;
-}
-float testFunction1(float x, float y, float z) {
-	return y < 0.5 && y > x;
-}
-float testFunction2(float x, float y, float z) {
-	return y < 0.5 && y < std::abs(x);
-}
-float testFunction3(float x, float y, float z) {
-	return - std::abs(x) - std::abs(y) - std::abs(z) + 1;
-}
-
-
 
 
 
@@ -71,7 +58,7 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	// glfw window creation
 	// --------------------
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Game", NULL /*glfwGetPrimaryMonitor() */, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Game", /*NULL*/ glfwGetPrimaryMonitor() , NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -221,6 +208,7 @@ int main()
 
 
 	unsigned int count = 0;
+	bool drawShadows = true;
 	float prev = glfwGetTime();
 	std::string fpsString = "";
 	while (!glfwWindowShouldClose(window))
@@ -297,11 +285,11 @@ int main()
 		shader1.setVec3("lightPos", lightLocation);
 		shader1.setFloat("far_plane", far_plane);
 		shader1.setInt("depthMap", 0);
-
+		shader1.setBool("shadows", drawShadows);
 		//shader1.setVec3("color", model->color);
 
 
-		if (player.processInput(window, char_callbacks, key_callbacks, deltaTime, modelHandler, physicsHandler, &shader1)) {
+		if (player.processInput(window, char_callbacks, key_callbacks, drawShadows, deltaTime, modelHandler, physicsHandler, &shader1)) {
 			finalPositions.clear();
 			info = modelHandler.getRenderInfo();
 			for (int i = 0; i < info.vertices.size(); i++) {

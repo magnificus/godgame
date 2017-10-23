@@ -4,7 +4,7 @@
 #include "CustomShape.h"
 #include <set>
 #include <algorithm>
-bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_callbacks, std::vector<KeyStruct> &key_callbacks, float time, ModelHandler &modelHandler, PhysicsHandler &physicsHandler, Shader *s)
+bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_callbacks, std::vector<KeyStruct> &key_callbacks, bool &drawShadows, float time, ModelHandler &modelHandler, PhysicsHandler &physicsHandler, Shader *s)
 {
 
 	if (carrying) {
@@ -48,6 +48,8 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 				didPlaceObject = true;
 			}
 		}
+		if (k.key == GLFW_KEY_K && k.action == GLFW_PRESS)
+			drawShadows = !drawShadows;
 
 		if (k.key == GLFW_KEY_ESCAPE && k.action == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
