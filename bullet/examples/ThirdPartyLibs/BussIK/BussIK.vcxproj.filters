@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\Jacobian.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\LinearR2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\LinearR3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\LinearR4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\MatrixRmn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\Misc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\Tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\VectorRn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\Jacobian.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\LinearR2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\LinearR3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\LinearR4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\MathMisc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\MatrixRmn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\Spherical.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\Tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\VectorRn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\BussIK\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{728E9658-30D7-39A9-A729-509D7EA0C2EA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{CAC3778E-D485-366A-BC0E-0D8CAFE81F69}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

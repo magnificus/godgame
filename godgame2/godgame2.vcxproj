@@ -74,7 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\freetype-2.4.0\include;C:\Users\Tobbe\Desktop\quickhull;C:\Users\Tobbe\Desktop\bullet\src;C:\Users\Tobbe\Desktop\godgame2\godgame2\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)freetype\include;$(SolutionDir)quickhull;$(SolutionDir)bullet\src;$(SolutionDir)includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
@@ -83,7 +83,7 @@
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)bullet\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Debug\GLAD.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
@@ -124,7 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\tinyexpr\tinyexpr.c" />
+    <ClCompile Include="..\quickhull\QuickHull.cpp" />
     <ClCompile Include="BaseLibrary.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CustomShape.cpp" />
@@ -137,12 +137,15 @@
     <ClCompile Include="PhysicsHandler.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="quickhull\QuickHull.cpp" />
-    <ClCompile Include="quickhull\Tests\QuickHullTests.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="tinyexpr.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\tinyexpr\tinyexpr.h" />
+    <ClInclude Include="..\quickhull\ConvexHull.hpp" />
+    <ClInclude Include="..\quickhull\HalfEdgeMesh.hpp" />
+    <ClInclude Include="..\quickhull\MathUtils.hpp" />
+    <ClInclude Include="..\quickhull\QuickHull.hpp" />
+    <ClInclude Include="..\quickhull\Types.hpp" />
     <ClInclude Include="BaseLibrary.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CustomShape.h" />
@@ -159,27 +162,19 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelHandler.h" />
     <ClInclude Include="Plane.h" />
-    <ClInclude Include="quickhull\ConvexHull.hpp" />
-    <ClInclude Include="quickhull\HalfEdgeMesh.hpp" />
-    <ClInclude Include="quickhull\MathUtils.hpp" />
-    <ClInclude Include="quickhull\QuickHull.hpp" />
-    <ClInclude Include="quickhull\Structs\Mesh.hpp" />
     <ClInclude Include="quickhull\Structs\Plane.hpp" />
-    <ClInclude Include="quickhull\Structs\Pool.hpp" />
-    <ClInclude Include="quickhull\Structs\Ray.hpp" />
-    <ClInclude Include="quickhull\Structs\Vector3.hpp" />
-    <ClInclude Include="quickhull\Structs\VertexDataSource.hpp" />
-    <ClInclude Include="quickhull\Tests\QuickHullTests.hpp" />
-    <ClInclude Include="quickhull\Types.hpp" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="textHandler.h" />
+    <ClInclude Include="tinyexpr.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="godgame2.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\quickhull\README.md" />
     <None Include="depth_quad_shader.fs" />
     <None Include="depth_quad_shader.vs" />
+    <None Include="packages.config" />
     <None Include="point_shadows_shader.gs" />
     <None Include="point_shadows_shader.fs" />
     <None Include="shadow_shader.fs" />
@@ -191,20 +186,28 @@
     <None Include="text_shader.vs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\freetype-2.4.0\builds\win32\vc2008\freetype.vcxproj">
-      <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
+    <ProjectReference Include="..\bullet\src\BulletCollision\BulletCollision.vcxproj">
+      <Project>{d8d3a615-3741-3188-be4a-b2498a1acadf}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\bullet\src\BulletCollision\BulletCollision.vcxproj">
-      <Project>{c6e63250-05df-3a12-9b1c-a03c3950bc53}</Project>
+    <ProjectReference Include="..\bullet\src\BulletDynamics\BulletDynamics.vcxproj">
+      <Project>{25ab5a1e-f200-3bbf-ba2e-db95ab0d0bea}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\bullet\src\BulletDynamics\BulletDynamics.vcxproj">
-      <Project>{6992674d-2ff8-37aa-9a30-22cdeb8d453c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\bullet\src\LinearMath\LinearMath.vcxproj">
-      <Project>{3a523149-18d1-3734-94ea-9c2d6f1ecccb}</Project>
+    <ProjectReference Include="..\bullet\src\LinearMath\LinearMath.vcxproj">
+      <Project>{d96ddfd6-96b6-3f04-918a-b0e3c0ad943a}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\glm.0.9.8.4\build\native\glm.targets" Condition="Exists('..\packages\glm.0.9.8.4\build\native\glm.targets')" />
+    <Import Project="..\packages\glfw.redist.3.2.1\build\native\glfw.redist.targets" Condition="Exists('..\packages\glfw.redist.3.2.1\build\native\glfw.redist.targets')" />
+    <Import Project="..\packages\glfw.3.2.1\build\native\glfw.targets" Condition="Exists('..\packages\glfw.3.2.1\build\native\glfw.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\glm.0.9.8.4\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glm.0.9.8.4\build\native\glm.targets'))" />
+    <Error Condition="!Exists('..\packages\glfw.redist.3.2.1\build\native\glfw.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glfw.redist.3.2.1\build\native\glfw.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\glfw.3.2.1\build\native\glfw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glfw.3.2.1\build\native\glfw.targets'))" />
+  </Target>
 </Project>

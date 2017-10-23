@@ -1,0 +1,37 @@
+# CMake generation dependency list for this directory.
+C:/Users/Tobbe/Desktop/bullet3/CMakeLists.txt
+C:/Users/Tobbe/Desktop/godgame/bullet/CMakeFiles/3.6.2/CMakeSystem.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Users/Tobbe/Desktop/godgame/bullet/CMakeFiles/3.6.2/CMakeCCompiler.cmake
+C:/Users/Tobbe/Desktop/godgame/bullet/CMakeFiles/3.6.2/CMakeCXXCompiler.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeGenericSystem.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/WindowsPaths.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC.cmake
+C:/Users/Tobbe/Desktop/godgame/bullet/CMakeFiles/3.6.2/CMakeRCCompiler.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeRCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCXXInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindOpenGL.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPythonInterp.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Users/Tobbe/Desktop/bullet3/build3/cmake/FindPythonLibs.cmake
+C:/Users/Tobbe/Desktop/bullet3/build3/cmake/SelectLibraryConfigurations.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Users/Tobbe/Desktop/bullet3/BulletConfig.cmake.in

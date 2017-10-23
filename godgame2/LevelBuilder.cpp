@@ -49,7 +49,6 @@ void LevelBuilder::getLevel1(PhysicsHandler &physicsHandler, ModelHandler &model
 
 	modelHandler.addModel(s);
 
-	//modelHandler.addModel(light);
 	modelHandler.addModel(c);
 	modelHandler.addModel(c2);
 

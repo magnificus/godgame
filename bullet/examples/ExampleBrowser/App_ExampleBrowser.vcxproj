@@ -1,0 +1,656 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{2CF2DE3F-992E-30FE-8611-3A4A75BB4CB0}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>App_ExampleBrowser</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">App_ExampleBrowser.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">App_ExampleBrowser</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">App_ExampleBrowser.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">App_ExampleBrowser</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">App_ExampleBrowser.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">App_ExampleBrowser</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">App_ExampleBrowser.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">App_ExampleBrowser</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_DEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_DEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory C:/Users/Tobbe/Desktop/bullet3/data C:/Users/Tobbe/Desktop/godgame/bullet/data
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\lib\Debug\BulletExampleBrowserLib_Debug.lib;..\..\lib\Debug\Bullet3Common_Debug.lib;..\..\lib\Debug\BulletSoftBody_Debug.lib;..\..\lib\Debug\BulletDynamics_Debug.lib;..\..\lib\Debug\BulletCollision_Debug.lib;..\..\lib\Debug\BulletInverseDynamicsUtils_Debug.lib;..\..\lib\Debug\BulletInverseDynamics_Debug.lib;..\..\lib\Debug\LinearMath_Debug.lib;..\..\lib\Debug\OpenGLWindow_Debug.lib;..\..\lib\Debug\gwen_Debug.lib;..\..\lib\Debug\BussIK_Debug.lib;opengl32.lib;glu32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/Debug/App_ExampleBrowser.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/Debug/App_ExampleBrowser.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory C:/Users/Tobbe/Desktop/bullet3/data C:/Users/Tobbe/Desktop/godgame/bullet/data
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\lib\Release\BulletExampleBrowserLib.lib;..\..\lib\Release\Bullet3Common.lib;..\..\lib\Release\BulletSoftBody.lib;..\..\lib\Release\BulletDynamics.lib;..\..\lib\Release\BulletCollision.lib;..\..\lib\Release\BulletInverseDynamicsUtils.lib;..\..\lib\Release\BulletInverseDynamics.lib;..\..\lib\Release\LinearMath.lib;..\..\lib\Release\OpenGLWindow.lib;..\..\lib\Release\gwen.lib;..\..\lib\Release\BussIK.lib;opengl32.lib;glu32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/Release/App_ExampleBrowser.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/Release/App_ExampleBrowser.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory C:/Users/Tobbe/Desktop/bullet3/data C:/Users/Tobbe/Desktop/godgame/bullet/data
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\lib\MinSizeRel\BulletExampleBrowserLib_MinsizeRel.lib;..\..\lib\MinSizeRel\Bullet3Common_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletSoftBody_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletDynamics_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletCollision_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletInverseDynamicsUtils_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletInverseDynamics_MinsizeRel.lib;..\..\lib\MinSizeRel\LinearMath_MinsizeRel.lib;..\..\lib\MinSizeRel\OpenGLWindow_MinsizeRel.lib;..\..\lib\MinSizeRel\gwen_MinsizeRel.lib;..\..\lib\MinSizeRel\BussIK_MinsizeRel.lib;opengl32.lib;glu32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/MinSizeRel/App_ExampleBrowser.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/MinSizeRel/App_ExampleBrowser.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\.;C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs;C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory C:/Users/Tobbe/Desktop/bullet3/data C:/Users/Tobbe/Desktop/godgame/bullet/data
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\lib\RelWithDebInfo\BulletExampleBrowserLib_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\Bullet3Common_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletSoftBody_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletDynamics_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletCollision_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletInverseDynamicsUtils_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletInverseDynamics_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\LinearMath_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\OpenGLWindow_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\gwen_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BussIK_RelWithDebugInfo.lib;opengl32.lib;glu32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/RelWithDebInfo/App_ExampleBrowser.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/RelWithDebInfo/App_ExampleBrowser.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/examples/ExampleBrowser/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Tobbe/Desktop/bullet3/examples/ExampleBrowser/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/examples/ExampleBrowser/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Tobbe/Desktop/bullet3/examples/ExampleBrowser/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/examples/ExampleBrowser/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Tobbe/Desktop/bullet3/examples/ExampleBrowser/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/examples/ExampleBrowser/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Tobbe/Desktop/bullet3/examples/ExampleBrowser/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\examples\ExampleBrowser\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\ExampleEntries.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\Chain.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\Bridge.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\RigidBodyFromObj.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\SimpleBox.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\MultipleBoxes.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\CompoundBoxes.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\SimpleCloth.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\SimpleJoint.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\NewtonsCradle.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\InclinedPlane.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\MultiPendulum.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\TinyRendererVisualShapeConverter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\IKTrajectoryHelper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsDirect.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsDirectC_API.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsLoopBack.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsLoopBackC_API.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServerCommandProcessor.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\SharedMemoryCommands.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\SharedMemoryPublic.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RobotSimulator\b3RobotSimulatorClientAPI.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\BasicDemo\BasicExample.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\InverseDynamics\InverseDynamicsExample.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\InverseKinematics\InverseKinematicsExample.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ForkLift\ForkLiftDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiThreadedDemo\MultiThreadedDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiThreadedDemo\CommonRigidBodyMTBase.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Tutorial\Tutorial.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Tutorial\Dof6ConstraintTutorial.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Evolution\NN3DWalkers.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Evolution\NN3DWalkersTimeWarpBase.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\NewtonsRopeCradle.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Collision\CollisionSdkC_Api.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Collision\CollisionTutorialBullet2.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Collision\Internal\Bullet2CollisionSdk.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Collision\Internal\CollisionSdkInterface.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Collision\Internal\RealTimeBullet3CollisionSdk.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\GyroscopicDemo\GyroscopicSetup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Planar2D\Planar2D.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RollingFrictionDemo\RollingFrictionDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\FractureDemo\FractureDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\FractureDemo\btFractureBody.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\FractureDemo\btFractureDynamicsWorld.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\DynamicControlDemo\MotorDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\TimeSeriesCanvas.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\TimeSeriesFontData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\DynamicTexturedCubeDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\TinyVRGui.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RoboticsLearning\GripperGraspExample.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RoboticsLearning\R2D2GraspExample.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RoboticsLearning\KukaGraspExample.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\CoordinateSystemDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\RaytracerSetup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\RenderInstancingDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Benchmarks\BenchmarkDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Benchmarks\landscapeData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Benchmarks\TaruData.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportBsp\BspConverter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportBullet\SerializeSetup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportMeshUtility\b3ImportMeshUtility.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportBsp\BspLoader.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportBsp\ImportBspExample.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportColladaDemo\btMatrix4x4.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportColladaDemo\ColladaGraphicsInstance.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportColladaDemo\ImportColladaSetup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportObjDemo\ImportObjExample.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportObjDemo\LoadMeshFromObj.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportSTLDemo\ImportSTLSetup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportSTLDemo\LoadMeshFromSTL.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\ConvertRigidBodies2MultiBody.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\ImportURDFSetup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\URDF2Bullet.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\urdf_samples.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportMJCFDemo\ImportMJCFSetup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\RobotLoggingUtil.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\urdfStringSplit.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\BulletUrdfImporter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\VoronoiFracture\VoronoiFractureDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\VoronoiFracture\btConvexConvexMprAlgorithm.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Vehicles\Hinge2Vehicle.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\TestJointTorqueSetup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\InvertedPendulumPDControl.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\MultiDofDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Constraints\TestHingeTorque.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Constraints\ConstraintDemo.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Constraints\Dof6Spring2Setup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Constraints\ConstraintPhysicsSetup.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\stb_image\stb_image.h" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\main.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\ExampleEntries.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\Chain.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\Bridge.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\RigidBodyFromObj.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\SimpleBox.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\MultipleBoxes.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\CompoundBoxes.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\SimpleCloth.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\SimpleJoint.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\NewtonsCradle.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\InclinedPlane.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\MultiPendulum.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\geometry.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\model.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\tgaimage.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\our_gl.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\TinyRenderer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\IKTrajectoryHelper.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientSharedMemory.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientSharedMemory_C_API.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClient.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientC_API.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServerExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServerExampleBullet2.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PosixSharedMemory.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\Win32SharedMemory.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\InProcessMemory.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServerSharedMemory.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsDirect.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsDirectC_API.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\SharedMemoryInProcessPhysicsC_API.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsLoopBack.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsLoopBackC_API.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServerCommandProcessor.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\b3PluginManager.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RobotSimulator\b3RobotSimulatorClientAPI.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\BasicDemo\BasicExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\InverseDynamics\InverseDynamicsExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\InverseKinematics\InverseKinematicsExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ForkLift\ForkLiftDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiThreadedDemo\MultiThreadedDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiThreadedDemo\CommonRigidBodyMTBase.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Tutorial\Tutorial.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Tutorial\Dof6ConstraintTutorial.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Evolution\NN3DWalkers.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExtendedTutorials\NewtonsRopeCradle.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Collision\CollisionSdkC_Api.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Collision\CollisionTutorialBullet2.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Collision\Internal\Bullet2CollisionSdk.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Collision\Internal\RealTimeBullet3CollisionSdk.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\GyroscopicDemo\GyroscopicSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Planar2D\Planar2D.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RollingFrictionDemo\RollingFrictionDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\FractureDemo\FractureDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\FractureDemo\btFractureBody.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\FractureDemo\btFractureDynamicsWorld.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\DynamicControlDemo\MotorDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiThreading\MultiThreadingExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiThreading\b3PosixThreadSupport.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiThreading\b3Win32ThreadSupport.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiThreading\b3ThreadSupportInterface.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiThreading\btTaskScheduler.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\TinyRendererSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\TimeSeriesCanvas.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\TimeSeriesFontData.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\DynamicTexturedCubeDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\TinyVRGui.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RoboticsLearning\GripperGraspExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RoboticsLearning\R2D2GraspExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RoboticsLearning\KukaGraspExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\CoordinateSystemDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\RaytracerSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\RenderInstancingDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RenderingExamples\TimeSeriesExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Benchmarks\BenchmarkDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Raycast\RaytestDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportBullet\SerializeSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportMeshUtility\b3ImportMeshUtility.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\Extras\Serialize\BulletWorldImporter\btBulletWorldImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\Extras\Serialize\BulletFileLoader\bChunk.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\Extras\Serialize\BulletFileLoader\bFile.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\Extras\Serialize\BulletFileLoader\bDNA.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\Extras\Serialize\BulletFileLoader\btBulletFile.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportMJCFDemo\ImportMJCFSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportBsp\BspConverter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportBsp\BspLoader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportBsp\ImportBspExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportObjDemo\ImportObjExample.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportObjDemo\LoadMeshFromObj.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportSTLDemo\ImportSTLSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportSDFDemo\ImportSDFSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\URDF2Bullet.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\UrdfParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\RobotLoggingUtil.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\urdfStringSplit.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\VoronoiFracture\VoronoiFractureDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\VoronoiFracture\btConvexConvexMprAlgorithm.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Vehicles\Hinge2Vehicle.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\Pendulum.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\MultiBodySoftContact.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\TestJointTorqueSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\InvertedPendulumPDControl.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\MultiBodyConstraintFeedback.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\MultiDofDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\RigidBody\RigidBodySoftContact.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Constraints\TestHingeTorque.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Constraints\ConstraintDemo.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Constraints\Dof6Spring2Setup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Constraints\ConstraintPhysicsSetup.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\stb_image\stb_image.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\tinyxml\tinystr.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\tinyxml\tinyxml.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\tinyxml\tinyxmlerror.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\tinyxml\tinyxmlparser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ExampleBrowser\InProcessExampleBrowser.cpp"  />
+    <ResourceCompile Include="C:\Users\Tobbe\Desktop\bullet3\build3\bullet.rc"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/ZERO_CHECK.vcxproj">
+      <Project>8A496263-3AF1-3AEC-9B2C-74AD342519D2</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/Bullet3Common/Bullet3Common.vcxproj">
+      <Project>D2C8DCFD-1938-3B0A-BB2E-E8A253F1C286</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletCollision/BulletCollision.vcxproj">
+      <Project>D8D3A615-3741-3188-BE4A-B2498A1ACADF</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletDynamics/BulletDynamics.vcxproj">
+      <Project>25AB5A1E-F200-3BBF-BA2E-DB95AB0D0BEA</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/BulletExampleBrowserLib.vcxproj">
+      <Project>1CD0659F-F91F-3637-9BFD-6F7EA47FA270</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletInverseDynamics/BulletInverseDynamics.vcxproj">
+      <Project>8292B95F-ED59-35E9-834D-8C95A18F7269</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/InverseDynamics/BulletInverseDynamicsUtils.vcxproj">
+      <Project>FB409F9F-9881-3F4A-B29A-2B12DD57C0CC</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletSoftBody/BulletSoftBody.vcxproj">
+      <Project>F9E85B1C-7931-3569-B41C-9B90805F5659</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/ThirdPartyLibs/BussIK/BussIK.vcxproj">
+      <Project>96847F7C-5A66-385E-9506-BCA099AE7631</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/LinearMath/LinearMath.vcxproj">
+      <Project>D96DDFD6-96B6-3F04-918A-B0E3C0AD943A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/OpenGLWindow/OpenGLWindow.vcxproj">
+      <Project>D2A14040-4B48-33EF-833D-2F7FC9DD8B68</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/ThirdPartyLibs/Gwen/gwen.vcxproj">
+      <Project>73C045EA-6062-3EC5-AC32-AC3E6B51B223</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

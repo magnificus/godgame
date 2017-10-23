@@ -15,7 +15,6 @@
 #include "btBulletDynamicsCommon.h"
 #include "Player.h"
 #include "BaseLibrary.h"
-#include "QuickHull.hpp"
 #include "CustomShape.h"
 #include <ft2build.h>
 #include <map>
@@ -25,8 +24,7 @@
 
 #define PI 3.14159
 
-
-
+#pragma comment(lib, "freetype271.lib")
 void renderModels(ModelHandler &modelHandler, Shader *overrideShader = nullptr) {
 	unsigned int prev = 0;
 	for (int i = 0; i < modelHandler.cutoffPositions.size(); i++) {
@@ -173,7 +171,7 @@ int main()
 
 
 	// shadows
-	const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
+	const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
 	unsigned int depthMapFBO;
 	glGenFramebuffers(1, &depthMapFBO);
 	// create depth cubemap texture
@@ -226,11 +224,7 @@ int main()
 	std::string fpsString = "";
 	while (!glfwWindowShouldClose(window))
 	{
-		//if (++count % 100 == 0) {
-		//	float frameTime = glfwGetTime() - prev;
-		//	prev = glfwGetTime();
-		//	std::cout << "fps: " << 100 / frameTime;
-		//}
+
 		glBindVertexArray(VAO);
 
 		// per-frame time logic
@@ -373,11 +367,13 @@ int main()
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
 
-	for (Model *m : modelHandler.models)
-		delete m;
-
 	for (ModelPhysicsCoordinator b : physicsHandler.models)
-		delete b.btModel;
+		free (b.btModel);
+
+	//for (Model *m : modelHandler.models)
+	//	delete m;
+
+
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------
 	glfwTerminate();

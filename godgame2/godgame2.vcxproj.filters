@@ -28,11 +28,8 @@
     <Filter Include="Header Files\handlers">
       <UniqueIdentifier>{72247eee-5e74-4e71-94ba-0cc63bc67233}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\quickhull">
-      <UniqueIdentifier>{3be4af05-f5ad-4526-852f-1662d3000e44}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\quickhull">
-      <UniqueIdentifier>{18861ee6-96d4-4dfb-afbc-612fd9d26a25}</UniqueIdentifier>
+    <Filter Include="quickhull">
+      <UniqueIdentifier>{2df81a3e-7f05-4994-b202-366e71af10bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,50 +81,32 @@
     <ClInclude Include="quickhull\Structs\Plane.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="quickhull\ConvexHull.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\HalfEdgeMesh.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\MathUtils.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\Structs\Mesh.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\Structs\Pool.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\QuickHull.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\Tests\QuickHullTests.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\Structs\Ray.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\Types.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\Structs\Vector3.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
-    <ClInclude Include="quickhull\Structs\VertexDataSource.hpp">
-      <Filter>Header Files\quickhull</Filter>
-    </ClInclude>
     <ClInclude Include="textHandler.h">
       <Filter>Header Files\handlers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\tinyexpr\tinyexpr.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="KeyStruct.h">
       <Filter>Header Files\handlers</Filter>
     </ClInclude>
     <ClInclude Include="LevelBuilder.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyexpr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\quickhull\ConvexHull.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\quickhull\Types.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\quickhull\HalfEdgeMesh.hpp">
+      <Filter>quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="..\quickhull\MathUtils.hpp">
+      <Filter>quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="..\quickhull\QuickHull.hpp">
+      <Filter>quickhull</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -169,20 +148,17 @@
     <ClCompile Include="CustomShape.cpp">
       <Filter>Source Files\models</Filter>
     </ClCompile>
-    <ClCompile Include="quickhull\QuickHull.cpp">
-      <Filter>Source Files\quickhull</Filter>
-    </ClCompile>
-    <ClCompile Include="quickhull\Tests\QuickHullTests.cpp">
-      <Filter>Source Files\quickhull</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\tinyexpr\tinyexpr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BaseLibrary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LevelBuilder.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyexpr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\quickhull\QuickHull.cpp">
+      <Filter>quickhull</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,5 +195,7 @@
     <None Include="text_shader.vs">
       <Filter>Source Files\shaders</Filter>
     </None>
+    <None Include="packages.config" />
+    <None Include="..\quickhull\README.md" />
   </ItemGroup>
 </Project>

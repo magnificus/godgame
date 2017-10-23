@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{0C96846E-6240-3DAE-A48D-7C27D731ED0E}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>Test_BulletDynamics</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Test_BulletDynamics.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Test_BulletDynamics</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Test_BulletDynamics.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Test_BulletDynamics</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Test_BulletDynamics.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Test_BulletDynamics</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Test_BulletDynamics.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Test_BulletDynamics</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_DEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;USE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_DEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;USE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\..\lib\Debug\BulletDynamics_Debug.lib;..\..\..\lib\Debug\BulletCollision_Debug.lib;..\..\..\lib\Debug\LinearMath_Debug.lib;..\..\..\lib\Debug\gtest_Debug.lib;..\..\..\lib\Debug\BulletDynamics_Debug.lib;..\..\..\lib\Debug\BulletCollision_Debug.lib;..\..\..\lib\Debug\LinearMath_Debug.lib;..\..\..\lib\Debug\gtest_Debug.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/pendulum/Debug/Test_BulletDynamics.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/pendulum/Debug/Test_BulletDynamics.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;USE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;USE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\..\lib\Release\BulletDynamics.lib;..\..\..\lib\Release\BulletCollision.lib;..\..\..\lib\Release\LinearMath.lib;..\..\..\lib\Release\gtest.lib;..\..\..\lib\Release\BulletDynamics.lib;..\..\..\lib\Release\BulletCollision.lib;..\..\..\lib\Release\LinearMath.lib;..\..\..\lib\Release\gtest.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/pendulum/Release/Test_BulletDynamics.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/pendulum/Release/Test_BulletDynamics.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;USE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;USE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\..\lib\MinSizeRel\BulletDynamics_MinsizeRel.lib;..\..\..\lib\MinSizeRel\BulletCollision_MinsizeRel.lib;..\..\..\lib\MinSizeRel\LinearMath_MinsizeRel.lib;..\..\..\lib\MinSizeRel\gtest_MinsizeRel.lib;..\..\..\lib\MinSizeRel\BulletDynamics_MinsizeRel.lib;..\..\..\lib\MinSizeRel\BulletCollision_MinsizeRel.lib;..\..\..\lib\MinSizeRel\LinearMath_MinsizeRel.lib;..\..\..\lib\MinSizeRel\gtest_MinsizeRel.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/pendulum/MinSizeRel/Test_BulletDynamics.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/pendulum/MinSizeRel/Test_BulletDynamics.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;USE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;USE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;C:\Users\Tobbe\Desktop\bullet3\test\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\.;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\..\lib\RelWithDebInfo\BulletDynamics_RelWithDebugInfo.lib;..\..\..\lib\RelWithDebInfo\BulletCollision_RelWithDebugInfo.lib;..\..\..\lib\RelWithDebInfo\LinearMath_RelWithDebugInfo.lib;..\..\..\lib\RelWithDebInfo\gtest_RelWithDebugInfo.lib;..\..\..\lib\RelWithDebInfo\BulletDynamics_RelWithDebugInfo.lib;..\..\..\lib\RelWithDebInfo\BulletCollision_RelWithDebugInfo.lib;..\..\..\lib\RelWithDebInfo\LinearMath_RelWithDebugInfo.lib;..\..\..\lib\RelWithDebInfo\gtest_RelWithDebugInfo.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/pendulum/RelWithDebInfo/Test_BulletDynamics.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/pendulum/RelWithDebInfo/Test_BulletDynamics.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/test/BulletDynamics/pendulum/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Tobbe/Desktop/bullet3/test/BulletDynamics/pendulum/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/test/BulletDynamics/pendulum/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Tobbe/Desktop/bullet3/test/BulletDynamics/pendulum/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/test/BulletDynamics/pendulum/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Tobbe/Desktop/bullet3/test/BulletDynamics/pendulum/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/test/BulletDynamics/pendulum/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Tobbe/Desktop/bullet3/test/BulletDynamics/pendulum/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\BulletDynamics\pendulum\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\BulletDynamics\pendulum\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\MultiBody\Pendulum.cpp"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/ZERO_CHECK.vcxproj">
+      <Project>8A496263-3AF1-3AEC-9B2C-74AD342519D2</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletCollision/BulletCollision.vcxproj">
+      <Project>D8D3A615-3741-3188-BE4A-B2498A1ACADF</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletDynamics/BulletDynamics.vcxproj">
+      <Project>25AB5A1E-F200-3BBF-BA2E-DB95AB0D0BEA</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/LinearMath/LinearMath.vcxproj">
+      <Project>D96DDFD6-96B6-3F04-918A-B0E3C0AD943A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/gtest-1.7.0/gtest.vcxproj">
+      <Project>13F61D29-E723-3A92-AFC9-71C047C89685</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

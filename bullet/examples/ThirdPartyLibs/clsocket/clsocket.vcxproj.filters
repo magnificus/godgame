@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\clsocket\src\SimpleSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\clsocket\src\ActiveSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\clsocket\src\PassiveSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\clsocket\src\ActiveSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\clsocket\src\Host.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\clsocket\src\PassiveSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\clsocket\src\SimpleSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\clsocket\src\StatTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\clsocket\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{728E9658-30D7-39A9-A729-509D7EA0C2EA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{CAC3778E-D485-366A-BC0E-0D8CAFE81F69}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

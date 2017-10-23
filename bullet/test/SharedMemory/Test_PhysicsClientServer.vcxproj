@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{A0779846-9B95-35AF-BC5B-B5BA71821057}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>Test_PhysicsClientServer</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Test_PhysicsClientServer.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Test_PhysicsClientServer</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Test_PhysicsClientServer.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Test_PhysicsClientServer</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Test_PhysicsClientServer.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Test_PhysicsClientServer</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Test_PhysicsClientServer.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Test_PhysicsClientServer</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_DEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;PHYSICS_LOOP_BACK;PHYSICS_SERVER_DIRECT;ENABLE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_DEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;PHYSICS_LOOP_BACK;PHYSICS_SERVER_DIRECT;ENABLE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\lib\Debug\BulletInverseDynamicsUtils_Debug.lib;..\..\lib\Debug\BulletInverseDynamics_Debug.lib;..\..\lib\Debug\BulletFileLoader_Debug.lib;..\..\lib\Debug\BulletWorldImporter_Debug.lib;..\..\lib\Debug\Bullet3Common_Debug.lib;..\..\lib\Debug\BulletDynamics_Debug.lib;..\..\lib\Debug\BulletCollision_Debug.lib;..\..\lib\Debug\LinearMath_Debug.lib;..\..\lib\Debug\gtest_Debug.lib;..\..\lib\Debug\BussIK_Debug.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/test/SharedMemory/Debug/Test_PhysicsClientServer.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/test/SharedMemory/Debug/Test_PhysicsClientServer.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;PHYSICS_LOOP_BACK;PHYSICS_SERVER_DIRECT;ENABLE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;PHYSICS_LOOP_BACK;PHYSICS_SERVER_DIRECT;ENABLE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\lib\Release\BulletInverseDynamicsUtils.lib;..\..\lib\Release\BulletInverseDynamics.lib;..\..\lib\Release\BulletFileLoader.lib;..\..\lib\Release\BulletWorldImporter.lib;..\..\lib\Release\Bullet3Common.lib;..\..\lib\Release\BulletDynamics.lib;..\..\lib\Release\BulletCollision.lib;..\..\lib\Release\LinearMath.lib;..\..\lib\Release\gtest.lib;..\..\lib\Release\BussIK.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/test/SharedMemory/Release/Test_PhysicsClientServer.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/test/SharedMemory/Release/Test_PhysicsClientServer.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;PHYSICS_LOOP_BACK;PHYSICS_SERVER_DIRECT;ENABLE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;PHYSICS_LOOP_BACK;PHYSICS_SERVER_DIRECT;ENABLE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\lib\MinSizeRel\BulletInverseDynamicsUtils_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletInverseDynamics_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletFileLoader_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletWorldImporter_MinsizeRel.lib;..\..\lib\MinSizeRel\Bullet3Common_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletDynamics_MinsizeRel.lib;..\..\lib\MinSizeRel\BulletCollision_MinsizeRel.lib;..\..\lib\MinSizeRel\LinearMath_MinsizeRel.lib;..\..\lib\MinSizeRel\gtest_MinsizeRel.lib;..\..\lib\MinSizeRel\BussIK_MinsizeRel.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/test/SharedMemory/MinSizeRel/Test_PhysicsClientServer.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/test/SharedMemory/MinSizeRel/Test_PhysicsClientServer.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;PHYSICS_LOOP_BACK;PHYSICS_SERVER_DIRECT;ENABLE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;PHYSICS_LOOP_BACK;PHYSICS_SERVER_DIRECT;ENABLE_GTEST;_VARIADIC_MAX=10;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\.;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\src;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\gtest-1.7.0\include;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\..\..\examples\ThirdPartyLibs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;..\..\lib\RelWithDebInfo\BulletInverseDynamicsUtils_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletInverseDynamics_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletFileLoader_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletWorldImporter_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\Bullet3Common_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletDynamics_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BulletCollision_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\LinearMath_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\gtest_RelWithDebugInfo.lib;..\..\lib\RelWithDebInfo\BussIK_RelWithDebugInfo.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Tobbe/Desktop/godgame/bullet/test/SharedMemory/RelWithDebInfo/Test_PhysicsClientServer.lib</ImportLibrary>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ProgramDataBaseFile>C:/Users/Tobbe/Desktop/godgame/bullet/test/SharedMemory/RelWithDebInfo/Test_PhysicsClientServer.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version></Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/test/SharedMemory/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Tobbe/Desktop/bullet3/test/SharedMemory/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/test/SharedMemory/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Tobbe/Desktop/bullet3/test/SharedMemory/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/test/SharedMemory/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Tobbe/Desktop/bullet3/test/SharedMemory/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/test/SharedMemory/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Tobbe/Desktop/bullet3/test/SharedMemory/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\test\SharedMemory\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\IKTrajectoryHelper.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClient.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServer.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServerSharedMemory.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsDirect.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsDirectC_API.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServerCommandProcessor.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientSharedMemory.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientSharedMemory_C_API.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientC_API.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsLoopBack.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsLoopBackC_API.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\Win32SharedMemory.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PosixSharedMemory.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\b3ResourcePath.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\b3Clock.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\ChromeTraceUtil.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\RobotLoggingUtil.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\TinyRendererVisualShapeConverter.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\OpenGLWindow\SimpleCamera.h" />
+    <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.h" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\test\SharedMemory\gtestwrap.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClient.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\IKTrajectoryHelper.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServerSharedMemory.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsDirect.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsDirectC_API.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsServerCommandProcessor.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\b3PluginManager.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientSharedMemory.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientSharedMemory_C_API.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsClientC_API.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsLoopBack.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PhysicsLoopBackC_API.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\Win32SharedMemory.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\PosixSharedMemory.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\b3ResourcePath.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\b3Clock.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\ChromeTraceUtil.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Utils\RobotLoggingUtil.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\OpenGLWindow\SimpleCamera.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\geometry.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\model.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\tgaimage.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\our_gl.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\TinyRenderer\TinyRenderer.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\tinyxml\tinystr.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\tinyxml\tinyxml.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\tinyxml\tinyxmlerror.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\tinyxml\tinyxmlparser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportObjDemo\LoadMeshFromObj.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\URDF2Bullet.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\UrdfParser.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportURDFDemo\urdfStringSplit.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\Importers\ImportMeshUtility\b3ImportMeshUtility.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\examples\ThirdPartyLibs\stb_image\stb_image.cpp"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/ZERO_CHECK.vcxproj">
+      <Project>8A496263-3AF1-3AEC-9B2C-74AD342519D2</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/Bullet3Common/Bullet3Common.vcxproj">
+      <Project>D2C8DCFD-1938-3B0A-BB2E-E8A253F1C286</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletCollision/BulletCollision.vcxproj">
+      <Project>D8D3A615-3741-3188-BE4A-B2498A1ACADF</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletDynamics/BulletDynamics.vcxproj">
+      <Project>25AB5A1E-F200-3BBF-BA2E-DB95AB0D0BEA</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/Serialize/BulletFileLoader/BulletFileLoader.vcxproj">
+      <Project>07C8EE40-2149-3A17-984D-C01CF2C2B0C8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletInverseDynamics/BulletInverseDynamics.vcxproj">
+      <Project>8292B95F-ED59-35E9-834D-8C95A18F7269</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/InverseDynamics/BulletInverseDynamicsUtils.vcxproj">
+      <Project>FB409F9F-9881-3F4A-B29A-2B12DD57C0CC</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/Serialize/BulletWorldImporter/BulletWorldImporter.vcxproj">
+      <Project>6BA99164-1828-3D9A-BE7C-E32A865CC458</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/ThirdPartyLibs/BussIK/BussIK.vcxproj">
+      <Project>96847F7C-5A66-385E-9506-BCA099AE7631</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/LinearMath/LinearMath.vcxproj">
+      <Project>D96DDFD6-96B6-3F04-918A-B0E3C0AD943A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/gtest-1.7.0/gtest.vcxproj">
+      <Project>13F61D29-E723-3A92-AFC9-71C047C89685</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

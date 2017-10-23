@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{781AD0EB-F963-31F0-A713-4FA134EA7097}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Tobbe\Desktop\bullet3\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Tobbe/Desktop/bullet3/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\CMakeLists.txt;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeCCompiler.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPythonInterp.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Users\Tobbe\Desktop\bullet3\build3\cmake\FindPythonLibs.cmake;C:\Users\Tobbe\Desktop\bullet3\build3\cmake\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Users\Tobbe\Desktop\bullet3\BulletConfig.cmake.in;C:\Users\Tobbe\Desktop\bullet3\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Tobbe/Desktop/bullet3/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\CMakeLists.txt;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeCCompiler.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPythonInterp.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Users\Tobbe\Desktop\bullet3\build3\cmake\FindPythonLibs.cmake;C:\Users\Tobbe\Desktop\bullet3\build3\cmake\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Users\Tobbe\Desktop\bullet3\BulletConfig.cmake.in;C:\Users\Tobbe\Desktop\bullet3\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Tobbe/Desktop/bullet3/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\CMakeLists.txt;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeCCompiler.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPythonInterp.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Users\Tobbe\Desktop\bullet3\build3\cmake\FindPythonLibs.cmake;C:\Users\Tobbe\Desktop\bullet3\build3\cmake\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Users\Tobbe\Desktop\bullet3\BulletConfig.cmake.in;C:\Users\Tobbe\Desktop\bullet3\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/Tobbe/Desktop/bullet3 -BC:/Users/Tobbe/Desktop/godgame/bullet --check-stamp-file C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Tobbe/Desktop/bullet3/CMakeLists.txt;C:\Users\Tobbe\Desktop\bullet3\CMakeLists.txt;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeCCompiler.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\3.6.2\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPythonInterp.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Users\Tobbe\Desktop\bullet3\build3\cmake\FindPythonLibs.cmake;C:\Users\Tobbe\Desktop\bullet3\build3\cmake\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.6\Modules\CMakeParseArguments.cmake;C:\Users\Tobbe\Desktop\bullet3\BulletConfig.cmake.in;C:\Users\Tobbe\Desktop\bullet3\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/ZERO_CHECK.vcxproj">
+      <Project>8A496263-3AF1-3AEC-9B2C-74AD342519D2</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/BasicDemo/AppBasicExampleGui.vcxproj">
+      <Project>3651929C-8454-3817-ABB8-AA3B5C2E4E17</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/BasicDemo/App_BasicExample.vcxproj">
+      <Project>12C642FA-CD9F-3636-BB18-24A434535E06</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/App_ExampleBrowser.vcxproj">
+      <Project>2CF2DE3F-992E-30FE-8611-3A4A75BB4CB0</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/HelloWorld/App_HelloWorld.vcxproj">
+      <Project>ADBE2954-8B1C-3EE5-BD32-28A6A578AC69</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/SharedMemory/App_PhysicsServer_SharedMemory.vcxproj">
+      <Project>B5B3E77D-A41A-383B-B60F-1A78D660ADCE</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/SharedMemory/App_PhysicsServer_SharedMemory_GUI.vcxproj">
+      <Project>74385A10-48C8-3F6E-8D8F-8E833A241B85</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/SharedMemory/App_PhysicsServer_SharedMemory_VR.vcxproj">
+      <Project>77CE8A7C-5C9D-3C2E-BC0C-E09276BD8366</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/RobotSimulator/App_RobotSimulator.vcxproj">
+      <Project>AA3DA12D-2C66-302E-B3BE-CE8077A6C7C9</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/obj2sdf/App_obj2sdf.vcxproj">
+      <Project>277F1AFD-2F05-372D-B750-977D2CB78A36</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/Bullet3Serialize/Bullet2FileLoader/Bullet2FileLoader.vcxproj">
+      <Project>843442D4-08D9-3EEC-919C-464D0AF0BD50</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/Bullet3Collision/Bullet3Collision.vcxproj">
+      <Project>264A9BA6-8001-399C-89D4-3C556AA65B02</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/Bullet3Common/Bullet3Common.vcxproj">
+      <Project>D2C8DCFD-1938-3B0A-BB2E-E8A253F1C286</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/Bullet3Dynamics/Bullet3Dynamics.vcxproj">
+      <Project>D5DD4E66-FC5E-3F2F-837C-B92C97CADAC2</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/Bullet3Geometry/Bullet3Geometry.vcxproj">
+      <Project>25C6384D-17E2-3D06-8463-C1AD051F498A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/Bullet3OpenCL/Bullet3OpenCL_clew.vcxproj">
+      <Project>AB4DDBB0-978D-30AE-A340-A308019A146B</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletCollision/BulletCollision.vcxproj">
+      <Project>D8D3A615-3741-3188-BE4A-B2498A1ACADF</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletDynamics/BulletDynamics.vcxproj">
+      <Project>25AB5A1E-F200-3BBF-BA2E-DB95AB0D0BEA</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/ExampleBrowser/BulletExampleBrowserLib.vcxproj">
+      <Project>1CD0659F-F91F-3637-9BFD-6F7EA47FA270</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/Serialize/BulletFileLoader/BulletFileLoader.vcxproj">
+      <Project>07C8EE40-2149-3A17-984D-C01CF2C2B0C8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletInverseDynamics/BulletInverseDynamics.vcxproj">
+      <Project>8292B95F-ED59-35E9-834D-8C95A18F7269</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/InverseDynamics/BulletInverseDynamicsUtils.vcxproj">
+      <Project>FB409F9F-9881-3F4A-B29A-2B12DD57C0CC</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/BulletRobotics/BulletRobotics.vcxproj">
+      <Project>889FCB62-CBBE-3028-A531-02A4232A7D74</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/BulletSoftBody/BulletSoftBody.vcxproj">
+      <Project>F9E85B1C-7931-3569-B41C-9B90805F5659</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/Serialize/BulletWorldImporter/BulletWorldImporter.vcxproj">
+      <Project>6BA99164-1828-3D9A-BE7C-E32A865CC458</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/Serialize/BulletXmlWorldImporter/BulletXmlWorldImporter.vcxproj">
+      <Project>7B903700-9458-373A-9744-C31D92CCA24E</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/ThirdPartyLibs/BussIK/BussIK.vcxproj">
+      <Project>96847F7C-5A66-385E-9506-BCA099AE7631</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/ConvexDecomposition/ConvexDecomposition.vcxproj">
+      <Project>4F358029-FD44-39C2-B8C6-BAC25AC8870C</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/GIMPACTUtils/GIMPACTUtils.vcxproj">
+      <Project>9D1AC536-D77E-31DA-B5C4-4DAF1865D5A5</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/Extras/HACD/HACD.vcxproj">
+      <Project>24FBE157-8CDF-3BF7-8689-353B850F6CF0</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/src/LinearMath/LinearMath.vcxproj">
+      <Project>D96DDFD6-96B6-3F04-918A-B0E3C0AD943A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/OpenGLWindow/OpenGLWindow.vcxproj">
+      <Project>D2A14040-4B48-33EF-833D-2F7FC9DD8B68</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/pendulum/Test_BulletDynamics.vcxproj">
+      <Project>0C96846E-6240-3DAE-A48D-7C27D731ED0E</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/InverseDynamics/Test_BulletInverseDynamics.vcxproj">
+      <Project>E94AA0BF-6B8A-3940-BD70-39678BD6D4A9</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/InverseDynamics/Test_BulletInverseDynamicsJacobian.vcxproj">
+      <Project>F169238B-D1EF-3A3D-B3E2-C8D789083444</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/InverseDynamics/Test_BulletInverseForwardDynamics.vcxproj">
+      <Project>579D20F7-9F04-381B-BB45-897B0A0D2E76</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/collision/Test_Collision.vcxproj">
+      <Project>5ABF0378-7D4C-3DF6-8C3B-5F0D3AB55833</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/SharedMemory/Test_PhysicsClientServer.vcxproj">
+      <Project>A0779846-9B95-35AF-BC5B-B5BA71821057</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/BulletDynamics/Test_btKinematicCharacterController.vcxproj">
+      <Project>CB84989B-1527-3008-970D-579E0055E67D</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/ThirdPartyLibs/clsocket/clsocket.vcxproj">
+      <Project>495081D8-AAD8-32DA-BDAA-0453E0106CD9</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/test/gtest-1.7.0/gtest.vcxproj">
+      <Project>13F61D29-E723-3A92-AFC9-71C047C89685</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/examples/ThirdPartyLibs/Gwen/gwen.vcxproj">
+      <Project>73C045EA-6062-3EC5-AC32-AC3E6B51B223</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
