@@ -27,7 +27,7 @@ public:
 	//mpc.btModel->setLinearFactor(btVector3(1,0,1));
 	//mpc.btModel->setRestitution(0);
 	}
-	float movementSpeed = 2000;
+	float movementSpeed = 25.0f;
 	double lastJump = 0.0;
 	double lastEnter = 0.0;
 

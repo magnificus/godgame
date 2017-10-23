@@ -84,13 +84,13 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 	if (!isWriting) {
 		glm::vec3 toMove;
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-			toMove += cam.Front * movementSpeed * time;
+			toMove += cam.Front;
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-			toMove -= cam.Front * movementSpeed * time;
+			toMove -= cam.Front;
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-			toMove -= cam.Right * movementSpeed * time;
+			toMove -= cam.Right;
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-			toMove += cam.Right * movementSpeed * time;
+			toMove += cam.Right;
 
 		toMove.y = 0;
 
@@ -107,6 +107,7 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 			}
 
 		}
+		toMove *= movementSpeed / toMove.length();
 		mpc.btModel->setLinearVelocity(btVector3(toMove[0], min(toMove[1] + mpc.btModel->getLinearVelocity()[1], 5.0f), toMove[2]));
 		mpc.btModel->activate();
 		}
