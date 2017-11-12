@@ -7,7 +7,7 @@
 using namespace quickhull;
 
 const float defScale = 0.02;
-const unsigned int sampleLength = 26;
+const unsigned int sampleLength = 15;
 
 typedef std::bitset<sampleLength*sampleLength*sampleLength> ShapeBits;
 
@@ -62,8 +62,6 @@ void decideLatestIndicesAndNormals(std::vector<glm::vec3> &vertices, std::vector
 		else if (!originalSet[getBitsetPosition(res2.x, res2.y, res2.z)]) {
 			break;
 		}
-
-
 	}
 
 
@@ -85,9 +83,6 @@ void decideLatestIndicesAndNormals(std::vector<glm::vec3> &vertices, std::vector
 
 	}
 	else {
-		//for (int i = 0; i < 3; i++) {
-		//	vertices.pop_back();
-		//}
 		indices.push_back(vertices.size() - 1);
 		indices.push_back(vertices.size() - 2);
 		indices.push_back(vertices.size() - 3);
@@ -139,6 +134,7 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 	mass /= pow(sampleLength, 3);
 	//mass /= pow(info.scale, 3);
 	mass *= 10;
+	mass = 10.0f;
 	info.bits = newBits;
 
 	std::map<unsigned int, std::set<unsigned int>> connectionsForward;
@@ -159,7 +155,7 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 	std::map<unsigned int, std::set<unsigned int>> establishedConnections;
 	//std::map<unsigned int, std::set<unsigned int>> establishedFullConnections;
 
-
+	std::map<unsigned int, unsigned int> verticeMap;
 	// find all edges
 
 	for (int x = 0; x < sampleLength; x++) {
@@ -167,6 +163,9 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 			for (int z = 0; z < sampleLength; z++) {
 				unsigned int currPos = getBitsetPosition(x, y, z);
 				if (info.bits[currPos]) {
+					toReturn.vertices.push_back(getBitAddressVector(currPos, info.scale, info.offset));
+					toReturn.normals.push_back(glm::vec3(1, 0, 0));
+					verticeMap[currPos] = toReturn.vertices.size() - 1;
 
 					std::set<unsigned int> &toPlace = connectionsForward[currPos];
 
@@ -224,10 +223,54 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 					glm::vec3 v2 = getBitAddressVector(i, info.scale, info.offset);
 					glm::vec3 v3 = getBitAddressVector(j, info.scale, info.offset);
 
-					toReturn.vertices.push_back(v1);
-					toReturn.vertices.push_back(v2);
-					toReturn.vertices.push_back(v3);
-					decideLatestIndicesAndNormals(toReturn.vertices, toReturn.indices, toReturn.normals, f, pair.first, originalBits);
+					glm::vec3 norm = glm::cross(v2 - v1, v3 - v1);
+					norm = glm::normalize(norm);
+
+
+					glm::vec3 anchorP = getBitAddressVector(pair.first, 1.0, glm::vec3(0, 0, 0));
+
+					float count = 1;
+					bool bothOK = true;
+					bool useThisNormal = true;
+
+					while (true) {
+						glm::vec3 closestNormal = norm * count++;
+						glm::vec3 res1 = anchorP + closestNormal;
+						glm::vec3 res2 = anchorP - closestNormal;
+
+						if (std::max(res1.x, std::max(res1.y, res1.z)) >= sampleLength || std::min(res1.x, std::min(res1.y, res1.z)) < 0) {
+							useThisNormal = false;
+							break;
+						}
+						else if (std::max(res2.x, std::max(res2.y, res2.z)) >= sampleLength || std::min(res2.x, std::min(res2.y, res2.z)) < 0) {
+							break;
+						}
+						else if (!originalBits[getBitsetPosition(res1.x, res1.y, res1.z)]) {
+							useThisNormal = false;
+							break;
+						}
+						else if (!originalBits[getBitsetPosition(res2.x, res2.y, res2.z)]) {
+							break;
+						}
+					}
+
+					if (useThisNormal)
+						norm = -norm;
+
+					toReturn.normals[verticeMap[pair.first]] = norm;
+					toReturn.normals[verticeMap[i]] = norm;
+					toReturn.normals[verticeMap[j]] = norm;
+					//if (!useThisNormal) {
+						toReturn.indices.push_back(verticeMap[pair.first]);
+						toReturn.indices.push_back(verticeMap[i]);
+						toReturn.indices.push_back(verticeMap[j]);
+
+					//}
+					//else {
+					//	toReturn.indices.push_back(verticeMap[pair.first]);
+					//	toReturn.indices.push_back(verticeMap[j]);
+					//	toReturn.indices.push_back(verticeMap[i]);
+					//}
 
 
 					//establishedConnections[pair.first].insert(i);
@@ -243,85 +286,17 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 			}
 		}
 	}
-	return CustomMeshInfo{ toReturn, (float) mass };
+	glm::vec3 center = glm::vec3(0, 0, 0);
+	for (glm::vec3 v : toReturn.vertices)
+		center += v;
 
-	//std::vector<glm::vec3> samples = getSamplePositions(f);
-	//if (samples.size() < 3)
-	//	return toReturn;
-	//std::vector<quickhull::Vector3<float>> pointCloud;
-	//QuickHull<float> qh;
-	//for (glm::vec3 sample : samples) {
-	//	pointCloud.push_back(Vector3<float>(sample.x, sample.y, sample.z));
-	//}
-	//auto hull = qh.getConvexHull(pointCloud, false, false);
-	//auto indexBuffer = hull.getIndexBuffer();
-
-
-	//auto vertexBuffer = hull.getVertexBuffer();
-
-	//glm::vec3 center;
-
-	//std::map<unsigned int, glm::vec3>  found;
-	////sstd::set<unsigned int> found;
-	//for (auto vertex : vertexBuffer) {
-	//	glm::vec3 curr = glm::vec3(vertex.x, vertex.y, vertex.z);
-	//	center += curr;
-	//	toReturn.vertices.push_back(curr);
-	//	//toReturn.normals.push_back(glm::vec3(0, 1, 0));
-
-	//}
-	//center /= vertexBuffer.size();
-	//for (int i = 0; i < indexBuffer.size(); i++) {
-	//	toReturn.indices.push_back(indexBuffer[i]);
-
-	//}
-
-	//for (int i = 0; i < toReturn.vertices.size(); i++) {
-	//	glm::vec3 curr = toReturn.vertices[i] - glm::vec3(0, 0, 0);//center;
-	//	curr = glm::normalize(curr);
-	//	toReturn.normals.push_back(curr);
-	//}
-	//return toReturn;
-
-	/*for (int i = 0; i < toReturn.indices.size() - 2; i+=3) {
-		glm::vec3 v1 = toReturn.vertices[toReturn.indices[i]];
-		glm::vec3 v2 = toReturn.vertices[toReturn.indices[i+1]];
-		glm::vec3 v3 = toReturn.vertices[toReturn.indices[i+2]];
-
-		glm::vec3 norm = glm::cross(v2 - v1, v3 - v1);
-
-		norm = glm::normalize(norm);
-
-		float tolerance = 0.5f;
-		if (found.count(toReturn.indices[i]) && glm::dot(norm, found[toReturn.indices[i]]) < tolerance) {
-			toReturn.vertices.push_back(toReturn.vertices[toReturn.indices[i]]);
-			toReturn.indices[i] = toReturn.vertices.size() - 1;
-			toReturn.normals.push_back(glm::vec3());
-
-		}
-		toReturn.normals[toReturn.indices[i]] = norm;
-		found[toReturn.indices[i]] = norm;
-
-		if (found.count(toReturn.indices[i+1]) && glm::dot(norm, found[toReturn.indices[i+1]]) < tolerance) {
-			toReturn.vertices.push_back(toReturn.vertices[toReturn.indices[i+1]]);
-			toReturn.indices[i+1] = toReturn.vertices.size() - 1;
-			toReturn.normals.push_back(glm::vec3());
-
-		}
-		toReturn.normals[toReturn.indices[i+1]] = norm;
-		found[toReturn.indices[i + 1]] = norm;
-
-		if (found.count(toReturn.indices[i+2]) && glm::dot(norm, found[toReturn.indices[i+2]]) < tolerance) {
-			toReturn.vertices.push_back(toReturn.vertices[toReturn.indices[i+2]]);
-			toReturn.indices[i+2] = toReturn.vertices.size() - 1;
-			toReturn.normals.push_back(glm::vec3());
-		}
-		toReturn.normals[toReturn.indices[i+2]] = norm;
-		found[toReturn.indices[i + 2]] = norm;
-
+	center /= toReturn.vertices.size();
+	for (glm::vec3 &v : toReturn.vertices) {
+		v = v - center;
 	}
 
-	return toReturn;*/
+
+	return CustomMeshInfo{ toReturn, (float) mass };
 }
 
 struct VecVal {
@@ -335,7 +310,7 @@ ShapeInfo getValidPositions(CustomFunction &f) {
 	ShapeInfo info;
 	float minFound = 100;
 	float maxFound = -100;
-	for (float i = -2; i <= 2; i += 0.01f) {
+	for (float i = -3; i <= 3; i += 0.015f) {
 		if (f.eval(i, 0, 0) > 0 || f.eval(0, i, 0) > 0 || f.eval(0, 0, i) > 0) {
 			minFound = std::min(minFound, i);
 			maxFound = std::max(maxFound, i);
@@ -346,6 +321,7 @@ ShapeInfo getValidPositions(CustomFunction &f) {
 	maxFound = std::max(0.5f, maxFound);
 
 	glm::vec3 offset = glm::vec3(minFound, minFound, minFound);
+	//offset = glm::vec3(0, 0, 0);
 	float dist = maxFound - minFound;
 	info.scale = dist /sampleLength;
 	for (unsigned int x = 0; x < sampleLength; ++x) {
