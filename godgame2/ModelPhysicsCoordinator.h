@@ -39,20 +39,34 @@ public:
 
 		switch (type) {
 		case custom: {
-			btCompoundShape *shape2 = new btCompoundShape();
-			btCollisionShape *stdSphere = new btSphereShape(0.1f);
-			int count = 0;
+			std::vector<glm::vec3> verticePools[8];
 			for (glm::vec3 v : m->vertices) {
+				unsigned int poolToUse = (v.x > 0) * 4 + (v.y > 0) * 2 + (v.z > 0);
+				verticePools[poolToUse].push_back(v);
+			}
 
+			btCompoundShape *shape2 = new btCompoundShape();
+			for (int i = 0; i < 8; i++) {
+				btConvexHullShape *poolShape = new btConvexHullShape(glm::value_ptr(verticePools[i][0]), int(verticePools[i].size()), sizeof(glm::vec3)); break;
 				btTransform trans;
 				trans.setIdentity();
-				btVector3 origin = btVector3(v.x, v.y, v.z);
-				trans.setOrigin(origin);
-				//trans.
-				//trans->setsc
-				//if (count++ % 10 == 0)
-				shape2->addChildShape(trans, stdSphere);
+				trans.setOrigin(btVector3(0, 0, 0));
+
+				shape2->addChildShape(trans, poolShape);
+
 			}
+			//btCollisionShape *stdSphere = new btSphereShape(0.1f);
+			//int count = 0;
+			//for (glm::vec3 v : m->vertices) {
+
+			//	btTransform trans;
+			//	trans.setIdentity();
+			//	btVector3 origin = btVector3(v.x, v.y, v.z);
+			//	trans.setOrigin(origin);
+			//	//trans.
+			//	//trans->setsc
+			//	//if (count++ % 10 == 0)
+			//}
 			shape = shape2;
 			break;
 		}
