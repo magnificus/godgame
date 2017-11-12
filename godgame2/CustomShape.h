@@ -4,4 +4,5 @@
 class CustomShape : public Model {
 public:
 	CustomShape(Shader *s, CustomFunction &c);
+	float mass;
 };

@@ -1,9 +1,10 @@
 #include "CustomShape.h"
 #include "CustomShapeBuilder.h"
 CustomShape::CustomShape(Shader *s, CustomFunction &f) : Model(s) {
-	RenderInfo info = CustomShapeBuilder::buildShape(f);
+	CustomMeshInfo info = CustomShapeBuilder::buildShape(f);
 
-	normals = info.normals;
-	vertices = info.vertices;
-	indicies = info.indices;
+	normals = info.renderInfo.normals;
+	vertices = info.renderInfo.vertices;
+	indicies = info.renderInfo.indices;
+	mass = info.mass;
 }

@@ -8,6 +8,9 @@ enum CollisionType {custom, cube, sphere, plane, capsule};
 class ModelPhysicsCoordinator {
 
 public:
+	ModelPhysicsCoordinator() {}
+
+
 	ModelPhysicsCoordinator(Model *m, CollisionType type, float mass, glm::vec3 lookDir = glm::vec3(0,0,0)) : model(m) {
 
 		btCollisionShape* shape = nullptr;
@@ -24,6 +27,7 @@ public:
 		case plane: shape = new btStaticPlaneShape(btVector3(0, 1, 0), 0); break;
 		case capsule: shape = new btCapsuleShape(1.0, 1.8);
 		}
+		shape->setLocalScaling(btVector3(m->transform[0][0], m->transform[1][1], m->transform[2][2]));
 		btVector3 fallInertia(0, 0, 0);
 		shape->calculateLocalInertia(mass, fallInertia);
 		btRigidBody::btRigidBodyConstructionInfo bodyCI(mass, motionState, shape, fallInertia);

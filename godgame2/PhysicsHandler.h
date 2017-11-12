@@ -11,7 +11,7 @@ public:
 	PhysicsHandler();
 	~PhysicsHandler();
 	std::set<ModelPhysicsCoordinator> models;
-	std::map<btRigidBody*, ModelPhysicsCoordinator*>  btModelMap;
+	std::map<btRigidBody*, ModelPhysicsCoordinator>  btModelMap;
 	void simulationTick(float time);
 	void addMPC(ModelPhysicsCoordinator mpc);
 

@@ -9,6 +9,12 @@ struct RenderInfo {
 	std::vector<unsigned int> indices;
 };
 
+struct CustomMeshInfo {
+	RenderInfo renderInfo;
+	float mass;
+};
+
+
 double getHullVolume(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices);
 
 struct CustomFunction {
@@ -35,8 +41,6 @@ struct CustomFunction {
 };
 
 struct TextStruct{
-	int x;
-	int y;
 	std::string text;
 	float destroyTime;
 };

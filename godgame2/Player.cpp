@@ -3,16 +3,31 @@
 #include "tinyexpr.h"
 #include "CustomShape.h"
 #include <set>
+#include <list>
 #include <algorithm>
-bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_callbacks, std::vector<KeyStruct> &key_callbacks, bool &drawShadows, float time, ModelHandler &modelHandler, PhysicsHandler &physicsHandler, Shader *s)
+bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_callbacks, std::vector<KeyStruct> &key_callbacks, bool &drawShadows, std::list<TextStruct> &texts, float time, ModelHandler &modelHandler, PhysicsHandler &physicsHandler, Shader *s)
 {
 
+	float moveTowardsSpeed = 3.0f;
 	if (carrying) {
 		glm::vec3 offset = cross(cam.Up, cam.Right) * 3.0f;
 		btVector3 newLoc = mpc.btModel->getWorldTransform().getOrigin() + btVector3(offset.x, offset.y, offset.z);
-		auto &trans = carrying->getWorldTransform();
-		trans.setOrigin(newLoc);
+		btVector3 oldLoc = carrying->getWorldTransform().getOrigin();
+		btVector3 towards = newLoc - oldLoc;
+		carrying->setLinearVelocity(towards*5.0f* carrying->getInvMass());
 		carrying->activate();
+	}
+	else {
+		if (isOutlining) {
+			isOutlining->outline = false;
+		}
+		btRigidBody *bod = getBodyInFront(physicsHandler);
+		
+		if (bod && bod->getInvMass() > 0.001f) {
+			isOutlining = physicsHandler.btModelMap[bod].model;
+			isOutlining->outline = true;
+
+		}
 
 	}
 
@@ -38,46 +53,51 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 				CustomFunction func(written);
 				if (func.expr) {
 					CustomShape *shape = new CustomShape(s, func);
-					glm::vec3 offset = cross(cam.Up, cam.Right) * 5.0f;
-					shape->transform[3] = mpc.model->transform[3] + glm::vec4(offset.x, offset.y, offset.z, 0);
-					shape->color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-					modelHandler.addModel(shape);
-					physicsHandler.addMPC(ModelPhysicsCoordinator(shape, CollisionType::custom, getHullVolume(shape->vertices, shape->indicies)));
+					if (shape->vertices.size() > 2) {
+						glm::vec3 offset = cross(cam.Up, cam.Right) * 5.0f;
+						shape->transform[3] = mpc.model->transform[3] + glm::vec4(offset.x, offset.y, offset.z, 0);
+						shape->color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+						modelHandler.addModel(shape);
+						ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(shape, CollisionType::custom, shape->mass);
+						shape->outlineColor = 1 / mpc.btModel->getInvMass() < 2.5f ? glm::vec3(0, 1, 0) : glm::vec3(1,0,0);
+						physicsHandler.addMPC(mpc);
+					}
+					else {
+						delete shape;
+						texts.push_back(TextStruct{ "Insufficient number of sample points fulfilling equation", float(glfwGetTime() + 3.0)});
+					}
+
+				}
+				else {
+					texts.push_back(TextStruct{ "Invalid expression", float(glfwGetTime() + 1.0) });
+
 				}
 				written = "";
 				didPlaceObject = true;
 			}
 		}
-		if (k.key == GLFW_KEY_K && k.action == GLFW_PRESS)
+		if (k.key == GLFW_KEY_K && k.action == GLFW_PRESS && !isWriting)
 			drawShadows = !drawShadows;
 
 		if (k.key == GLFW_KEY_ESCAPE && k.action == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
 
 
-		if (k.key == GLFW_KEY_E && k.action == GLFW_PRESS) {
+		if (k.key == GLFW_KEY_E && k.action == GLFW_PRESS && !isWriting) {
 			if (!carrying) {
-				glm::vec3 offset = cross(cam.Up, cam.Right) * 10.0f;
-				btVector3 start = mpc.btModel->getWorldTransform().getOrigin() + btVector3(offset.x, offset.y, offset.z)*0.1;
-				btVector3 end = start + btVector3(offset.x, offset.y, offset.z);
-				btCollisionWorld::ClosestRayResultCallback RayCallback(start, end);
-				physicsHandler.dynamicsWorld->rayTest(start, end, RayCallback);
-				if (RayCallback.hasHit()) {
-					btRigidBody *body = (btRigidBody*)RayCallback.m_collisionObject;
-					if (body && 1/body->getInvMass() < 1.5f) {
-						std::cout << "mass: " << 1 / body->getInvMass() << std::endl;
-						carrying = body;
-						//body->mass
-						prevFlags = body->getCollisionFlags();
-						//body->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
-						body->setLinearVelocity(btVector3(0, 0, 0));
-						body->setAngularVelocity(btVector3(0, 0, 0));
-						body->setGravity(btVector3(0, 0, 0));
-
-					}
+				btRigidBody *body = getBodyInFront(physicsHandler);
+				if (body && 1/body->getInvMass() < 2.5f) {
+					std::cout << "mass: " << 1 / body->getInvMass() << std::endl;
+					carrying = body;
+					//physicsHandler.btModelMap[body].model->outline = true;
+					prevFlags = body->getCollisionFlags();
+					body->setLinearVelocity(btVector3(0, 0, 0));
+					body->setAngularVelocity(btVector3(0, 0, 0));
+					body->setGravity(btVector3(0, 0, 0));
 				}
 			}
 			else {
+				//physicsHandler.btModelMap[carrying].model->outline = false;
 				carrying->setGravity(btVector3(0,-9.81, 0));
 				carrying = nullptr;
 			}
@@ -97,7 +117,7 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 		toMove.y = 0;
 
 
-		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && glfwGetTime() - lastJump > 0.2) {// && mpc.btModel->getLinearVelocity()[1] == 0.0f)
+		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && glfwGetTime() - lastJump > 0.2) {
 			btVector3 start = mpc.btModel->getWorldTransform().getOrigin();
 			btVector3 end = start + btVector3(0, -2.2, 0);
 
@@ -118,4 +138,17 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 	return didPlaceObject;
 
 
+}
+
+btRigidBody * Player::getBodyInFront(PhysicsHandler &physicsHandler)
+{
+	glm::vec3 offset = cross(cam.Up, cam.Right) * 5.0f;
+	btVector3 start = mpc.btModel->getWorldTransform().getOrigin() + btVector3(offset.x, offset.y, offset.z)*0.1;
+	btVector3 end = start + btVector3(offset.x, offset.y, offset.z);
+	btCollisionWorld::ClosestRayResultCallback RayCallback(start, end);
+	physicsHandler.dynamicsWorld->rayTest(start, end, RayCallback);
+	if (RayCallback.hasHit()) {
+		return (btRigidBody*)RayCallback.m_collisionObject;
+	}
+	return nullptr;
 }

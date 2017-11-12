@@ -93,9 +93,6 @@
     <ClInclude Include="tinyexpr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\quickhull\ConvexHull.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\quickhull\Types.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -106,6 +103,9 @@
       <Filter>quickhull</Filter>
     </ClInclude>
     <ClInclude Include="..\quickhull\QuickHull.hpp">
+      <Filter>quickhull</Filter>
+    </ClInclude>
+    <ClInclude Include="..\quickhull\ConvexHull.hpp">
       <Filter>quickhull</Filter>
     </ClInclude>
   </ItemGroup>

@@ -42,7 +42,7 @@ void PhysicsHandler::simulationTick(float time)
 void PhysicsHandler::addMPC(ModelPhysicsCoordinator mpc) {
 	models.insert(mpc);
 	dynamicsWorld->addRigidBody(mpc.btModel);
-	btModelMap[mpc.btModel] =  &mpc;
+	btModelMap[mpc.btModel] =  mpc;
 	//mpc.btModel->setRestitution(1);
 
 }

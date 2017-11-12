@@ -1,14 +1,7 @@
 ﻿  Building Custom Rule C:/Users/Tobbe/Desktop/bullet3/src/LinearMath/CMakeLists.txt
-  CMake does not need to re-run because C:\Users\Tobbe\Desktop\godgame\bullet\src\LinearMath\CMakeFiles\generate.stamp is up-to-date.
-  btAlignedAllocator.cpp
-  btConvexHull.cpp
-  btConvexHullComputer.cpp
-  btGeometryUtil.cpp
-  btPolarDecomposition.cpp
-  btQuickprof.cpp
-  btSerializer.cpp
-  btSerializer64.cpp
-  btThreads.cpp
-  btVector3.cpp
-  Generating Code...
-  LinearMath.vcxproj -> C:\Users\Tobbe\Desktop\godgame\bullet\lib\Debug\LinearMath_Debug.lib
+  CMake is re-running because C:\Users\Tobbe\Desktop\godgame\bullet\src\LinearMath\CMakeFiles\generate.stamp is out-of-date.
+    the file 'C:/Users/Tobbe/Desktop/bullet3/src/LinearMath/CMakeLists.txt'
+    is newer than 'C:\Users\Tobbe\Desktop\godgame\bullet\src\LinearMath\CMakeFiles\generate.stamp.depend'
+    result='0'
+CUSTOMBUILD : CMake error : The source directory "C:/Users/Tobbe/Desktop/bullet3" does not exist.
+  Specify --help for usage, or press the help button on the CMake GUI.

@@ -8,13 +8,14 @@
 #include "ModelHandler.h"
 #include "PhysicsHandler.h"
 #include "KeyStruct.h"
+#include <list>
 
 class Player {
 
 public:
 	std::string written;
 	bool isWriting;
-	//bool isCarrying = false;
+	Model* isOutlining = nullptr;
 	btRigidBody *carrying = nullptr;
 	int prevFlags;
 
@@ -32,7 +33,8 @@ public:
 	double lastEnter = 0.0;
 
 	// returns true if world is changed
-	bool processInput(GLFWwindow * window, std::vector<unsigned int>& char_callbacks, std::vector<KeyStruct>& key_callbacks, bool &drawShadows, float time, ModelHandler & modelHandler, PhysicsHandler & physicsHandler, Shader * s);
+	bool processInput(GLFWwindow * window, std::vector<unsigned int>& char_callbacks, std::vector<KeyStruct>& key_callbacks, bool &drawShadows, std::list<TextStruct> &texts, float time, ModelHandler & modelHandler, PhysicsHandler & physicsHandler, Shader * s);
+	btRigidBody* getBodyInFront(PhysicsHandler &physicsHandler);
 	bool swapWriting() {};
 
 

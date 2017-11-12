@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -23,6 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>BulletDynamics</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -56,28 +57,28 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-    <PropertyGroup>
-      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\lib\Debug\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BulletDynamics.dir\Debug\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BulletDynamics_Debug</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\lib\Release\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BulletDynamics.dir\Release\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BulletDynamics</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\lib\MinSizeRel\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">BulletDynamics.dir\MinSizeRel\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">BulletDynamics_MinsizeRel</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\lib\RelWithDebInfo\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">BulletDynamics.dir\RelWithDebInfo\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">BulletDynamics_RelWithDebugInfo</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
-    </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bullet\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BulletDynamics.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BulletDynamics_Debug</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BulletDynamics.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BulletDynamics</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\lib\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">BulletDynamics.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">BulletDynamics_MinsizeRel</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Tobbe\Desktop\godgame\bullet\lib\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">BulletDynamics.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">BulletDynamics_RelWithDebugInfo</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Tobbe\Desktop\bullet3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)bullet\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -132,7 +133,8 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -169,7 +171,8 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -337,43 +340,43 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\MLCPSolvers\btSolveProjectedGaussSeidel.h" />
     <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\MLCPSolvers\btLemkeSolver.h" />
     <ClInclude Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\MLCPSolvers\btLemkeAlgorithm.h" />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Character\btKinematicCharacterController.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btContactConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btFixedConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btGearConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpringConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpring2Constraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btHinge2Constraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btHingeConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btPoint2PointConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btNNCGConstraintSolver.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btSliderConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btSolve2LinearConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btTypedConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btUniversalConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorld.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorldMt.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btSimulationIslandManagerMt.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btRigidBody.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btSimpleDynamicsWorld.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Vehicle\btRaycastVehicle.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Vehicle\btWheelInfo.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBody.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyConstraintSolver.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyDynamicsWorld.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyJointLimitConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyPoint2Point.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyFixedConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodySliderConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyJointMotor.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyGearConstraint.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\MLCPSolvers\btDantzigLCP.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\MLCPSolvers\btMLCPSolver.cpp"  />
-    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\MLCPSolvers\btLemkeAlgorithm.cpp"  />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Character\btKinematicCharacterController.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btContactConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btFixedConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btGearConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpringConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpring2Constraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btHinge2Constraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btHingeConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btPoint2PointConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btNNCGConstraintSolver.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btSliderConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btSolve2LinearConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btTypedConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\ConstraintSolver\btUniversalConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorld.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorldMt.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btSimulationIslandManagerMt.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btRigidBody.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Dynamics\btSimpleDynamicsWorld.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Vehicle\btRaycastVehicle.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Vehicle\btWheelInfo.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBody.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyConstraintSolver.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyDynamicsWorld.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyJointLimitConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyPoint2Point.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyFixedConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodySliderConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyJointMotor.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\Featherstone\btMultiBodyGearConstraint.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\MLCPSolvers\btDantzigLCP.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\MLCPSolvers\btMLCPSolver.cpp" />
+    <ClCompile Include="C:\Users\Tobbe\Desktop\bullet3\src\BulletDynamics\MLCPSolvers\btLemkeAlgorithm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:/Users/Tobbe/Desktop/godgame/bullet/ZERO_CHECK.vcxproj">

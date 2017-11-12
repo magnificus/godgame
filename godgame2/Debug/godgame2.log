@@ -1,2 +1,5 @@
-﻿  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.exe
+﻿  CustomShapeBuilder.cpp
+c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(58): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(62): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.pdb (Partial PDB)
