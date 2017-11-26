@@ -1,66 +1,7 @@
-﻿  main.cpp
-c:\users\tobbe\desktop\godgame\includes\learnopengl\filesystem.h(2): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
-  c:\users\tobbe\desktop\godgame\includes\learnopengl\filesystem.h(2): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader.h(65): warning C4101: 'infoLog': unreferenced local variable
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader.h(64): warning C4101: 'success': unreferenced local variable
-c:\users\tobbe\desktop\godgame\godgame2\emptymodel.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(55): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(61): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(64): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(73): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\texthandler.h(113): warning C4838: conversion from 'FT_Pos' to 'GLuint' requires a narrowing conversion
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(35): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(56): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(77): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(101): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(197): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(285): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(294): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(349): warning C4244: 'initializing': conversion from 'clock_t' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(366): warning C4018: '<': signed/unsigned mismatch
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(413): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(422): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(429): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\main.cpp(430): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_vec4.inl(412): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_mat4x4.inl(330): note: see reference to function template instantiation 'glm::tvec4<float,0> &glm::tvec4<float,0>::operator *=<U>(U)' being compiled
-          with
-          [
-              U=double
-          ]
-  c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_mat4x4.inl(330): note: see reference to function template instantiation 'glm::tvec4<float,0> &glm::tvec4<float,0>::operator *=<U>(U)' being compiled
-          with
-          [
-              U=double
-          ]
-  c:\users\tobbe\desktop\godgame\godgame2\main.cpp(180): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
-          with
-          [
-              U=double
-          ]
-  c:\users\tobbe\desktop\godgame\godgame2\main.cpp(180): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
-          with
-          [
-              U=double
-          ]
-  Generating Code...
-  Compiling...
-  Player.cpp
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
-c:\users\tobbe\desktop\godgame\godgame2\emptymodel.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  PhysicsHandler.cpp
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
-  ModelPhysicsCoordinator.cpp
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
-  LevelBuilder.cpp
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
-c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
-  Generating Code...
+﻿  CustomShapeBuilder.cpp
+c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(61): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(65): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(360): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(364): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.pdb (Partial PDB)

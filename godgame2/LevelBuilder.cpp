@@ -77,7 +77,7 @@ void LevelBuilder::getLevel1(PhysicsHandler &physicsHandler, ModelHandler &model
 	physicsHandler.addMPC(ModelPhysicsCoordinator(c3, CollisionType::custom, 1));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(s, CollisionType::sphere, 1));
 
-	physicsHandler.addMPC(ModelPhysicsCoordinator(p1, CollisionType::plane, 0));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(p1, CollisionType::plane, 0, glm::vec3(0, 0, 0)));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(p2, CollisionType::plane, 0, glm::vec3(0, -PI / 2, 0)));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(p3, CollisionType::plane, 0, glm::vec3(0, PI / 2, 0)));
 	physicsHandler.addMPC(ModelPhysicsCoordinator(p4, CollisionType::plane, 0, glm::vec3(0, 0, PI / 2)));

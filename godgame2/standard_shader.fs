@@ -31,7 +31,6 @@ float ShadowCalculation(vec3 fragPos, vec3 normal)
     // use the light to fragment vector to sample from the depth map    
     float closestDepth = texture(depthMap, fragToLight).r;
 	float currentDepth = length(fragToLight)/far_plane;
-	//float bias = 0.0001; 
 
 	float shadow = 0.0;
 	float bias   = 0.00015;
@@ -40,16 +39,16 @@ float ShadowCalculation(vec3 fragPos, vec3 normal)
 	//float diskRadius = 0.02;
 	float diskRadius = (1.0 + (viewDistance / far_plane)) / 50.0;  
 
-	for(int i = 0; i < samples; ++i)
+	for(int i = 0; i < 0; ++i)
 	{
 		float closestDepth = texture(depthMap, fragToLight + sampleOffsetDirections[i] * diskRadius).r;
-		//closestDepth *= far_plane;   // Undo mapping [0;1]
+		closestDepth *= far_plane;   // Undo mapping [0;1]
 		if(currentDepth - bias > closestDepth)
 			shadow += 1.0;
 	}
-shadow /= float(samples);  
+	shadow /= float(samples);  
 
-    //float shadow = currentDepth -  bias > closestDepth? 1.0 : 0.0;
+    shadow = currentDepth -  bias > closestDepth? 1.0 : 0.0;
 	return shadow;
 }  
 

@@ -7,4 +7,5 @@ CustomShape::CustomShape(Shader *s, CustomFunction &f) : Model(s) {
 	vertices = info.renderInfo.vertices;
 	indicies = info.renderInfo.indices;
 	mass = info.mass;
+	collisionShape = info.collisionShape;
 }
