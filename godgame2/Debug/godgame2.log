@@ -1,7 +1,3 @@
 ﻿  CustomShapeBuilder.cpp
-c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(61): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(65): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(360): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\tobbe\desktop\godgame\godgame2\customshapebuilder.cpp(364): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.pdb (Partial PDB)

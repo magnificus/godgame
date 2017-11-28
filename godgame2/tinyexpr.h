@@ -1,8 +1,9 @@
 /*
- * TINYEXPR - Tiny recursive descent parser and evaluation engine in C
+ * TINYEXPR - Tiny recursive descent parser and evaluation engine in C 
  *
  * Copyright (c) 2015, 2016 Lewis Van Winkle
  *
+
  * http://CodePlea.com
  *
  * This software is provided 'as-is', without any express or implied
@@ -20,6 +21,8 @@
  * 2. Altered source versions must be plainly marked as such, and must not be
  * misrepresented as being the original software.
  * 3. This notice may not be removed or altered from any source distribution.
+ *
+ * **** MODIFIED BY Tobias Elinder 2017-11-28, added new methods ****
  */
 
 #ifndef __TINYEXPR_H__

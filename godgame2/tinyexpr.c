@@ -20,6 +20,8 @@
  * 2. Altered source versions must be plainly marked as such, and must not be
  * misrepresented as being the original software.
  * 3. This notice may not be removed or altered from any source distribution.
+
+ * **** MODIFIED BY Tobias Elinder 2017-11-28, added new methods ****
  */
 
 /* COMPILE TIME OPTIONS */
@@ -149,6 +151,8 @@ static double ncr(double n, double r) {
 }
 static double npr(double n, double r) {return ncr(n, r) * fac(r);}
 
+static double maxOff(double a, double b) { return a > b ? a : b; };
+static double minOff(double a, double b) { return a < b ? a : b; };
 static const te_variable functions[] = {
     /* must be in alphabetical order */
     {"abs", fabs,     TE_FUNCTION1 | TE_FLAG_PURE, 0},
@@ -170,6 +174,8 @@ static const te_variable functions[] = {
     {"log", log10,    TE_FUNCTION1 | TE_FLAG_PURE, 0},
 #endif
     {"log10", log10,  TE_FUNCTION1 | TE_FLAG_PURE, 0},
+	{"max", maxOff,  TE_FUNCTION2 | TE_FLAG_PURE, 0 },
+	{"min", minOff,  TE_FUNCTION2 | TE_FLAG_PURE, 0 },
     {"ncr", ncr,      TE_FUNCTION2 | TE_FLAG_PURE, 0},
     {"npr", npr,      TE_FUNCTION2 | TE_FLAG_PURE, 0},
     {"pi", pi,        TE_FUNCTION0 | TE_FLAG_PURE, 0},
@@ -224,6 +230,11 @@ static double mul(double a, double b) {return a * b;}
 static double divide(double a, double b) {return a / b;}
 static double negate(double a) {return -a;}
 static double comma(double a, double b) {(void)a; return b;}
+static double less(double a, double b) { return a < b; };
+static double more(double a, double b) { return a > b; };
+
+
+
 
 
 void next_token(state *s) {
@@ -281,6 +292,8 @@ void next_token(state *s) {
                     case '/': s->type = TOK_INFIX; s->function = divide; break;
                     case '^': s->type = TOK_INFIX; s->function = pow; break;
                     case '%': s->type = TOK_INFIX; s->function = fmod; break;
+					case '<': s->type = TOK_INFIX; s->function = less; break;
+					case '>': s->type = TOK_INFIX; s->function = more; break;
                     case '(': s->type = TOK_OPEN; break;
                     case ')': s->type = TOK_CLOSE; break;
                     case ',': s->type = TOK_SEP; break;
@@ -470,10 +483,10 @@ static te_expr *factor(state *s) {
 
 
 static te_expr *term(state *s) {
-    /* <term>      =    <factor> {("*" | "/" | "%") <factor>} */
+    /* <term>      =    <factor> {("*" | "/" | "%" | "<" | ">") <factor>} */
     te_expr *ret = factor(s);
 
-    while (s->type == TOK_INFIX && (s->function == mul || s->function == divide || s->function == fmod)) {
+    while (s->type == TOK_INFIX && (s->function == mul || s->function == divide || s->function == fmod || s->function == less || s->function == more)) {
         te_fun2 t = s->function;
         next_token(s);
         ret = NEW_EXPR(TE_FUNCTION2 | TE_FLAG_PURE, ret, factor(s));
