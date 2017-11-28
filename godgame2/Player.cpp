@@ -10,7 +10,7 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 
 	float moveTowardsSpeed = 3.0f;
 	if (carrying) {
-		glm::vec3 offset = cross(cam.Up, cam.Right) * 3.0f;
+		glm::vec3 offset = cross(cam.Up, cam.Right) * 4.0f;
 		btVector3 newLoc = mpc.btModel->getWorldTransform().getOrigin() + btVector3(offset.x, offset.y, offset.z);
 		btVector3 oldLoc = carrying->getWorldTransform().getOrigin();
 		btVector3 towards = newLoc - oldLoc;
