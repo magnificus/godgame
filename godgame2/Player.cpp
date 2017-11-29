@@ -53,7 +53,7 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 				CustomFunction func(written);
 				if (func.expr) {
 					// build a new shape
-					CustomShape *shape = new CustomShape(s, func);
+					CustomShape *shape = new CustomShape(s, func, glfwGetTime());
 					if (shape->vertices.size() > 2) {
 						glm::vec3 offset = cross(cam.Up, cam.Right) * 5.0f;
 						shape->transform[3] = mpc.model->transform[3] + glm::vec4(offset.x, offset.y, offset.z, 0);

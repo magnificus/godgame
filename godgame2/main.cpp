@@ -43,6 +43,7 @@ void renderModels(ModelHandler &modelHandler, glm::mat4 proj, glm::mat4 view, Sh
 		currentShader->setMat4("mvp", proj * view * model->transform);
 		currentShader->setMat3("normalizer", glm::transpose(glm::inverse(glm::mat3(model->transform))));
 		currentShader->setMat4("model", model->transform);
+		currentShader->setFloat("timeExisted", float((glfwGetTime() - model->timeCreated)));
 		// send in model
 		glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
 		prev = modelHandler.cutoffPositions[i];
@@ -64,6 +65,8 @@ void renderModels(ModelHandler &modelHandler, glm::mat4 proj, glm::mat4 view, Sh
 		currentShader->setMat4("mvp", proj * view * model->transform);
 		currentShader->setMat3("normalizer", glm::transpose(glm::inverse(glm::mat3(model->transform))));
 		currentShader->setMat4("model", model->transform);
+		currentShader->setFloat("timeExisted", float((glfwGetTime() - model->timeCreated)));
+
 		// send in model
 		glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
 		prev = modelHandler.cutoffPositions[i];
@@ -86,6 +89,8 @@ void renderModels(ModelHandler &modelHandler, glm::mat4 proj, glm::mat4 view, Sh
 		outlineShader->setMat4("mvp", proj * view * tf);
 		outlineShader->setMat3("normalizer", glm::transpose(glm::inverse(glm::mat3(tf))));
 		outlineShader->setMat4("model", tf);
+		outlineShader->setFloat("timeExisted", float((glfwGetTime() - model->timeCreated)));
+
 		// send in model
 		glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
 		prev = modelHandler.cutoffPositions[i];
