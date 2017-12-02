@@ -135,9 +135,9 @@ int main()
 		return -1;
 	}
 	glfwSwapInterval(0);
-	Player player;
+	Player *player = new Player();
 
-	camera = &(player.cam);
+	camera = &(player->cam);
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
@@ -157,13 +157,7 @@ int main()
 		return -1;
 	}
 
-	// configure global opengl state
-	// -----------------------------
-
-	//glDepthFunc(GL_ALWAYS);
-
-
-	// build and compile our shader zprogram
+	// build and compile our shaders
 	// ------------------------------------
 	Shader stencilShader("standard_shader.vs", "simple_shader.fs");
 	Shader textShader("text_shader.vs", "text_shader.fs");
@@ -175,27 +169,19 @@ int main()
 
 
 	ModelHandler modelHandler;
-	ModelHandler stencilModelHandler;
 	PhysicsHandler physicsHandler;
 
-	// set up all of our game objects
+	// set up our game objects
 
-	Sphere *light = new Sphere(&shader1);
-	light->color = glm::vec3(10, 10, 10);
-	light->transform *= 0.5;
-	light->transform[3] = glm::vec4(0, 3, 0, 1);
-	light->scale(glm::vec3(0.5, 0.5, 0.5));
+	Sphere *light = LevelBuilder::getLevel1Light(shader1);
 
 	modelHandler.addModel(light);
-	physicsHandler.addMPC(ModelPhysicsCoordinator(light, CollisionType::sphere, 0.3));
+	physicsHandler.addMPC(ModelPhysicsCoordinator(light, CollisionType::sphere, 0.4));
 
 	LevelBuilder::getLevel1(physicsHandler, modelHandler, shader1);
 
 
-
-	btRigidBody *playerBt = player.mpc.btModel;
-
-	physicsHandler.addMPC(player.mpc);
+	physicsHandler.addMPC(player->mpc);
 	RenderInfo info = modelHandler.getRenderInfo();
 
 	std::vector<glm::vec3> finalPositions;
@@ -302,11 +288,8 @@ int main()
 
 		// physics
 		physicsHandler.simulationTick(deltaTime);
-		btVector3 trans = player.mpc.btModel->getWorldTransform().getOrigin();
+		btVector3 trans = player->mpc.btModel->getWorldTransform().getOrigin();
 		camera->Position = glm::vec3(trans[0], trans[1], trans[2]);
-		// input
-		// -----
-		//light->transform[3] = glm::vec4(cos(currentFrame) * 2, sin(currentFrame/2) +7, sin(currentFrame) * 3, 1);
 
 		// update models
 		glm::vec3 lightLocation = glm::vec3(light->transform[3][0], light->transform[3][1], light->transform[3][2]);
@@ -365,7 +348,7 @@ int main()
 		shader1.setBool("shadows", drawShadows);
 
 
-		if (player.processInput(window, char_callbacks, key_callbacks, drawShadows, texts, deltaTime, modelHandler, physicsHandler, &shader1)) {
+		if (player->processInput(window, char_callbacks, key_callbacks, drawShadows, texts, deltaTime, modelHandler, physicsHandler, &shader1)) {
 			finalPositions.clear();
 			info = modelHandler.getRenderInfo();
 			for (int i = 0; i < info.vertices.size(); i++) {
@@ -398,17 +381,15 @@ int main()
 		// text
 		glStencilFunc(GL_ALWAYS, 1, 0xFF);
 		glStencilMask(0xFF);
-		if (player.isWriting) {
+		if (player->isWriting) {
 			//std::cout << Player::written << std::endl;
-			RenderText(textShader, player.written, 25.0f, 25.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
-			RenderText(textShader, "Write your equation using the variables x,y,z for example x-y, finish with enter", 25.0f, 850.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
+			RenderText(textShader, player->written, 25.0f, 100.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
+			RenderText(textShader, "Write your equation using the variables x,y,z for example x-y, finish with ENTER", 25.0f, 850.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "Available methods:", 25.0f, 750.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "< > + - / * ^ %", 25.0f, 700.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "min, max, abs, acos, asin, atan, atan2, ceil, cos, cosh,", 25.0f, 650.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "exp, floor, ln, log, log10, pow, sin, sinh, sqrt, tan, tanh", 25.0f, 600.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "constans: pi, e", 25.0f, 550.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
-
-
 		}
 		else {
 			RenderText(textShader, "ENTER to write", 25.0f, 25.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
@@ -438,6 +419,48 @@ int main()
 		}
 		RenderText(textShader, fpsString, 25.0f, 1000.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 		
+
+		// check for player completed level
+		if (glm::distance(camera->Position, lightLocation) < 3.0f){
+			// bada bing
+			texts.push_back(TextStruct{ "Bada bing bada boom", float(glfwGetTime() + 1.0) });
+			physicsHandler.clearModels();
+			modelHandler.clearModels();
+
+			delete player;
+			player = new Player();
+			camera = &(player->cam);
+			physicsHandler.addMPC(player->mpc);
+
+			LevelBuilder::getNextLevel(physicsHandler, modelHandler, shader1);
+			light = LevelBuilder::getCurrentLevelLight(physicsHandler, modelHandler, shader1);
+			modelHandler.addModel(light);
+			physicsHandler.addMPC(ModelPhysicsCoordinator(light, CollisionType::sphere, 0.4));
+
+			finalPositions.clear();
+			info = modelHandler.getRenderInfo();
+			for (int i = 0; i < info.vertices.size(); i++) {
+				finalPositions.push_back(info.vertices[i]);
+				finalPositions.push_back(info.normals[i]);
+			}
+			glBindBuffer(GL_ARRAY_BUFFER, VBO);
+			glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_STATIC_DRAW);
+
+
+			// position attribute
+			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+			glEnableVertexAttribArray(0);
+
+			// normals
+			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+			glEnableVertexAttribArray(1);
+
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, info.indices.size() * sizeof(unsigned int), &info.indices[0], GL_STATIC_DRAW);
+
+		}
+
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------

@@ -87,6 +87,7 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 		if (k.key == GLFW_KEY_E && k.action == GLFW_PRESS && !isWriting) {
 			if (!carrying) {
 				btRigidBody *body = getBodyInFront(physicsHandler);
+
 				if (body && 1/body->getInvMass() < 2.5f) {
 					std::cout << "mass: " << 1 / body->getInvMass() << std::endl;
 					carrying = body;
@@ -98,7 +99,6 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 				}
 			}
 			else {
-				//physicsHandler.btModelMap[carrying].model->outline = false;
 				carrying->setGravity(btVector3(0,-9.81, 0));
 				carrying = nullptr;
 			}

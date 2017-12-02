@@ -2,7 +2,7 @@
 
 
 PhysicsHandler::PhysicsHandler() {
-	btBroadphaseInterface* broadphase = new btDbvtBroadphase();
+	broadphase = new btDbvtBroadphase();
 
 	// Set up the collision configuration and dispatcher
 	collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -18,15 +18,34 @@ PhysicsHandler::PhysicsHandler() {
 
 }
 
-PhysicsHandler::~PhysicsHandler() {
+void PhysicsHandler::clearModels() {
+	//for (ModelPhysicsCoordinator mpc : models) {
+	//	delete(mpc.btModel);
+	//}
+	models.clear();
+
 	delete dynamicsWorld;
 	delete solver;
 	delete dispatcher;
 	delete collisionConfiguration;
 	delete broadphase;
-	for (ModelPhysicsCoordinator mpc : models) {
-		delete(mpc.btModel);
-	}
+	broadphase = new btDbvtBroadphase();
+
+	// Set up the collision configuration and dispatcher
+	collisionConfiguration = new btDefaultCollisionConfiguration();
+	dispatcher = new btCollisionDispatcher(collisionConfiguration);
+
+	// The actual physics solver
+	solver = new btSequentialImpulseConstraintSolver;
+
+	// The world.
+	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+	dynamicsWorld->setGravity(btVector3(0, -9.81f, 0));
+}
+
+PhysicsHandler::~PhysicsHandler() {
+	clearModels();
+
 }
 
 void PhysicsHandler::simulationTick(float time)

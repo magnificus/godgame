@@ -1,7 +1,26 @@
-﻿  CustomShapeBuilder.cpp
-c:\users\user\desktop\godgame\godgame2\customshapebuilder.cpp(179): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/godgame/bullet/ZERO_CHECK.vcxproj' does not exist.
-C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/godgame/bullet/ZERO_CHECK.vcxproj' does not exist.
-C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(1611,5): warning : The referenced project 'C:/Users/Tobbe/Desktop/godgame/bullet/ZERO_CHECK.vcxproj' does not exist.
-  godgame2.vcxproj -> C:\Users\User\Desktop\godgame\Debug\godgame2.exe
-  godgame2.vcxproj -> C:\Users\User\Desktop\godgame\Debug\godgame2.pdb (Partial PDB)
+﻿  LevelBuilder.cpp
+c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
+c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
+c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_vec4.inl(412): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_mat4x4.inl(330): note: see reference to function template instantiation 'glm::tvec4<float,0> &glm::tvec4<float,0>::operator *=<U>(U)' being compiled
+          with
+          [
+              U=double
+          ]
+  c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_mat4x4.inl(330): note: see reference to function template instantiation 'glm::tvec4<float,0> &glm::tvec4<float,0>::operator *=<U>(U)' being compiled
+          with
+          [
+              U=double
+          ]
+  c:\users\tobbe\desktop\godgame\godgame2\levelbuilder.cpp(34): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
+          with
+          [
+              U=double
+          ]
+  c:\users\tobbe\desktop\godgame\godgame2\levelbuilder.cpp(34): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
+          with
+          [
+              U=double
+          ]
+  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.exe
+  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.pdb (Partial PDB)

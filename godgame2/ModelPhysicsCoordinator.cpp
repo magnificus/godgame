@@ -10,3 +10,16 @@ void ModelPhysicsCoordinator::updateModel()
 	t.getOpenGLMatrix(glm::value_ptr(model->transform));
 
 }
+
+void ModelPhysicsCoordinator::setQuaternion(float w, float x, float y, float z)
+{
+	btTransform trans;
+	btModel->getMotionState()->getWorldTransform(trans);
+	btQuaternion rot = trans.getRotation();
+	rot.setW(w);
+	rot.setX(x);
+	rot.setY(y);
+	rot.setZ(z);
+	trans.setRotation(rot);
+	btModel->getMotionState()->setWorldTransform(trans);
+}

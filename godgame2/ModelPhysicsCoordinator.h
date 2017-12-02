@@ -9,7 +9,7 @@ class ModelPhysicsCoordinator {
 
 public:
 	ModelPhysicsCoordinator() {}
-
+	~ModelPhysicsCoordinator() {}
 
 	ModelPhysicsCoordinator(Model *m, CollisionType type, float mass, glm::vec3 lookDir = glm::vec3(1,0,0), btCollisionShape* shape = nullptr) : model(m) {
 
@@ -21,7 +21,7 @@ public:
 
 		if (!shape) {
 			switch (type) {
-			case custom: shape = new btConvexHullShape(glm::value_ptr(m->vertices[0]), int(m->vertices.size()), sizeof(glm::vec3)); break;
+			case custom: shape = new btConvexHullShape(glm::value_ptr(m->vertices[0]), int(m->vertices.size()), sizeof(glm::vec3)); break; // this is a simple method, use the one in CustomShapeBuilder for the cool version
 			case cube: shape = new btBoxShape(btVector3(0.5, 0.5, 0.5)); break;
 			case sphere: shape = new btSphereShape(1); break;
 			case plane: shape = new btStaticPlaneShape(btVector3(0, 1, 0), 0); break;
@@ -63,6 +63,8 @@ public:
 
 	//ModelPhysicsCoordinator(Model *m, btRigidBody *body) : model(m), btModel(body) {};
 	void updateModel();
+
+	void setQuaternion(float w, float x, float y, float z);
 
 	Model *model;
 	btRigidBody *btModel;

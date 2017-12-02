@@ -14,6 +14,7 @@ public:
 	std::map<btRigidBody*, ModelPhysicsCoordinator>  btModelMap;
 	void simulationTick(float time);
 	void addMPC(ModelPhysicsCoordinator mpc);
+	void clearModels();
 
 
 	btBroadphaseInterface* broadphase;

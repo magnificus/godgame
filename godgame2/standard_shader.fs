@@ -90,15 +90,14 @@ void main()
 		shadow = ShadowCalculation(fs_in.FragPos, normal);
     //vec3 lighting = (ambient + (1.0 - shadow) * (diff + specular)) * color;
 	float len = pow(length(fs_in.FragPos - lightPos),1.0/2.0)/10;
-	vec3 lighting = (ambient + max(0.0, 1-len)*0.3 + ((1.0-shadow)*(diff))*0.5) * color;
+	vec3 lighting = (ambient + max(0.0, 1-len)*0.5 + ((1.0-shadow)*(diff))*0.7) * color;
 
 	float randN =  rand((fs_in.FragPos.xz + fs_in.FragPos.xy + fs_in.FragPos.yz)*timeExisted);
-	float randN2 =  rand((fs_in.FragPos.xz + fs_in.FragPos.xy + fs_in.FragPos.yz)*timeExisted*2);
+	//float randN2 =  rand((fs_in.FragPos.xz + fs_in.FragPos.xy + fs_in.FragPos.yz)*timeExisted*2);
 
-	float trans = timeExisted/2 - randN;
+	float trans = timeExisted/1 - randN;
 	//trans = 0.4;
 	trans = min(trans,1);
-	lighting += pow((1-trans),100)*randN2;
-    FragColor = vec4(lighting, trans);
+    FragColor = vec4(lighting, 1);
 
 }  

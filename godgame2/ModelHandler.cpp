@@ -1,5 +1,23 @@
 #include "ModelHandler.h"
 
+void ModelHandler::clearModels() {
+	models.clear();
+	cutoffPositions.clear();
+
+	for (auto it = models.begin(); it != models.end(); ++it)
+	{
+		//std::cout << "deleting: " << (*it)- << std::endl;
+		delete *it; 
+	}
+	//for (Model *m : models) {
+	//	delete m;
+	//}
+}
+
+ModelHandler::~ModelHandler() {
+	clearModels();
+}
+
 RenderInfo ModelHandler::getRenderInfo()
 {
 	RenderInfo info;

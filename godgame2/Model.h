@@ -3,13 +3,16 @@
 #include <learnopengl/shader_m.h>
 #include <vector>
 #include "BaseLibrary.h"
+#include <GLFW/glfw3.h>
 
 class Model {
 
 public:
 	Model(Shader *s) {
 		shader = s;
+		timeCreated = glfwGetTime() - 2;
 	}
+	~Model() {}
 
 	void scale(glm::vec3 modifier);
 	glm::mat4 transform;
@@ -20,6 +23,6 @@ public:
 	glm::vec3 color = glm::vec3(1.0,1.0,1.0);
 	bool outline = false;
 	glm::vec3 outlineColor = glm::vec3(1.0, 1.0, 1.0);
-	double timeCreated = 0.0;
+	double timeCreated = -100.0;
 
 };

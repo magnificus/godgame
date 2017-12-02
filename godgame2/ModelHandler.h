@@ -5,6 +5,9 @@
 class ModelHandler {
 
 public:
+	~ModelHandler();
+	void clearModels();
+
 	RenderInfo getRenderInfo();
 	std::vector<unsigned int> cutoffPositions;
 	void addModel(Model *m);
