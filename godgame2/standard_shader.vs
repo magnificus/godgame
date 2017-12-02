@@ -30,10 +30,12 @@ void main()
 	vs_out.Normal =  normalizer * aNormal;
 
 	if (timeExisted < 3.0){
-		float r1 = rand(vs_out.FragPos.xy + vs_out.FragPos.xz + vs_out.FragPos.yz);
-		float r2 = rand(vs_out.FragPos.xy*2 + vs_out.FragPos.xz + vs_out.FragPos.yz);
-		float r3 = rand(vs_out.FragPos.xy + vs_out.FragPos.xz*2 + vs_out.FragPos.yz);
-		extra = normalize(aNormal) * (3-timeExisted)*1;
+		//float r1 = rand(vs_out.FragPos.xy + vs_out.FragPos.xz + vs_out.FragPos.yz) - 0.5;
+		//float r2 = rand(vs_out.FragPos.xy*2 + vs_out.FragPos.xz + vs_out.FragPos.yz) - 0.5;
+		//float r3 = rand(vs_out.FragPos.xy + vs_out.FragPos.xz*2 + vs_out.FragPos.yz) - 0.5;
+
+		extra = normalize(vs_out.Normal) * pow((3-timeExisted),2);
+		//extra = vec3(sin(aNormal.x*20), sin(aNormal.y*13), sin(aNormal.z*11))*(3-timeExisted);
 	}
 
     gl_Position = mvp * vec4(aPos + extra, 1.0);

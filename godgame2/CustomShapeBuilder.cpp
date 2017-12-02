@@ -20,6 +20,10 @@ struct ShapeInfo {
 	float scale;
 };
 
+glm::vec3 getBitSetPositionFromReal(glm::vec3 position, float scale) {
+	return position / scale;
+}
+
 unsigned int getBitsetPosition(unsigned int x, unsigned int y, unsigned int z) {
 	return x + y * sampleLength + z * sampleLength * sampleLength;
 }
@@ -152,16 +156,66 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 			toReturn.vertices.push_back(glm::vec3(vec.x, vec.y, vec.z));
 			toReturn.normals.push_back(glm::vec3());
 		}
-		for (unsigned int j : indexBuffers[i]) {
-			toReturn.indices.push_back(j + currentVertexOffset);
+
+		for (unsigned int j = 0; j < indexBuffers[i].size(); j+=3) {
+			// if the face is deemed to not be visible from outside the shape ignore it
+			glm::vec3 v1 = toReturn.vertices[indexBuffers[i][j] + currentVertexOffset];
+			glm::vec3 v2 = toReturn.vertices[indexBuffers[i][j+1] + currentVertexOffset];
+			glm::vec3 v3 = toReturn.vertices[indexBuffers[i][j+2] + currentVertexOffset];
+			glm::vec3 norm = glm::cross(v2 - v1, v3 - v1);
+			norm = glm::normalize(norm);
+			glm::vec3 middle = (v1 + v2 + v3) / 3.0f;
+			glm::vec3 offsetPoint = middle - info.offset + center;
+			glm::vec3 measurePoint1 = middle + center;
+
+			bool foundPointOutside = false;
+			float longest = std::max(std::max(abs(offsetPoint.x), abs(offsetPoint.y)), abs(offsetPoint.z));
+			float shortest = std::min(std::min(abs(offsetPoint.x), abs(offsetPoint.y)), abs(offsetPoint.z));
+			double onEdge = f.eval(measurePoint1.x, measurePoint1.y, measurePoint1.z);
+			std::cout << onEdge << std::endl;
+			if (longest + 0.01 > (sampleLength-1)*info.scale || shortest - 0.01 < 0 || onEdge <= 0.0)
+				foundPointOutside = true;
+			//for (int x = -1; x <= 1; x++) {
+			//	for (int y = -1; y <= 1; y++) {
+			//		for (int z = -1; z <= 1; z++) {
+
+			//			glm::vec3 currExtra = glm::vec3(x, y, z)*info.scale;
+			//			glm::vec3 finalP = offsetPoint + currExtra;
+			//			//std::cout << point.x << std::endl;
+			//			int max = std::max(std::max(point.x + x, point.y + y), point.z + z);
+			//			int min = std::min(std::min(point.x + x, point.y + y), point.z + z);
+			//			if (max >= sampleLength+1 || min < -1) {
+			//				std::cout << max << " " << min << std::endl;
+			//				foundPointOutside = true;
+			//				goto outOfLoop;
+			//			}
+			//		}
+			//	}
+			//}
+			//outOfLoop:
+			if (foundPointOutside) {
+				toReturn.indices.push_back(indexBuffers[i][j] + currentVertexOffset);
+				toReturn.indices.push_back(indexBuffers[i][j+1] + currentVertexOffset);
+				toReturn.indices.push_back(indexBuffers[i][j+2] + currentVertexOffset);
+
+			}
 		}
+		//for (unsigned int j : indexBuffers[i]) {
+		//	toReturn.indices.push_back(j + currentVertexOffset);
+		//}
 
 		currentVertexOffset += vertexBuffers[i].size();
 	}
 
+
+
+
 	std::set<unsigned int> alreadyUsedVertices;
 
 	for (unsigned int i = 0; i < toReturn.indices.size() - 2; i += 3) {
+
+
+
 		unsigned int toUse1 = toReturn.indices[i];
 		unsigned int toUse2 = toReturn.indices[i+1];
 		unsigned int toUse3 = toReturn.indices[i+2];
@@ -171,6 +225,8 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 		glm::vec3 v3 = toReturn.vertices[toUse3];
 		glm::vec3 norm = glm::cross(v2 - v1, v3 - v1);
 		norm = glm::normalize(norm);
+
+
 		if (alreadyUsedVertices.find(toUse1) != alreadyUsedVertices.end()) {
 			toUse1 = toReturn.vertices.size();
 			toReturn.vertices.push_back(v1);
