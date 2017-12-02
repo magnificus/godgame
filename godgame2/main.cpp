@@ -127,7 +127,7 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	// glfw window creation
 	// --------------------
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Game", glfwGetPrimaryMonitor() , NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Game",NULL /* glfwGetPrimaryMonitor() */, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -317,7 +317,7 @@ int main()
 		glm::mat4 view = camera->GetViewMatrix();
 
 		// render
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 
 		glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), (float)SHADOW_WIDTH / (float)SHADOW_HEIGHT, near_plane, far_plane);
@@ -401,6 +401,7 @@ int main()
 		if (player.isWriting) {
 			//std::cout << Player::written << std::endl;
 			RenderText(textShader, player.written, 25.0f, 25.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
+			RenderText(textShader, "Write your equation using the variables x,y,z for example x-y, finish with enter", 25.0f, 850.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "Available methods:", 25.0f, 750.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "< > + - / * ^ %", 25.0f, 700.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "min, max, abs, acos, asin, atan, atan2, ceil, cos, cosh,", 25.0f, 650.0f, 1.0f, textColor, textVAO, textVBO, textProjection);

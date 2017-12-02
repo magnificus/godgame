@@ -96,9 +96,9 @@ void main()
 	float randN2 =  rand((fs_in.FragPos.xz + fs_in.FragPos.xy + fs_in.FragPos.yz)*timeExisted*2);
 
 	float trans = timeExisted/2 - randN;
-	trans = 0.4;
+	//trans = 0.4;
 	trans = min(trans,1);
-	//lighting += pow((1-trans),100)*randN2;
+	lighting += pow((1-trans),100)*randN2;
     FragColor = vec4(lighting, trans);
 
 }  

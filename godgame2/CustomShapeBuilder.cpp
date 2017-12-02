@@ -47,9 +47,6 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 
 	std::vector<quickhull::Vector3<float>> pointClouds[8];
 
-
-
-
 	glm::vec3 center = glm::vec3(0, 0, 0);
 	for (unsigned int x = 0; x < sampleLength; x++) {
 		for (unsigned int y = 0; y < sampleLength; y++) {
@@ -67,7 +64,6 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 	center /= mass;
 
 	mass /= pow(sampleLength/info.scale, 3);
-	//mass /= pow(info.scale, 3);
 	mass *= 40000;
 
 	// if every point around this point is part of the object, then obviously this point is not on any edge and is therefore not interesting
@@ -154,10 +150,10 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 
 		for (auto vec : vertexBuffers[i]) {
 			toReturn.vertices.push_back(glm::vec3(vec.x, vec.y, vec.z));
-			toReturn.normals.push_back(glm::vec3());
+			toReturn.normals.push_back(glm::vec3(0.0f,0.0f,0.0f));
 		}
 
-		for (unsigned int j = 0; j < indexBuffers[i].size(); j+=3) {
+		for (unsigned int j = 0; j < indexBuffers[i].size() - 2; j+=3) {
 			// if the face is deemed to not be visible from outside the shape ignore it
 			glm::vec3 v1 = toReturn.vertices[indexBuffers[i][j] + currentVertexOffset];
 			glm::vec3 v2 = toReturn.vertices[indexBuffers[i][j+1] + currentVertexOffset];
@@ -167,32 +163,30 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 			glm::vec3 middle = (v1 + v2 + v3) / 3.0f;
 			glm::vec3 offsetPoint = middle - info.offset + center;
 			glm::vec3 measurePoint1 = middle + center;
+			glm::vec3 bitPos = getBitSetPositionFromReal(measurePoint1, info.scale);
+
 
 			bool foundPointOutside = false;
 			float longest = std::max(std::max(abs(offsetPoint.x), abs(offsetPoint.y)), abs(offsetPoint.z));
 			float shortest = std::min(std::min(abs(offsetPoint.x), abs(offsetPoint.y)), abs(offsetPoint.z));
-			double onEdge = f.eval(measurePoint1.x, measurePoint1.y, measurePoint1.z);
-			std::cout << onEdge << std::endl;
-			if (longest + 0.01 > (sampleLength-1)*info.scale || shortest - 0.01 < 0 || onEdge <= 0.0)
+			if (longest + 0.01 > (sampleLength - 1)*info.scale || shortest - 0.01 < 0) {
 				foundPointOutside = true;
-			//for (int x = -1; x <= 1; x++) {
-			//	for (int y = -1; y <= 1; y++) {
-			//		for (int z = -1; z <= 1; z++) {
+			}
+			else {
+				for (int x = -1; x <= 1; x++) {
+					for (int y = -1; y <= 1; y++) {
+						for (int z = -1; z <= 1; z++) {
+							unsigned int bitNum = getBitsetPosition(bitPos.x + x, bitPos.y + y, bitPos.z + z);
+							if (!originalBits[bitNum]) {
+								foundPointOutside = true;
+								goto outOfLoop;
+							}
+						}
+					}
+				}
+			}
+			outOfLoop:
 
-			//			glm::vec3 currExtra = glm::vec3(x, y, z)*info.scale;
-			//			glm::vec3 finalP = offsetPoint + currExtra;
-			//			//std::cout << point.x << std::endl;
-			//			int max = std::max(std::max(point.x + x, point.y + y), point.z + z);
-			//			int min = std::min(std::min(point.x + x, point.y + y), point.z + z);
-			//			if (max >= sampleLength+1 || min < -1) {
-			//				std::cout << max << " " << min << std::endl;
-			//				foundPointOutside = true;
-			//				goto outOfLoop;
-			//			}
-			//		}
-			//	}
-			//}
-			//outOfLoop:
 			if (foundPointOutside) {
 				toReturn.indices.push_back(indexBuffers[i][j] + currentVertexOffset);
 				toReturn.indices.push_back(indexBuffers[i][j+1] + currentVertexOffset);
@@ -200,61 +194,51 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 
 			}
 		}
-		//for (unsigned int j : indexBuffers[i]) {
-		//	toReturn.indices.push_back(j + currentVertexOffset);
-		//}
 
 		currentVertexOffset += vertexBuffers[i].size();
 	}
 
 
+	// fix normals by giving each vertex its own, copy vertexes where several indicies refer to the same one
+	if (toReturn.indices.size() >= 3) {
+		for (unsigned int i = 0; i < toReturn.indices.size() - 2; i += 3) {
+			unsigned int &toUse1 = toReturn.indices[i];
+			unsigned int &toUse2 = toReturn.indices[i + 1];
+			unsigned int &toUse3 = toReturn.indices[i + 2];
+
+			glm::vec3 v1 = toReturn.vertices[toUse1];
+			glm::vec3 v2 = toReturn.vertices[toUse2];
+			glm::vec3 v3 = toReturn.vertices[toUse3];
+			glm::vec3 norm = glm::cross(v2 - v1, v3 - v1);
+			norm = glm::normalize(norm);
 
 
-	std::set<unsigned int> alreadyUsedVertices;
+			if (toReturn.normals[toUse1].length() != 0.0f) {
+				toUse1 = toReturn.vertices.size();
+				toReturn.vertices.push_back(v1);
+				toReturn.normals.push_back(glm::vec3());
+			}
+			if (toReturn.normals[toUse2].length() != 0.0f) {
+				toUse2 = toReturn.vertices.size();
+				toReturn.vertices.push_back(v2);
+				toReturn.normals.push_back(glm::vec3());
 
-	for (unsigned int i = 0; i < toReturn.indices.size() - 2; i += 3) {
+			}
+			if (toReturn.normals[toUse3].length() != 0.0f) {
+				toUse3 = toReturn.vertices.size();
+				toReturn.vertices.push_back(v3);
+				toReturn.normals.push_back(glm::vec3());
 
+			}
 
-
-		unsigned int toUse1 = toReturn.indices[i];
-		unsigned int toUse2 = toReturn.indices[i+1];
-		unsigned int toUse3 = toReturn.indices[i+2];
-
-		glm::vec3 v1 = toReturn.vertices[toUse1];
-		glm::vec3 v2 = toReturn.vertices[toUse2];
-		glm::vec3 v3 = toReturn.vertices[toUse3];
-		glm::vec3 norm = glm::cross(v2 - v1, v3 - v1);
-		norm = glm::normalize(norm);
-
-
-		if (alreadyUsedVertices.find(toUse1) != alreadyUsedVertices.end()) {
-			toUse1 = toReturn.vertices.size();
-			toReturn.vertices.push_back(v1);
-			toReturn.normals.push_back(glm::vec3());
-			toReturn.indices[i] = toUse1;
+			toReturn.normals[toUse1] = norm;
+			toReturn.normals[toUse2] = norm;
+			toReturn.normals[toUse3] = norm;
 		}
-		if (alreadyUsedVertices.find(toUse2) != alreadyUsedVertices.end()) {
-			toUse2 = toReturn.vertices.size();
-			toReturn.vertices.push_back(v2);
-			toReturn.normals.push_back(glm::vec3());
-			toReturn.indices[i+1] = toUse2;
-
-		}
-		if (alreadyUsedVertices.find(toUse3) != alreadyUsedVertices.end()) {
-			toUse3 = toReturn.vertices.size();
-			toReturn.vertices.push_back(v3);
-			toReturn.normals.push_back(glm::vec3());
-			toReturn.indices[i + 2] = toUse3;
-
-		}
-		alreadyUsedVertices.insert(toUse1);
-		alreadyUsedVertices.insert(toUse2);
-		alreadyUsedVertices.insert(toUse3);
-
-		toReturn.normals[toUse1] = norm;
-		toReturn.normals[toUse2] = norm;
-		toReturn.normals[toUse3] = norm;
 	}
+
+
+
 
 	std::vector<glm::vec3> glmVertexBuffers[8];
 	for (int i = 0; i < 8; i++) {
@@ -275,8 +259,6 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 		shape2->addChildShape(trans, poolShape);
 	}
 
-
-
 	return CustomMeshInfo{ toReturn, shape2, (float)mass };
 }
 
@@ -289,8 +271,11 @@ ShapeInfo getValidPositions(CustomFunction &f) {
 	ShapeInfo info;
 	float minFound = 100;
 	float maxFound = -100;
-	for (float i = -3.0; i <= 3.0; i += 0.015f) {
-		if (f.eval(i, 0, 0) > 0 || f.eval(0, i, 0) > 0 || f.eval(0, 0, i) > 0) {
+
+	float limit = 3.0;
+	float incr = 0.014f;
+	for (float i = -limit; i <= limit; i += incr) {
+		if (f.eval(i, 0, 0) > 0 || f.eval(0, i, 0) > 0 || f.eval(0, 0, i) > 0 || f.eval(i, -limit, -limit) > 0|| f.eval(i, limit, limit) > 0 || f.eval(-limit, i, -limit) > 0 || f.eval(limit, i, limit) > 0 || f.eval(-limit, -limit, i) > 0 || f.eval(limit, limit, i)> 0) {
 			minFound = std::min(minFound, i);
 			maxFound = std::max(maxFound, i);
 
@@ -300,7 +285,6 @@ ShapeInfo getValidPositions(CustomFunction &f) {
 	maxFound = std::max(0.5f, maxFound);
 
 	glm::vec3 offset = glm::vec3(minFound, minFound, minFound);
-	//offset = glm::vec3(0, 0, 0);
 	float dist = maxFound - minFound;
 	info.scale = dist /sampleLength;
 	for (unsigned int x = 0; x < sampleLength; ++x) {

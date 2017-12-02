@@ -34,9 +34,9 @@ void main()
 		//float r2 = rand(vs_out.FragPos.xy*2 + vs_out.FragPos.xz + vs_out.FragPos.yz) - 0.5;
 		//float r3 = rand(vs_out.FragPos.xy + vs_out.FragPos.xz*2 + vs_out.FragPos.yz) - 0.5;
 
-		extra = normalize(vs_out.Normal) * pow((3-timeExisted),2);
+		extra = normalize(aNormal) * pow((3-timeExisted),1);
 		//extra = vec3(sin(aNormal.x*20), sin(aNormal.y*13), sin(aNormal.z*11))*(3-timeExisted);
 	}
 
-    gl_Position = mvp * vec4(aPos + extra, 1.0);
+    gl_Position = mvp * vec4(aPos + extra, 1.0); //+ vec4(extra, 0.0);
 }  
