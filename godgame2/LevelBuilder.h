@@ -8,7 +8,9 @@ namespace LevelBuilder {
 	static int currentLevel = 1;
 
 	void getNextLevel(PhysicsHandler &physHandler, ModelHandler &modelHandler, Shader &s);
-	Sphere* getCurrentLevelLight(PhysicsHandler &physHandler, ModelHandler &modelHandler, Shader &s);
+	void getCurrentLevel(PhysicsHandler &physHandler, ModelHandler &modelHandler, Shader &s);
+
+	Sphere* getCurrentLevelLight(Shader &s);
 
 	void getLevel1(PhysicsHandler &physHandler, ModelHandler &modelHandler, Shader &s);
 	Sphere* getLevel1Light(Shader &shader1);
@@ -17,5 +19,5 @@ namespace LevelBuilder {
 	Sphere* getLevel2Light(Shader &shader1);
 
 	void getLevel3(PhysicsHandler &physHandler, ModelHandler &modelHandler, Shader &s);
-	Sphere* getLevel3Light();
+	Sphere* getLevel3Light(Shader &shader1);
 }

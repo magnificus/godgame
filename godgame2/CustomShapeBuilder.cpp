@@ -272,7 +272,7 @@ ShapeInfo getValidPositions(CustomFunction &f) {
 	float minFound = 100;
 	float maxFound = -100;
 
-	float limit = 3.0;
+	float limit = 5.0;
 	float incr = 0.014f;
 	for (float i = -limit; i <= limit; i += incr) {
 		if (f.eval(i, 0, 0) > 0 || f.eval(0, i, 0) > 0 || f.eval(0, 0, i) > 0 || f.eval(i, -limit, -limit) > 0|| f.eval(i, limit, limit) > 0 || f.eval(-limit, i, -limit) > 0 || f.eval(limit, i, limit) > 0 || f.eval(-limit, -limit, i) > 0 || f.eval(limit, limit, i)> 0) {

@@ -1,14 +1,15 @@
 #include "ModelHandler.h"
 
 void ModelHandler::clearModels() {
+
+
+	//for (auto it = models.begin(); it != models.end(); ++it)
+	//{
+	//	//std::cout << "deleting: " << (*it)- << std::endl;
+	//	delete *it; 
+	//}
 	models.clear();
 	cutoffPositions.clear();
-
-	for (auto it = models.begin(); it != models.end(); ++it)
-	{
-		//std::cout << "deleting: " << (*it)- << std::endl;
-		delete *it; 
-	}
 	//for (Model *m : models) {
 	//	delete m;
 	//}

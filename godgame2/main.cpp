@@ -173,12 +173,12 @@ int main()
 
 	// set up our game objects
 
-	Sphere *light = LevelBuilder::getLevel1Light(shader1);
+	Sphere *light = LevelBuilder::getCurrentLevelLight(shader1);
 
 	modelHandler.addModel(light);
 	physicsHandler.addMPC(ModelPhysicsCoordinator(light, CollisionType::sphere, 0.4));
 
-	LevelBuilder::getLevel1(physicsHandler, modelHandler, shader1);
+	LevelBuilder::getCurrentLevel(physicsHandler, modelHandler, shader1);
 
 
 	physicsHandler.addMPC(player->mpc);
@@ -424,8 +424,8 @@ int main()
 		if (glm::distance(camera->Position, lightLocation) < 3.0f){
 			// bada bing
 			texts.push_back(TextStruct{ "Bada bing bada boom", float(glfwGetTime() + 1.0) });
-			physicsHandler.clearModels();
 			modelHandler.clearModels();
+			physicsHandler.clearModels();
 
 			delete player;
 			player = new Player();
@@ -433,7 +433,7 @@ int main()
 			physicsHandler.addMPC(player->mpc);
 
 			LevelBuilder::getNextLevel(physicsHandler, modelHandler, shader1);
-			light = LevelBuilder::getCurrentLevelLight(physicsHandler, modelHandler, shader1);
+			light = LevelBuilder::getCurrentLevelLight(shader1);
 			modelHandler.addModel(light);
 			physicsHandler.addMPC(ModelPhysicsCoordinator(light, CollisionType::sphere, 0.4));
 

@@ -1,4 +1,34 @@
-﻿  LevelBuilder.cpp
+﻿  main.cpp
+c:\users\tobbe\desktop\godgame\includes\learnopengl\filesystem.h(2): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+  c:\users\tobbe\desktop\godgame\includes\learnopengl\filesystem.h(2): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+c:\users\tobbe\desktop\godgame\includes\learnopengl\shader.h(65): warning C4101: 'infoLog': unreferenced local variable
+c:\users\tobbe\desktop\godgame\includes\learnopengl\shader.h(64): warning C4101: 'success': unreferenced local variable
+c:\users\tobbe\desktop\godgame\godgame2\emptymodel.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(55): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(61): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(64): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\inputhandler.h(73): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\texthandler.h(113): warning C4838: conversion from 'FT_Pos' to 'GLuint' requires a narrowing conversion
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(35): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(57): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(80): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(106): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(188): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(276): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(285): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(337): warning C4244: 'initializing': conversion from 'clock_t' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(354): warning C4018: '<': signed/unsigned mismatch
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(400): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(409): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(416): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(417): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\tobbe\desktop\godgame\godgame2\main.cpp(442): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  LevelBuilder.cpp
 c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
 c:\users\tobbe\desktop\godgame\includes\learnopengl\shader_m.h(52): warning C4101: 'success': unreferenced local variable
 c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_vec4.inl(412): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
@@ -12,15 +42,16 @@ c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\det
           [
               U=double
           ]
-  c:\users\tobbe\desktop\godgame\godgame2\levelbuilder.cpp(34): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
+  c:\users\tobbe\desktop\godgame\godgame2\levelbuilder.cpp(41): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
           with
           [
               U=double
           ]
-  c:\users\tobbe\desktop\godgame\godgame2\levelbuilder.cpp(34): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
+  c:\users\tobbe\desktop\godgame\godgame2\levelbuilder.cpp(41): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
           with
           [
               U=double
           ]
+  Generating Code...
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Debug\godgame2.pdb (Partial PDB)
