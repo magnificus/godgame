@@ -1,4 +1,5 @@
 #include "ModelHandler.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 void ModelHandler::clearModels() {
 
@@ -17,6 +18,28 @@ void ModelHandler::clearModels() {
 
 ModelHandler::~ModelHandler() {
 	clearModels();
+}
+
+void ModelHandler::renderModels(bool outline, glm::mat4 proj, glm::mat4 view, Shader *overrideShader, glm::vec3 scale, bool outlineColor) {
+	int prev = 0;
+	for (int i = 0; i < cutoffPositions.size(); i++) {
+		Model *model = models[i];
+		if (model->outline ^ outline) {
+			prev = cutoffPositions[i];
+			continue;
+		}
+		Shader *currentShader = overrideShader ? overrideShader : model->shader;
+		glm::mat4 tf = model->transform;
+		tf = glm::scale(tf, scale);
+		currentShader->setVec3("color", outlineColor ? model->outlineColor : model->color);
+		currentShader->setMat4("mvp", proj * view * tf);
+		currentShader->setMat3("normalizer", glm::transpose(glm::inverse(glm::mat3(tf))));
+		currentShader->setMat4("model", tf);
+		currentShader->setFloat("timeExisted", float((glfwGetTime() - model->timeCreated)));
+		// send in model
+		glDrawElements(GL_TRIANGLES, (cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
+		prev = cutoffPositions[i];
+	}
 }
 
 RenderInfo ModelHandler::getRenderInfo()

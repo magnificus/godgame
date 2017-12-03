@@ -7,6 +7,7 @@ class ModelHandler {
 public:
 	~ModelHandler();
 	void clearModels();
+	void renderModels(bool outline, glm::mat4 proj, glm::mat4 view, Shader *overrideShader = nullptr, glm::vec3 scale = glm::vec3(1.0, 1.0, 1.0), bool outlineColor = false);
 
 	RenderInfo getRenderInfo();
 	std::vector<unsigned int> cutoffPositions;

@@ -25,6 +25,8 @@
 
 #define PI 3.14159
 
+
+
 const glm::vec3 textColor = glm::vec3(0.9, 0.8f, 0.2f);
 void renderModels(ModelHandler &modelHandler, glm::mat4 proj, glm::mat4 view, Shader *outlineShader) {
 	unsigned int prev = 0;
@@ -32,72 +34,23 @@ void renderModels(ModelHandler &modelHandler, glm::mat4 proj, glm::mat4 view, Sh
 	// draw standard models
 	//glStencilFunc(GL_ALWAYS, 1, 0xFF);
 	glStencilMask(0x00);
-	for (int i = 0; i < modelHandler.cutoffPositions.size(); i++) {
-		Model *model = modelHandler.models[i];
-		if (model->outline) {
-			prev = modelHandler.cutoffPositions[i];
-			continue;
-		}
-		Shader *currentShader = model->shader;
-		currentShader->setVec3("color", model->color);
-		currentShader->setMat4("mvp", proj * view * model->transform);
-		currentShader->setMat3("normalizer", glm::transpose(glm::inverse(glm::mat3(model->transform))));
-		currentShader->setMat4("model", model->transform);
-		currentShader->setFloat("timeExisted", float((glfwGetTime() - model->timeCreated)));
-		// send in model
-		glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
-		prev = modelHandler.cutoffPositions[i];
-	}
-	prev = 0;
+	modelHandler.renderModels(false, proj, view);
 
-	//	 draw outlined models
+	////	 draw outlined models
 	glStencilFunc(GL_ALWAYS, 1, 0xFF);
 	glStencilMask(0xFF);
+	modelHandler.renderModels(true, proj, view);
 
-	for (int i = 0; i < modelHandler.cutoffPositions.size(); i++) {
-		Model *model = modelHandler.models[i];
-		if (!model->outline) {
-			prev = modelHandler.cutoffPositions[i];
-			continue;
-		}
-		Shader *currentShader = model->shader;
-		currentShader->setVec3("color", model->color);
-		currentShader->setMat4("mvp", proj * view * model->transform);
-		currentShader->setMat3("normalizer", glm::transpose(glm::inverse(glm::mat3(model->transform))));
-		currentShader->setMat4("model", model->transform);
-		currentShader->setFloat("timeExisted", float((glfwGetTime() - model->timeCreated)));
-
-		// send in model
-		glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
-		prev = modelHandler.cutoffPositions[i];
-	}
 	glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
 	glStencilMask(0x00);
 	glDisable(GL_DEPTH_TEST);
 	outlineShader->use();
-	prev = 0;
+	//prev = 0;
+	modelHandler.renderModels(true, proj, view, outlineShader, glm::vec3(1.03, 1.03, 1.03), true);
 
-	for (int i = 0; i < modelHandler.cutoffPositions.size(); i++) {
-		Model *model = modelHandler.models[i];
-		if (!model->outline) {
-			prev = modelHandler.cutoffPositions[i];
-			continue;
-		}
-		glm::mat4 tf = model->transform;
-		tf = glm::scale(tf, glm::vec3(1.03, 1.03, 1.03));
-		outlineShader->setVec3("color", model->outlineColor);
-		outlineShader->setMat4("mvp", proj * view * tf);
-		outlineShader->setMat3("normalizer", glm::transpose(glm::inverse(glm::mat3(tf))));
-		outlineShader->setMat4("model", tf);
-		outlineShader->setFloat("timeExisted", float((glfwGetTime() - model->timeCreated)));
-
-		// send in model
-		glDrawElements(GL_TRIANGLES, (modelHandler.cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
-		prev = modelHandler.cutoffPositions[i];
-	}
 	glStencilMask(0xFF);
 	glEnable(GL_DEPTH_TEST);
-
+	
 
 }
 

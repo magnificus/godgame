@@ -24,5 +24,6 @@ public:
 	bool outline = false;
 	glm::vec3 outlineColor = glm::vec3(1.0, 1.0, 1.0);
 	double timeCreated = -100.0;
+	float transparency = 1.0;
 
 };
