@@ -53,7 +53,7 @@ float ShadowCalculation(vec3 fragPos, vec3 normal)
 	//float diskRadius = 0.2;
 	float diskRadius = (1.0 + (viewDistance / far_plane)) / 50.0;  
 
-	for(int i = 0; i < samples; ++i)
+	for(int i = 0; i < 20; i+=3)
 	{
 		float closestDepth = texture(depthMap, fragToLight + sampleOffsetDirections[i] * diskRadius).r;
 		//closestDepth *= far_plane;   // Undo mapping [0;1]
@@ -97,7 +97,7 @@ void main()
 	//float randN2 =  rand((fs_in.FragPos.xz + fs_in.FragPos.xy + fs_in.FragPos.yz)*timeExisted*2);
 
 	float trans = timeExisted/2 - randN;
-	trans = min(trans,1);
+	trans = min(trans, transparency);
 	//trans = 0.4;
     FragColor = vec4(lighting, trans);
 

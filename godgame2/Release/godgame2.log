@@ -1,2 +1,21 @@
-﻿  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Release\godgame2.exe
+﻿  Player.cpp
+c:\users\tobbe\desktop\godgame\bullet\src\LinearMath/btIDebugDraw.h(169): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+c:\users\tobbe\desktop\godgame\bullet\src\LinearMath/btIDebugDraw.h(170): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+c:\users\tobbe\desktop\godgame\bullet\src\LinearMath/btIDebugDraw.h(171): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+C:\Users\Tobbe\Desktop\godgame\includes\learnopengl/shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
+C:\Users\Tobbe\Desktop\godgame\includes\learnopengl/shader_m.h(52): warning C4101: 'success': unreferenced local variable
+c:\users\tobbe\desktop\godgame\godgame2\ModelPhysicsCoordinator.h(28): warning C4305: 'argument': truncation from 'double' to 'btScalar'
+c:\users\tobbe\desktop\godgame\godgame2\EmptyModel.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\tobbe\desktop\godgame\godgame2\Player.h(23): warning C4305: 'argument': truncation from 'double' to 'float'
+Player.cpp(102): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+Player.cpp(123): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+Player.cpp(147): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  1 of 2987 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+GLAD.lib(glad.obj) : warning LNK4099: PDB 'GLAD.pdb' was not found with 'GLAD.lib(glad.obj)' or at 'C:\Users\Tobbe\Desktop\godgame\Release\GLAD.pdb'; linking object as if no debug info
+  godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Release\godgame2.exe
   godgame2.vcxproj -> C:\Users\Tobbe\Desktop\godgame\Release\godgame2.pdb (Full PDB)

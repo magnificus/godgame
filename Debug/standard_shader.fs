@@ -12,6 +12,11 @@ uniform vec3 lightPos;
 uniform vec3 viewPos;
 uniform vec3 color;
 uniform bool shadows;
+uniform float timeExisted;
+uniform mat4 model;
+uniform mat4 mvp;
+uniform float transparency;
+
 
 uniform float far_plane;
 
@@ -22,7 +27,16 @@ vec3 sampleOffsetDirections[20] = vec3[]
    vec3( 1,  1,  0), vec3( 1, -1,  0), vec3(-1, -1,  0), vec3(-1,  1,  0),
    vec3( 1,  0,  1), vec3(-1,  0,  1), vec3( 1,  0, -1), vec3(-1,  0, -1),
    vec3( 0,  1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0,  1, -1)
-);   
+);  
+
+float rand( vec2 p )
+{
+    vec2 K1 = vec2(
+        23.14069263277926, // e^pi (Gelfond's constant)
+         2.665144142690225 // 2^sqrt(2) (Gelfond–Schneider constant)
+    );
+    return fract( cos( dot(p,K1) ) * 12345.6789 );
+}
 
 float ShadowCalculation(vec3 fragPos, vec3 normal)
 {
@@ -36,26 +50,24 @@ float ShadowCalculation(vec3 fragPos, vec3 normal)
 	float bias   = 0.00015;
 	int samples  = 20;
 	float viewDistance = length(viewPos - fragPos);
-	//float diskRadius = 0.02;
+	//float diskRadius = 0.2;
 	float diskRadius = (1.0 + (viewDistance / far_plane)) / 50.0;  
 
-	for(int i = 0; i < 0; ++i)
+	for(int i = 0; i < samples; ++i)
 	{
 		float closestDepth = texture(depthMap, fragToLight + sampleOffsetDirections[i] * diskRadius).r;
-		closestDepth *= far_plane;   // Undo mapping [0;1]
+		//closestDepth *= far_plane;   // Undo mapping [0;1]
 		if(currentDepth - bias > closestDepth)
 			shadow += 1.0;
 	}
 	shadow /= float(samples);  
 
-    shadow = currentDepth -  bias > closestDepth? 1.0 : 0.0;
+    //shadow = currentDepth -  bias > closestDepth? 1.0 : 0.0;
 	return shadow;
 }  
 
 void main()
 {
-	//FragColor = vec4(color, 1.0);
-	//return;
     vec3 normal = normalize(fs_in.Normal);
     vec3 lightColor = vec3(0.3);
     // ambient
@@ -67,19 +79,26 @@ void main()
 
 		
     // specular
-    //vec3 viewDir = normalize(viewPos - fs_in.FragPos);
-    //vec3 reflectDir = reflect(-lightDir, normal);
-    //vec3 halfwayDir = normalize(lightDir + viewDir);  
-    //float spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
-    //vec3 specular = spec * lightColor;    
+    vec3 viewDir = normalize(viewPos - fs_in.FragPos);
+    vec3 reflectDir = reflect(-lightDir, normal);
+    vec3 halfwayDir = normalize(lightDir + viewDir);  
+    float spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
+    vec3 specular = spec * lightColor;    
     // calculate shadow
 
 	float shadow = 0.0;      
 	if (shadows)
 		shadow = ShadowCalculation(fs_in.FragPos, normal);
-    //vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;
+    //vec3 lighting = (ambient + (1.0 - shadow) * (diff + specular)) * color;
 	float len = pow(length(fs_in.FragPos - lightPos),1.0/2.0)/10;
-	vec3 lighting = (ambient + max(0.0, 1-len)*0.5 + ((1.0-shadow)*(diff))*0.5) * color;
-    FragColor = vec4(lighting, 1.0);
+	vec3 lighting = (ambient + max(0.0, 1-len)*0.5 + ((1.0-shadow)*(diff))*0.7) * color;
+
+	float randN =  rand((fs_in.FragPos.xz + fs_in.FragPos.xy + fs_in.FragPos.yz)*timeExisted);
+	//float randN2 =  rand((fs_in.FragPos.xz + fs_in.FragPos.xy + fs_in.FragPos.yz)*timeExisted*2);
+
+	float trans = timeExisted/2 - randN;
+	trans = min(trans, transparency);
+	//trans = 0.4;
+    FragColor = vec4(lighting, trans);
 
 }  

@@ -112,11 +112,13 @@ void LevelBuilder::getLevel2(PhysicsHandler &physicsHandler, ModelHandler &model
 
 	Cube *c6 = new Cube(&shader1);
 	c6->transform[3] = glm::vec4(-1, 10, -5, 1);
+	//c6->transparency = 0.5;
 	c6->scale(glm::vec3(0.2, 12.0f, 12.0f));
 
 	Cube *c7 = new Cube(&shader1);
 	c7->transform[3] = glm::vec4(1, 10, -5, 1);
 	c7->scale(glm::vec3(0.2, 12.0f, 12.0f));
+	//c7->transparency = 0.5;
 
 	Cube *c8 = new Cube(&shader1);
 	c8->transform[3] = glm::vec4(12.9, 9.2, -15, 1);
@@ -127,9 +129,9 @@ void LevelBuilder::getLevel2(PhysicsHandler &physicsHandler, ModelHandler &model
 	modelHandler.addModel(c3);
 	modelHandler.addModel(c4);
 	modelHandler.addModel(c5);
+	modelHandler.addModel(c8);
 	modelHandler.addModel(c6);
 	modelHandler.addModel(c7);
-	modelHandler.addModel(c8);
 
 
 

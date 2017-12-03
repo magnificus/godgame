@@ -36,6 +36,7 @@ void ModelHandler::renderModels(bool outline, glm::mat4 proj, glm::mat4 view, Sh
 		currentShader->setMat3("normalizer", glm::transpose(glm::inverse(glm::mat3(tf))));
 		currentShader->setMat4("model", tf);
 		currentShader->setFloat("timeExisted", float((glfwGetTime() - model->timeCreated)));
+		currentShader->setFloat("transparency", model->transparency);
 		// send in model
 		glDrawElements(GL_TRIANGLES, (cutoffPositions[i] - prev), GL_UNSIGNED_INT, (void*)(prev * sizeof(GLuint)));
 		prev = cutoffPositions[i];

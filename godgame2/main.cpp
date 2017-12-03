@@ -170,7 +170,7 @@ int main()
 
 
 	// shadows
-	const unsigned int SHADOW_WIDTH = 2048, SHADOW_HEIGHT = 2048;
+	const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
 	unsigned int depthMapFBO;
 	glGenFramebuffers(1, &depthMapFBO);
 	// create depth cubemap texture
@@ -198,7 +198,7 @@ int main()
 
 	clock_t start = 0;
 	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
+	//glCullFace(GL_);
 
 	// FREETYPE STUFF
 	glEnable(GL_BLEND);
@@ -374,7 +374,7 @@ int main()
 		
 
 		// check for player completed level
-		if (glm::distance(camera->Position, lightLocation) < 3.0f){
+		if (glm::distance(camera->Position, lightLocation) < 2.0f){
 			// bada bing
 			texts.push_back(TextStruct{ "Bada bing bada boom", float(glfwGetTime() + 1.0) });
 			modelHandler.clearModels();

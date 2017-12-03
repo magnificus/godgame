@@ -15,6 +15,8 @@ public:
 	~Model() {}
 
 	void scale(glm::vec3 modifier);
+	double getMaxDistanceAcross();
+
 	glm::mat4 transform;
 	std::vector<glm::vec3> vertices;
 	std::vector<unsigned int> indicies;

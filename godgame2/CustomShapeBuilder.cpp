@@ -9,8 +9,7 @@
 
 using namespace quickhull;
 
-const float defScale = 0.02;
-const unsigned int sampleLength = 60;
+const unsigned int sampleLength = 90;
 
 typedef std::bitset<sampleLength*sampleLength*sampleLength> ShapeBits;
 
@@ -64,7 +63,7 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 	center /= mass;
 
 	mass /= pow(sampleLength/info.scale, 3);
-	mass *= 40000;
+	mass *= 200000;
 
 	// if every point around this point is part of the object, then obviously this point is not on any edge and is therefore not interesting
 	for (unsigned int x = 1; x < sampleLength - 1; x++) {
