@@ -14,7 +14,9 @@ class Player {
 
 public:
 	std::string written;
-	bool isWriting;
+	bool isWriting = false;
+	bool wantsToRestart = false;
+	bool justPlacedItem = false;
 	Model* isOutlining = nullptr;
 	btRigidBody *carrying = nullptr;
 	int prevFlags;
@@ -33,7 +35,7 @@ public:
 	double lastEnter = 0.0;
 
 	// returns true if world is changed
-	bool processInput(GLFWwindow * window, std::vector<unsigned int>& char_callbacks, std::vector<KeyStruct>& key_callbacks, bool &drawShadows, std::list<TextStruct> &texts, float time, ModelHandler & modelHandler, PhysicsHandler & physicsHandler, Shader * s);
+	void processInput(GLFWwindow * window, std::vector<unsigned int>& char_callbacks, std::vector<KeyStruct>& key_callbacks, bool &drawShadows, std::list<TextStruct> &texts, float time, ModelHandler & modelHandler, PhysicsHandler & physicsHandler, Shader * s);
 	btRigidBody* getBodyInFront(PhysicsHandler &physicsHandler);
 	bool swapWriting() {};
 

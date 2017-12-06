@@ -300,8 +300,9 @@ int main()
 		shader1.setInt("depthMap", 0);
 		shader1.setBool("shadows", drawShadows);
 
-
-		if (player->processInput(window, char_callbacks, key_callbacks, drawShadows, texts, deltaTime, modelHandler, physicsHandler, &shader1)) {
+		player->processInput(window, char_callbacks, key_callbacks, drawShadows, texts, deltaTime, modelHandler, physicsHandler, &shader1);
+		if (player->justPlacedItem) {
+			player->justPlacedItem = false;
 			finalPositions.clear();
 			info = modelHandler.getRenderInfo();
 			for (int i = 0; i < info.vertices.size(); i++) {
@@ -374,8 +375,16 @@ int main()
 		
 
 		// check for player completed level
-		if (glm::distance(camera->Position, lightLocation) < 2.0f){
+
+		if (player->wantsToRestart || glm::distance(camera->Position, lightLocation) < 2.0f){
 			// bada bing
+
+			bool keepCurrent = false;
+			if (player->wantsToRestart) {
+				player->wantsToRestart = false;
+				keepCurrent = true;
+			}
+
 			texts.push_back(TextStruct{ "Bada bing bada boom", float(glfwGetTime() + 1.0) });
 			modelHandler.clearModels();
 			physicsHandler.clearModels();
@@ -385,7 +394,10 @@ int main()
 			camera = &(player->cam);
 			physicsHandler.addMPC(player->mpc);
 
-			LevelBuilder::getNextLevel(physicsHandler, modelHandler, shader1);
+			if (keepCurrent)
+				LevelBuilder::getCurrentLevel(physicsHandler, modelHandler, shader1);
+			else
+				LevelBuilder::getNextLevel(physicsHandler, modelHandler, shader1);
 			light = LevelBuilder::getCurrentLevelLight(shader1);
 			modelHandler.addModel(light);
 			physicsHandler.addMPC(ModelPhysicsCoordinator(light, CollisionType::sphere, 0.4));

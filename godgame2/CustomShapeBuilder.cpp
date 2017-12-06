@@ -33,6 +33,17 @@ glm::vec3 getBitAddressVector(unsigned int num, float scale, const glm::vec3 &of
 ShapeInfo getValidPositions(CustomFunction &f);
 
 
+template<typename FUNCTION>
+inline void tripleLoop(int start, int end, FUNCTION f) {
+	for (int x = start; x < end; x++) {
+		for (int y = start; y < end; y++) {
+			for (int z = start; z < end; z++) {
+				f(x, y, z);
+			}
+		}
+	}
+}
+
 CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 {
 	RenderInfo toReturn;
@@ -47,18 +58,15 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 	std::vector<quickhull::Vector3<float>> pointClouds[8];
 
 	glm::vec3 center = glm::vec3(0, 0, 0);
-	for (unsigned int x = 0; x < sampleLength; x++) {
-		for (unsigned int y = 0; y < sampleLength; y++) {
-			for (unsigned int z = 0; z < sampleLength; z++) {
-				unsigned int currPos = getBitsetPosition(x, y, z);
-				if (info.bits[currPos]) {
-					mass++;
-					glm::vec3 pos = getBitAddressVector(currPos, info.scale, info.offset);
-					center += pos;
-				}
-			}
+
+	tripleLoop(0, sampleLength, [&info, &mass, &center](int x,int y,int z) {
+		unsigned int currPos = getBitsetPosition(x, y, z);
+		if (info.bits[currPos]) {
+			mass++;
+			glm::vec3 pos = getBitAddressVector(currPos, info.scale, info.offset);
+			center += pos;
 		}
-	}
+	});
 
 	center /= mass;
 
@@ -66,68 +74,60 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 	mass *= 200000;
 
 	// if every point around this point is part of the object, then obviously this point is not on any edge and is therefore not interesting
-	for (unsigned int x = 1; x < sampleLength - 1; x++) {
-		for (unsigned int y = 1; y < sampleLength - 1; y++) {
-			for (unsigned int z = 1; z < sampleLength - 1; z++) {
-				unsigned int currPos = getBitsetPosition(x, y, z);
-				if (info.bits[currPos]) {
-					unsigned int nextX = getBitsetPosition(x + 1, y, z);
-					unsigned int nextY = getBitsetPosition(x, y + 1, z);
-					unsigned int nextZ = getBitsetPosition(x, y, z + 1);
-					unsigned int prevX = getBitsetPosition(x - 1, y, z);
-					unsigned int prevY = getBitsetPosition(x, y - 1, z);
-					unsigned int prevZ = getBitsetPosition(x, y, z - 1);
-					if (info.bits[nextX] && info.bits[nextY] && info.bits[nextZ] && info.bits[prevX] && info.bits[prevY] && info.bits[prevZ])
-						newBits[currPos] = false;
-				}
-			}
+
+	tripleLoop(1, sampleLength - 1, [&info, &newBits] (int x, int y, int z){
+		unsigned int currPos = getBitsetPosition(x, y, z);
+		if (info.bits[currPos]) {
+			unsigned int nextX = getBitsetPosition(x + 1, y, z);
+			unsigned int nextY = getBitsetPosition(x, y + 1, z);
+			unsigned int nextZ = getBitsetPosition(x, y, z + 1);
+			unsigned int prevX = getBitsetPosition(x - 1, y, z);
+			unsigned int prevY = getBitsetPosition(x, y - 1, z);
+			unsigned int prevZ = getBitsetPosition(x, y, z - 1);
+			if (info.bits[nextX] && info.bits[nextY] && info.bits[nextZ] && info.bits[prevX] && info.bits[prevY] && info.bits[prevZ])
+				newBits[currPos] = false;
 		}
-	}
+	});
 	info.bits = newBits;
 
-
 	float marginSize = info.scale + 0.001f;
-	for (unsigned int x = 0; x < sampleLength; x++) {
-		for (unsigned int y = 0; y < sampleLength; y++) {
-			for (unsigned int z = 0; z < sampleLength; z++) {
-				unsigned int currPos = getBitsetPosition(x, y, z);
-				if (info.bits[currPos]) {
-					glm::vec3 pos = getBitAddressVector(currPos, info.scale, info.offset) - center;
-					// for middle cases we have to add to multiple pools
-					std::vector<unsigned int> xToAdd;
-					std::vector<unsigned int> yToAdd;
-					std::vector<unsigned int> zToAdd;
-					bool addXMin = pos.x < marginSize;
-					bool addXMax = pos.x > 0;
-					bool addYMin = pos.y < marginSize;
-					bool addYMax = pos.y > 0;
-					bool addZMin = pos.z < marginSize;
-					bool addZMax = pos.z > 0;
 
-					if (addXMin)
-						xToAdd.push_back(0);
-					if (addXMax)
-						xToAdd.push_back(4);
-					if (addYMin)
-						yToAdd.push_back(0);
-					if (addYMax)
-						yToAdd.push_back(2);
-					if (addZMin)
-						zToAdd.push_back(0);
-					if (addZMax)
-						zToAdd.push_back(1);
+	tripleLoop(0, sampleLength, [marginSize, &info, &center, &pointClouds](int x, int y, int z) {
+		unsigned int currPos = getBitsetPosition(x, y, z);
+		if (info.bits[currPos]) {
+			glm::vec3 pos = getBitAddressVector(currPos, info.scale, info.offset) - center;
+			// for middle cases we have to add to multiple pools
+			std::vector<unsigned int> xToAdd;
+			std::vector<unsigned int> yToAdd;
+			std::vector<unsigned int> zToAdd;
+			bool addXMin = pos.x < marginSize;
+			bool addXMax = pos.x > 0;
+			bool addYMin = pos.y < marginSize;
+			bool addYMax = pos.y > 0;
+			bool addZMin = pos.z < marginSize;
+			bool addZMax = pos.z > 0;
 
-					for (unsigned int x2 : xToAdd) {
-						for (unsigned int y2 : yToAdd) {
-							for (unsigned int z2 : zToAdd) {
-								pointClouds[x2 + y2 + z2].push_back(quickhull::Vector3<float>(pos.x, pos.y, pos.z));
-							}
-						}
+			if (addXMin)
+				xToAdd.push_back(0);
+			if (addXMax)
+				xToAdd.push_back(4);
+			if (addYMin)
+				yToAdd.push_back(0);
+			if (addYMax)
+				yToAdd.push_back(2);
+			if (addZMin)
+				zToAdd.push_back(0);
+			if (addZMax)
+				zToAdd.push_back(1);
+
+			for (unsigned int x2 : xToAdd) {
+				for (unsigned int y2 : yToAdd) {
+					for (unsigned int z2 : zToAdd) {
+						pointClouds[x2 + y2 + z2].push_back(quickhull::Vector3<float>(pos.x, pos.y, pos.z));
 					}
 				}
 			}
-		}
-	}
+		}});
 
 
 
@@ -172,19 +172,13 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 				foundPointOutside = true;
 			}
 			else {
-				for (int x = -1; x <= 1; x++) {
-					for (int y = -1; y <= 1; y++) {
-						for (int z = -1; z <= 1; z++) {
-							unsigned int bitNum = getBitsetPosition(bitPos.x + x, bitPos.y + y, bitPos.z + z);
-							if (!originalBits[bitNum]) {
-								foundPointOutside = true;
-								goto outOfLoop;
-							}
-						}
-					}
-				}
+				tripleLoop(-1, 2, [&originalBits, &foundPointOutside, &bitPos](int x, int y, int z) {
+					unsigned int bitNum = getBitsetPosition(bitPos.x + x, bitPos.y + y, bitPos.z + z);
+				if (!originalBits[bitNum]) {
+					foundPointOutside = true;
+					return;
+				}});
 			}
-			outOfLoop:
 
 			if (foundPointOutside) {
 				toReturn.indices.push_back(indexBuffers[i][j] + currentVertexOffset);
@@ -286,13 +280,9 @@ ShapeInfo getValidPositions(CustomFunction &f) {
 	glm::vec3 offset = glm::vec3(minFound, minFound, minFound);
 	float dist = maxFound - minFound;
 	info.scale = dist /sampleLength;
-	for (unsigned int x = 0; x < sampleLength; ++x) {
-		for (unsigned int  y = 0; y < sampleLength; ++y) {
-			for (unsigned int  z = 0; z < sampleLength; ++z) {
-				info.bits[getBitsetPosition(x, y, z)] = f.eval(x*info.scale + offset.x, y*info.scale + offset.y, z*info.scale + offset.z) > 0;
-			}
-		}
-	}
+
+	tripleLoop(0, sampleLength, [&info, &f, &offset](int x, int y, int z) {info.bits[getBitsetPosition(x, y, z)] = f.eval(x*info.scale + offset.x, y*info.scale + offset.y, z*info.scale + offset.z) > 0; });
+
 	return info;
 }
 

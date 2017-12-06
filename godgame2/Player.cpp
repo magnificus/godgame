@@ -5,12 +5,12 @@
 #include <set>
 #include <list>
 #include <algorithm>
-bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_callbacks, std::vector<KeyStruct> &key_callbacks, bool &drawShadows, std::list<TextStruct> &texts, float time, ModelHandler &modelHandler, PhysicsHandler &physicsHandler, Shader *s)
+void Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_callbacks, std::vector<KeyStruct> &key_callbacks, bool &drawShadows, std::list<TextStruct> &texts, float time, ModelHandler &modelHandler, PhysicsHandler &physicsHandler, Shader *s)
 {
 
 	float moveTowardsSpeed = 3.0f;
 	if (carrying) {
-		glm::vec3 offset = cross(cam.Up, cam.Right) * float(physicsHandler.btModelMap[carrying].model->getMaxDistanceAcross()/2 + 2.0);
+		glm::vec3 offset = cross(cam.Up, cam.Right) * 4.0f;/*float(physicsHandler.btModelMap[carrying].model->getMaxDistanceAcross()/2 + 2.0);*/
 		btVector3 newLoc = mpc.btModel->getWorldTransform().getOrigin() + btVector3(offset.x, offset.y, offset.z);
 		btVector3 oldLoc = carrying->getWorldTransform().getOrigin();
 		btVector3 towards = newLoc - oldLoc;
@@ -31,23 +31,20 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 
 	}
 
-	bool didPlaceObject = false;
 	if (isWriting) {
 		for (unsigned int i : char_callbacks) {
 			written += (char)i;
 		}
 	}
 
-	// remove duplicates
-
 	for (KeyStruct k : key_callbacks) {
 		if (k.key == GLFW_KEY_BACKSPACE && k.action == GLFW_PRESS && isWriting) {
 			if (written.size() > 0)
 				written.pop_back();
-			
+
 		}
 
-		if (k.key == GLFW_KEY_ENTER && k.action == GLFW_PRESS) {
+		else if (k.key == GLFW_KEY_ENTER && k.action == GLFW_PRESS) {
 			isWriting = !isWriting;
 			if (!Player::isWriting) {
 				CustomFunction func(written);
@@ -59,13 +56,13 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 						shape->transform[3] = mpc.model->transform[3] + glm::vec4(offset.x, offset.y, offset.z, 0);
 						shape->color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 						modelHandler.addModel(shape);
-						ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(shape, CollisionType::custom, shape->mass, glm::vec3(1,0,0), shape->collisionShape);
-						shape->outlineColor = 1 / mpc.btModel->getInvMass() < 2.5f ? glm::vec3(0, 1, 0) : glm::vec3(1,0,0);
+						ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(shape, CollisionType::custom, shape->mass, glm::vec3(1, 0, 0), shape->collisionShape);
+						shape->outlineColor = 1 / mpc.btModel->getInvMass() < 2.5f ? glm::vec3(0, 1, 0) : glm::vec3(1, 0, 0);
 						physicsHandler.addMPC(mpc);
 					}
 					else {
 						delete shape;
-						texts.push_back(TextStruct{ "Insufficient number of sample points fulfilling equation", float(glfwGetTime() + 3.0)});
+						texts.push_back(TextStruct{ "Insufficient number of sample points fulfilling equation", float(glfwGetTime() + 3.0) });
 					}
 
 				}
@@ -74,17 +71,20 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 
 				}
 				written = "";
-				didPlaceObject = true;
+				justPlacedItem = true;
 			}
 		}
-		if (k.key == GLFW_KEY_K && k.action == GLFW_PRESS && !isWriting)
+		else if (k.key == GLFW_KEY_K && k.action == GLFW_PRESS && !isWriting)
 			drawShadows = !drawShadows;
 
-		if (k.key == GLFW_KEY_ESCAPE && k.action == GLFW_PRESS)
+		else if (k.key == GLFW_KEY_R && k.action == GLFW_PRESS && !isWriting)
+			wantsToRestart = true;
+
+		else if (k.key == GLFW_KEY_ESCAPE && k.action == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
 
 
-		if (k.key == GLFW_KEY_E && k.action == GLFW_PRESS && !isWriting) {
+		else if (k.key == GLFW_KEY_E && k.action == GLFW_PRESS && !isWriting) {
 			if (!carrying) {
 				btRigidBody *body = getBodyInFront(physicsHandler);
 
@@ -136,8 +136,6 @@ bool Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 		}
 	key_callbacks.clear();
 	char_callbacks.clear();
-	return didPlaceObject;
-
 
 }
 
