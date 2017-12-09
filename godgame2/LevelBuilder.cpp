@@ -14,8 +14,9 @@ void LevelBuilder::getCurrentLevel(PhysicsHandler &physHandler, ModelHandler &mo
 	case 1: return getLevel1(physHandler, modelHandler, s); break;
 	case 2: return getLevel2(physHandler, modelHandler, s); break;
 	case 3: return getLevel3(physHandler, modelHandler, s); break;
-	default: return getLevel3(physHandler, modelHandler, s); break;
-		//case 3: return getLevel3(physHandler, modelHandler, s); break;
+	case 4: return getLevel4(physHandler, modelHandler, s); break;
+	case 5: return getLevel5(physHandler, modelHandler, s); break;
+	default: return getLevel1(physHandler, modelHandler, s); break;
 	}
 }
 
@@ -29,8 +30,10 @@ Sphere* LevelBuilder::getCurrentLevelLight(Shader &s) {
 	case 1: return getLevel1Light(s); break;
 	case 2: return getLevel2Light(s); break;
 	case 3: return getLevel3Light(s); break;
+	case 4: return getLevel4Light(s); break;
+	case 5: return getLevel5Light(s); break;
 
-	default: return getLevel2Light(s); break;
+	default: return getLevel1Light(s); break;
 
 	}
 }
@@ -52,6 +55,99 @@ Sphere* LevelBuilder::getLevel3Light(Shader &shader1) {
 	light->transform[3] = glm::vec4(-15, 15, -25, 1);
 	light->scale(glm::vec3(0.5, 0.5, 0.5));
 	return light;
+}
+
+int numSide = 9;
+float scale = 0.5f;
+
+Sphere* LevelBuilder::getLevel4Light(Shader &shader1) {
+	Sphere *light = new Sphere(&shader1);
+	light->color = glm::vec3(10, 10, 10);
+	light->transform *= 0.05;
+	light->transform[3] = glm::vec4(0, 11, -5, 1);
+	light->scale(glm::vec3(0.05, 0.05, 0.05));
+
+	light->transform[3] = glm::vec4(numSide / 2 * scale, numSide / 2 * scale+10, numSide / 2 * scale - 10.0f, 1);
+	return light;
+}
+
+Sphere* LevelBuilder::getLevel5Light(Shader &shader1) {
+	Sphere *light = new Sphere(&shader1);
+	light->color = glm::vec3(10, 10, 10);
+	light->transform *= 0.5;
+	light->transform[3] = glm::vec4(-15, 15, -25, 1);
+	light->scale(glm::vec3(0.5, 0.5, 0.5));
+	return light;
+}
+
+void LevelBuilder::getLevel5(PhysicsHandler &physicsHandler, ModelHandler &modelHandler, Shader &shader1) {
+	glm::vec3 geometryColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+
+	glm::vec3 planeColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+	planeColor = glm::normalize(planeColor)*2.0f;
+	planeColor = glm::vec3(1, 1, 1);
+	Plane *p1 = new Plane(&shader1);
+	p1->color = planeColor;
+	p1->transform[3] = glm::vec4(0, -0.5, 0, 1);
+	p1->scale(glm::vec3(1000, 1, 1000));
+
+
+	for (float i = 0; i < 5; i++) {
+		for (float j = 0; j < 2; j++) {
+			for (float k = 0; k < 4; k++) {
+				Cube *c = new Cube(&shader1);
+				c->scale(glm::vec3(3, 3, 3));
+				c->transform[3] = glm::vec4(j * 5, i * 3.5 + k - 1.5, -5 + k*3, 1);
+				modelHandler.addModel(c);
+				physicsHandler.addMPC(ModelPhysicsCoordinator(c, CollisionType::cube, 0.0f, glm::vec3(0, 0, 0), nullptr, 3.0f));
+			}
+		}
+
+	}
+
+	modelHandler.addModel(p1);
+
+	physicsHandler.addMPC(ModelPhysicsCoordinator(p1, CollisionType::plane, 0, glm::vec3(0, 0, 0)));
+
+}
+
+
+
+
+void LevelBuilder::getLevel4(PhysicsHandler &physicsHandler, ModelHandler &modelHandler, Shader &shader1) {
+	glm::vec3 geometryColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+
+	glm::vec3 planeColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+	planeColor = glm::normalize(planeColor)*2.0f;
+	planeColor = glm::vec3(1, 1, 1);
+	Plane *p1 = new Plane(&shader1);
+	p1->color = planeColor;
+	p1->transform[3] = glm::vec4(0, -0.5, 0, 1);
+	p1->scale(glm::vec3(1000, 1, 1000));
+
+
+
+	for (float i = 0; i < numSide; i++) {
+		for (float j = 0; j < numSide; j++) {
+			for (float k = 0; k < numSide; k++) {
+				//if (k == numSide / 2 && i == numSide / 2 && j == numSide / 2)
+				//	continue;
+				Cube *c = new Cube(&shader1);
+				c->scale(glm::vec3(scale, scale, scale));
+
+				c->transform[3] = glm::vec4(i*scale, j*scale+10, k*scale - 10.0f, 1);
+
+				modelHandler.addModel(c);
+				physicsHandler.addMPC(ModelPhysicsCoordinator(c, CollisionType::cube, 0.5f, glm::vec3(0, 0, 0), nullptr, scale));
+
+			}
+		}
+	}
+
+	modelHandler.addModel(p1);
+
+	physicsHandler.addMPC(ModelPhysicsCoordinator(p1, CollisionType::plane, 0, glm::vec3(0, 0, 0)));
+
 }
 
 
@@ -80,7 +176,6 @@ void LevelBuilder::getLevel3(PhysicsHandler &physicsHandler, ModelHandler &model
 
 
 void LevelBuilder::getLevel2(PhysicsHandler &physicsHandler, ModelHandler &modelHandler, Shader &shader1) {
-
 	glm::vec3 geometryColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 
 	glm::vec3 planeColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);

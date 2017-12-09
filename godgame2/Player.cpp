@@ -10,7 +10,7 @@ void Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 
 	float moveTowardsSpeed = 3.0f;
 	if (carrying) {
-		glm::vec3 offset = cross(cam.Up, cam.Right) * 4.0f;/*float(physicsHandler.btModelMap[carrying].model->getMaxDistanceAcross()/2 + 2.0);*/
+		glm::vec3 offset = cross(cam.Up, cam.Right) * float(physicsHandler.btModelMap[carrying].model->getMaxDistanceAcross()/2 + 2.0);
 		btVector3 newLoc = mpc.btModel->getWorldTransform().getOrigin() + btVector3(offset.x, offset.y, offset.z);
 		btVector3 oldLoc = carrying->getWorldTransform().getOrigin();
 		btVector3 towards = newLoc - oldLoc;
@@ -70,6 +70,7 @@ void Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 					texts.push_back(TextStruct{ "Invalid expression", float(glfwGetTime() + 1.0) });
 
 				}
+				previousWritten = written;
 				written = "";
 				justPlacedItem = true;
 			}
@@ -79,6 +80,9 @@ void Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 
 		else if (k.key == GLFW_KEY_R && k.action == GLFW_PRESS && !isWriting)
 			wantsToRestart = true;
+
+		else if (k.key == GLFW_KEY_UP && k.action == GLFW_PRESS && isWriting)
+			written = previousWritten;
 
 		else if (k.key == GLFW_KEY_ESCAPE && k.action == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);

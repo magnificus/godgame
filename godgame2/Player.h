@@ -14,6 +14,7 @@ class Player {
 
 public:
 	std::string written;
+	std::string previousWritten;
 	bool isWriting = false;
 	bool wantsToRestart = false;
 	bool justPlacedItem = false;

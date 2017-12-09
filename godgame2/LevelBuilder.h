@@ -20,4 +20,10 @@ namespace LevelBuilder {
 
 	void getLevel3(PhysicsHandler &physHandler, ModelHandler &modelHandler, Shader &s);
 	Sphere* getLevel3Light(Shader &shader1);
+
+	void getLevel4(PhysicsHandler &physHandler, ModelHandler &modelHandler, Shader &s);
+	Sphere* getLevel4Light(Shader &shader1);
+
+	void getLevel5(PhysicsHandler &physHandler, ModelHandler &modelHandler, Shader &s);
+	Sphere* getLevel5Light(Shader &shader1);
 }

@@ -167,7 +167,6 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelHandler.h" />
     <ClInclude Include="Plane.h" />
-    <ClInclude Include="quickhull\Structs\Plane.hpp" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="textHandler.h" />
     <ClInclude Include="tinyexpr.h" />

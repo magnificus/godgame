@@ -78,9 +78,6 @@
     <ClInclude Include="CustomShape.h">
       <Filter>Header Files\models</Filter>
     </ClInclude>
-    <ClInclude Include="quickhull\Structs\Plane.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="textHandler.h">
       <Filter>Header Files\handlers</Filter>
     </ClInclude>
