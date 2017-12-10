@@ -48,7 +48,7 @@ Sphere* LevelBuilder::getLevel2Light(Shader &shader1) {
 }
 
 
-Sphere* LevelBuilder::getLevel3Light(Shader &shader1) {
+Sphere* LevelBuilder::getLevel5Light(Shader &shader1) {
 	Sphere *light = new Sphere(&shader1);
 	light->color = glm::vec3(10, 10, 10);
 	light->transform *= 0.5;
@@ -71,33 +71,37 @@ Sphere* LevelBuilder::getLevel4Light(Shader &shader1) {
 	return light;
 }
 
-Sphere* LevelBuilder::getLevel5Light(Shader &shader1) {
+Sphere* LevelBuilder::getLevel3Light(Shader &shader1) {
 	Sphere *light = new Sphere(&shader1);
 	light->color = glm::vec3(10, 10, 10);
 	light->transform *= 0.5;
-	light->transform[3] = glm::vec4(-15, 15, -25, 1);
+	light->transform[3] = glm::vec4(2.5, 1, -25, 1);
 	light->scale(glm::vec3(0.5, 0.5, 0.5));
 	return light;
 }
 
-void LevelBuilder::getLevel5(PhysicsHandler &physicsHandler, ModelHandler &modelHandler, Shader &shader1) {
-	glm::vec3 geometryColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+void LevelBuilder::getLevel3(PhysicsHandler &physicsHandler, ModelHandler &modelHandler, Shader &shader1) {
+	Cube *c1 = new Cube(&shader1);
+	c1->transform[3] = glm::vec4(2.5, -0.5, 2, 1);
+	c1->scale(glm::vec3(10, 1, 10));
 
-	glm::vec3 planeColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
-	planeColor = glm::normalize(planeColor)*2.0f;
-	planeColor = glm::vec3(1, 1, 1);
-	Plane *p1 = new Plane(&shader1);
-	p1->color = planeColor;
-	p1->transform[3] = glm::vec4(0, -0.5, 0, 1);
-	p1->scale(glm::vec3(1000, 1, 1000));
+	modelHandler.addModel(c1);
+	physicsHandler.addMPC(ModelPhysicsCoordinator(c1, CollisionType::custom, 0, glm::vec3(0, 0, 0)));
 
 
-	for (float i = 0; i < 5; i++) {
+	Cube *c2 = new Cube(&shader1);
+	c2->transform[3] = glm::vec4(2.5, -0.5, -25, 1);
+	c2->scale(glm::vec3(10, 1, 10));
+
+	modelHandler.addModel(c2);
+	physicsHandler.addMPC(ModelPhysicsCoordinator(c2, CollisionType::custom, 0, glm::vec3(0, 0, 0)));
+
+	for (float i = 0; i < 4; i++) {
 		for (float j = 0; j < 2; j++) {
-			for (float k = 0; k < 4; k++) {
+			for (float k = 0; k < 5; k++) {
 				Cube *c = new Cube(&shader1);
 				c->scale(glm::vec3(3, 3, 3));
-				c->transform[3] = glm::vec4(j * 5, i * 3.5 + k - 1.5, -5 + k*3, 1);
+				c->transform[3] = glm::vec4(j * 5, i * 4.5 + k - 1.5, -5 - k*3, 1);
 				modelHandler.addModel(c);
 				physicsHandler.addMPC(ModelPhysicsCoordinator(c, CollisionType::cube, 0.0f, glm::vec3(0, 0, 0), nullptr, 3.0f));
 			}
@@ -105,9 +109,7 @@ void LevelBuilder::getLevel5(PhysicsHandler &physicsHandler, ModelHandler &model
 
 	}
 
-	modelHandler.addModel(p1);
 
-	physicsHandler.addMPC(ModelPhysicsCoordinator(p1, CollisionType::plane, 0, glm::vec3(0, 0, 0)));
 
 }
 
@@ -151,7 +153,7 @@ void LevelBuilder::getLevel4(PhysicsHandler &physicsHandler, ModelHandler &model
 }
 
 
-void LevelBuilder::getLevel3(PhysicsHandler &physicsHandler, ModelHandler &modelHandler, Shader &shader1) {
+void LevelBuilder::getLevel5(PhysicsHandler &physicsHandler, ModelHandler &modelHandler, Shader &shader1) {
 	Cube *c2 = new Cube(&shader1);
 	c2->transform[3] = glm::vec4(0, -500, 0, 1);
 	c2->scale(glm::vec3(6.0f, 1000.0f, 6.0f));
@@ -262,6 +264,25 @@ Sphere* LevelBuilder::getLevel1Light(Shader &shader1) {
 
 void LevelBuilder::getLevel1(PhysicsHandler &physicsHandler, ModelHandler &modelHandler, Shader &shader1) {
 	glm::vec3 geometryColor = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+
+	float myScale = 1.3;
+	for (float i = 0; i < 5; i++) {
+		for (float j = 0; j < 5; j++) {
+			for (float k = 0; k < 5; k++) {
+				//if (k == numSide / 2 && i == numSide / 2 && j == numSide / 2)
+				//	continue;
+				Cube *c = new Cube(&shader1);
+				c->scale(glm::vec3(myScale, myScale, myScale));
+				c->color = geometryColor;
+				c->transform[3] = glm::vec4(i*myScale, j*myScale - myScale, k*myScale - 15, 1);
+
+				modelHandler.addModel(c);
+				physicsHandler.addMPC(ModelPhysicsCoordinator(c, CollisionType::cube, 2.0f, glm::vec3(0, 0, 0), nullptr, myScale));
+
+			}
+		}
+	}
+
 	Cube *c = new Cube(&shader1);
 
 	c->scale(glm::vec3(10.0f, 10.0f, 70.0f));
@@ -276,6 +297,8 @@ void LevelBuilder::getLevel1(PhysicsHandler &physicsHandler, ModelHandler &model
 	s->color = geometryColor;
 	Cube *c3 = new Cube(&shader1);
 	c3->color = geometryColor;
+	c3->scale(glm::vec3(0.8,0.8,0.8));
+
 	c3->transform[3] = glm::vec4(-2, 0, 0, 1);
 
 	Cube *c4 = new Cube(&shader1);
