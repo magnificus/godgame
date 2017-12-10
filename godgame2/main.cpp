@@ -69,6 +69,31 @@ void renderModelsShadow(ModelHandler &modelHandler, glm::mat4 lightMatrix, Shade
 
 
 
+void updateRenderInfo(std::vector<glm::vec3>  &finalPositions, RenderInfo &info,ModelHandler &modelHandler,unsigned int &VBO, unsigned int EBO) {
+	finalPositions.clear();
+	info = modelHandler.getRenderInfo();
+	for (int i = 0; i < info.vertices.size(); i++) {
+		finalPositions.push_back(info.vertices[i]);
+		finalPositions.push_back(info.normals[i]);
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_STATIC_DRAW);
+
+
+	// position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	// normals
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, info.indices.size() * sizeof(unsigned int), &info.indices[0], GL_STATIC_DRAW);
+}
+
 int main()
 {
 	srand((unsigned)time(NULL));
@@ -138,12 +163,9 @@ int main()
 	RenderInfo info = modelHandler.getRenderInfo();
 
 	std::vector<glm::vec3> finalPositions;
-	for (int i = 0; i < info.vertices.size(); i++) {
-		finalPositions.push_back(info.vertices[i]);
-		finalPositions.push_back(info.normals[i]);
-	}
 
 	unsigned int VBO, VAO, EBO;
+
 	glGenVertexArrays(1, &VAO);
 
 	glGenBuffers(1, &VBO);
@@ -151,26 +173,12 @@ int main()
 
 	glBindVertexArray(VAO);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_STATIC_DRAW);
 
-
-	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	// normals
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-
-	//indices
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, info.indices.size() * sizeof(unsigned int), &info.indices[0], GL_STATIC_DRAW);
+	updateRenderInfo(finalPositions, info, modelHandler, VBO, EBO);
 
 
 	// shadows
-	const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
+	const unsigned int SHADOW_WIDTH = 2048, SHADOW_HEIGHT = 2048;
 	unsigned int depthMapFBO;
 	glGenFramebuffers(1, &depthMapFBO);
 	// create depth cubemap texture
@@ -228,6 +236,7 @@ int main()
 	bool drawShadows = true;
 	float prev = glfwGetTime();
 	std::string fpsString = "";
+
 	while (!glfwWindowShouldClose(window))
 	{
 
@@ -303,29 +312,8 @@ int main()
 		player->processInput(window, char_callbacks, key_callbacks, drawShadows, texts, deltaTime, modelHandler, physicsHandler, &shader1);
 		if (player->justPlacedItem) {
 			player->justPlacedItem = false;
-			finalPositions.clear();
-			info = modelHandler.getRenderInfo();
-			for (int i = 0; i < info.vertices.size(); i++) {
-				finalPositions.push_back(info.vertices[i]);
-				finalPositions.push_back(info.normals[i]);
-			}
-			//glBindVertexArray(VAO);
 
-			glBindBuffer(GL_ARRAY_BUFFER, VBO);
-			glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_STATIC_DRAW);
-
-
-			// position attribute
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-			glEnableVertexAttribArray(0);
-
-			// normals
-			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-			glEnableVertexAttribArray(1);
-
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, info.indices.size() * sizeof(unsigned int), &info.indices[0], GL_STATIC_DRAW);
+			updateRenderInfo(finalPositions, info, modelHandler, VBO, EBO);
 		}
 		glEnable(GL_DEPTH_TEST);
 		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
@@ -376,7 +364,10 @@ int main()
 
 		// check for player completed level
 
-		if (player->wantsToRestart || glm::distance(camera->Position, lightLocation) < 2.0f){
+		glm::vec3 distToLight = camera->Position - lightLocation;
+
+		
+		if (player->wantsToRestart || sqrt(distToLight.x*distToLight.x + distToLight.z*distToLight.z) < 1.5f && abs(distToLight.y) < 2.0f){
 			// bada bing
 
 			bool keepCurrent = false;
@@ -402,27 +393,7 @@ int main()
 			modelHandler.addModel(light);
 			physicsHandler.addMPC(ModelPhysicsCoordinator(light, CollisionType::sphere, 0.4));
 
-			finalPositions.clear();
-			info = modelHandler.getRenderInfo();
-			for (int i = 0; i < info.vertices.size(); i++) {
-				finalPositions.push_back(info.vertices[i]);
-				finalPositions.push_back(info.normals[i]);
-			}
-			glBindBuffer(GL_ARRAY_BUFFER, VBO);
-			glBufferData(GL_ARRAY_BUFFER, finalPositions.size() * sizeof(glm::vec3), &finalPositions[0], GL_STATIC_DRAW);
-
-
-			// position attribute
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-			glEnableVertexAttribArray(0);
-
-			// normals
-			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-			glEnableVertexAttribArray(1);
-
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, info.indices.size() * sizeof(unsigned int), &info.indices[0], GL_STATIC_DRAW);
+			updateRenderInfo(finalPositions, info, modelHandler, VBO, EBO);
 
 		}
 

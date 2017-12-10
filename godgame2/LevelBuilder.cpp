@@ -257,7 +257,7 @@ Sphere* LevelBuilder::getLevel1Light(Shader &shader1) {
 	Sphere *light = new Sphere(&shader1);
 	light->color = glm::vec3(10, 10, 10);
 	light->transform *= 0.5;
-	light->transform[3] = glm::vec4(-25, 15, 0, 1);
+	light->transform[3] = glm::vec4(0, 15, -25, 1);
 	light->scale(glm::vec3(0.5, 0.5, 0.5));
 	return light;
 }
@@ -267,14 +267,14 @@ void LevelBuilder::getLevel1(PhysicsHandler &physicsHandler, ModelHandler &model
 
 	float myScale = 1.3;
 	for (float i = 0; i < 5; i++) {
-		for (float j = 0; j < 5; j++) {
+		for (float j = 0; j < 7; j++) {
 			for (float k = 0; k < 5; k++) {
 				//if (k == numSide / 2 && i == numSide / 2 && j == numSide / 2)
 				//	continue;
 				Cube *c = new Cube(&shader1);
 				c->scale(glm::vec3(myScale, myScale, myScale));
 				c->color = geometryColor;
-				c->transform[3] = glm::vec4(i*myScale, j*myScale - myScale, k*myScale - 15, 1);
+				c->transform[3] = glm::vec4(i*myScale +5, j*myScale, k*myScale -25, 1);
 
 				modelHandler.addModel(c);
 				physicsHandler.addMPC(ModelPhysicsCoordinator(c, CollisionType::cube, 2.0f, glm::vec3(0, 0, 0), nullptr, myScale));
@@ -285,25 +285,25 @@ void LevelBuilder::getLevel1(PhysicsHandler &physicsHandler, ModelHandler &model
 
 	Cube *c = new Cube(&shader1);
 
-	c->scale(glm::vec3(10.0f, 10.0f, 70.0f));
-	c->transform[3] = glm::vec4(30, 0, 0, 1);
+	c->scale(glm::vec3(70.0f, 10.0f, 10.0f));
+	c->transform[3] = glm::vec4(0, 0, 30, 1);
 
 	Cube *c2 = new Cube(&shader1);
-	c2->transform[3] = glm::vec4(-25, 8, 0, 1);
+	c2->transform[3] = glm::vec4(0, 8, -25, 1);
 	c2->scale(glm::vec3(5.0f, 1.0f, 5.0f));
 
 	Sphere *s = new Sphere(&shader1);
-	s->transform[3] = glm::vec4(-4, 5, 2, 1);
+	s->transform[3] = glm::vec4(4, 2, -4, 1);
 	s->color = geometryColor;
 	Cube *c3 = new Cube(&shader1);
 	c3->color = geometryColor;
 	c3->scale(glm::vec3(0.8,0.8,0.8));
 
-	c3->transform[3] = glm::vec4(-2, 0, 0, 1);
+	c3->transform[3] = glm::vec4(0, 0, -6, 1);
 
 	Cube *c4 = new Cube(&shader1);
 	c4->color = geometryColor;
-	c4->transform[3] = glm::vec4(-25, 10, 0, 1);
+	c4->transform[3] = glm::vec4(0, 10, -25, 1);
 	c4->scale(glm::vec3(0.2, 4, 0.2));
 
 	// surrounding planes
