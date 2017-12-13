@@ -329,8 +329,8 @@ int main()
 			RenderText(textShader, "Write your equation using the variables x,y,z for example x-y, finish with ENTER", 25.0f, 850.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "Available methods:", 25.0f, 750.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "< > + - / * ^ %", 25.0f, 700.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
-			RenderText(textShader, "min, max, abs, acos, asin, atan, atan2, ceil, cos, cosh,", 25.0f, 650.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
-			RenderText(textShader, "exp, floor, ln, log, log10, pow, sin, sinh, sqrt, tan, tanh", 25.0f, 600.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
+			RenderText(textShader, "min, max, abs, acos, asin, atan, atan2, cos, cosh,", 25.0f, 650.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
+			RenderText(textShader, "exp, ln, log, log10, pow, sin, sinh, sqrt, tan, tanh", 25.0f, 600.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "constans: pi, e", 25.0f, 550.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 		}
 		else {

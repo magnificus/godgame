@@ -10,12 +10,14 @@ void Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 
 	float moveTowardsSpeed = 3.0f;
 	if (carrying) {
-		glm::vec3 offset = cross(cam.Up, cam.Right) * float(physicsHandler.btModelMap[carrying].model->getMaxDistanceAcross() + 2.0);
+		glm::vec3 offset = cross(cam.Up, cam.Right) * float(physicsHandler.btModelMap[carrying].model->getMaxDistanceAcross() + 1.6);
 		btVector3 newLoc = mpc.btModel->getWorldTransform().getOrigin() + btVector3(offset.x, offset.y, offset.z);
 		btVector3 oldLoc = carrying->getWorldTransform().getOrigin();
 		btVector3 towards = newLoc - oldLoc;
 		carrying->setLinearVelocity(towards*5.0f* carrying->getInvMass());
+		carrying->setAngularVelocity(btVector3(0, 0, 0));
 		carrying->activate();
+
 	}
 	else {
 		if (isOutlining) {
@@ -75,6 +77,7 @@ void Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 				justPlacedItem = true;
 			}
 		}
+
 		else if (k.key == GLFW_KEY_K && k.action == GLFW_PRESS && !isWriting)
 			drawShadows = !drawShadows;
 
@@ -140,6 +143,7 @@ void Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 		}
 	key_callbacks.clear();
 	char_callbacks.clear();
+
 
 }
 

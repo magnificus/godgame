@@ -1,32 +1,15 @@
-﻿  LevelBuilder.cpp
-C:\Users\Tobbe\Desktop\godgame\includes\learnopengl/shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
-C:\Users\Tobbe\Desktop\godgame\includes\learnopengl/shader_m.h(52): warning C4101: 'success': unreferenced local variable
+﻿  Player.cpp
 c:\users\tobbe\desktop\godgame\bullet\src\LinearMath/btIDebugDraw.h(169): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
 c:\users\tobbe\desktop\godgame\bullet\src\LinearMath/btIDebugDraw.h(170): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
 c:\users\tobbe\desktop\godgame\bullet\src\LinearMath/btIDebugDraw.h(171): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+C:\Users\Tobbe\Desktop\godgame\includes\learnopengl/shader_m.h(53): warning C4101: 'infoLog': unreferenced local variable
+C:\Users\Tobbe\Desktop\godgame\includes\learnopengl/shader_m.h(52): warning C4101: 'success': unreferenced local variable
 c:\users\tobbe\desktop\godgame\godgame2\ModelPhysicsCoordinator.h(28): warning C4244: 'argument': conversion from 'double' to 'btScalar', possible loss of data
-LevelBuilder.cpp(268): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_vec4.inl(412): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_mat4x4.inl(330): note: see reference to function template instantiation 'glm::tvec4<float,0> &glm::tvec4<float,0>::operator *=<U>(U)' being compiled
-          with
-          [
-              U=double
-          ]
-  c:\users\tobbe\desktop\godgame\packages\glm.0.9.8.4\build\native\include\glm\detail\type_mat4x4.inl(330): note: see reference to function template instantiation 'glm::tvec4<float,0> &glm::tvec4<float,0>::operator *=<U>(U)' being compiled
-          with
-          [
-              U=double
-          ]
-  LevelBuilder.cpp(44): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
-          with
-          [
-              U=double
-          ]
-  LevelBuilder.cpp(44): note: see reference to function template instantiation 'glm::tmat4x4<float,0> &glm::tmat4x4<float,0>::operator *=<double>(U)' being compiled
-          with
-          [
-              U=double
-          ]
+c:\users\tobbe\desktop\godgame\godgame2\EmptyModel.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\tobbe\desktop\godgame\godgame2\Player.h(26): warning C4305: 'argument': truncation from 'double' to 'float'
+Player.cpp(109): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+Player.cpp(130): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+Player.cpp(153): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
   1 of 3010 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
