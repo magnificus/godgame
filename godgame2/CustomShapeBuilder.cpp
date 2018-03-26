@@ -55,7 +55,10 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 	ShapeBits originalBits = info.bits;
 	double mass = 0;
 
-	std::vector<quickhull::Vector3<float>> pointClouds[8];
+	//std::vector<quickhull::Vector3<float>> pointClouds[8];
+	std::vector<quickhull::Vector3<float>> pointClouds[27];
+
+	//std::vector<quickhull::Vector3<float>> pointClouds3[27];
 
 	glm::vec3 center = glm::vec3(0, 0, 0);
 
@@ -92,7 +95,7 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 
 	float marginSize = info.scale + 0.001f;
 
-	tripleLoop(0, sampleLength, [marginSize, &info, &center, &pointClouds](int x, int y, int z) {
+	tripleLoop(0, sampleLength, [&](int x, int y, int z) {
 		unsigned int currPos = getBitsetPosition(x, y, z);
 		if (info.bits[currPos]) {
 			glm::vec3 pos = getBitAddressVector(currPos, info.scale, info.offset) - center;
@@ -136,7 +139,7 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 	std::vector<unsigned int> indexBuffers[8];
 	quickhull::VertexDataSource<float> vertexBuffers[8];
 	unsigned int currentVertexOffset = 0;
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < pointClouds.size(); i++) {
 		if (pointClouds[i].size() < 3)
 			continue;
 		QuickHull<float> qh;
@@ -205,7 +208,7 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 			glm::vec3 norm = glm::cross(v2 - v1, v3 - v1);
 			norm = glm::normalize(norm);
 
-
+			// check if the normal is defined or not, if it is, we add a new vertex
 			if (toReturn.normals[toUse1].length() != 0.0f) {
 				toUse1 = toReturn.vertices.size();
 				toReturn.vertices.push_back(v1);
@@ -224,13 +227,14 @@ CustomMeshInfo CustomShapeBuilder::buildShape(CustomFunction &f)
 
 			}
 
-			toReturn.normals[toUse1] = norm;
-			toReturn.normals[toUse2] = norm;
-			toReturn.normals[toUse3] = norm;
+			toReturn.normals[toUse1] += norm;
+			toReturn.normals[toUse2] += norm;
+			toReturn.normals[toUse3] += norm;
 		}
 	}
 
-
+	//for (auto &a : toReturn.normals)
+	//	a = glm::normalize(a);
 
 
 	std::vector<glm::vec3> glmVertexBuffers[8];
@@ -281,7 +285,7 @@ ShapeInfo getValidPositions(CustomFunction &f) {
 	float dist = maxFound - minFound;
 	info.scale = dist /sampleLength;
 
-	tripleLoop(0, sampleLength, [&info, &f, &offset](int x, int y, int z) {info.bits[getBitsetPosition(x, y, z)] = f.eval(x*info.scale + offset.x, y*info.scale + offset.y, z*info.scale + offset.z) > 0; });
+	tripleLoop(0, sampleLength, [&](int x, int y, int z) {info.bits[getBitsetPosition(x, y, z)] = f.eval(x*info.scale + offset.x, y*info.scale + offset.y, z*info.scale + offset.z) > 0; });
 
 	return info;
 }

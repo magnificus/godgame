@@ -56,7 +56,7 @@ void Player::processInput(GLFWwindow *window, std::vector<unsigned int> &char_ca
 					if (shape->vertices.size() > 2) {
 						glm::vec3 offset = cross(cam.Up, cam.Right) * 5.0f;
 						shape->transform[3] = mpc.model->transform[3] + glm::vec4(offset.x, offset.y, offset.z, 0);
-						shape->color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
+						//shape->color = glm::vec3((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX);
 						modelHandler.addModel(shape);
 						ModelPhysicsCoordinator mpc = ModelPhysicsCoordinator(shape, CollisionType::custom, shape->mass, glm::vec3(1, 0, 0), shape->collisionShape);
 						shape->outlineColor = 1 / mpc.btModel->getInvMass() < 2.5f ? glm::vec3(0, 1, 0) : glm::vec3(1, 0, 0);

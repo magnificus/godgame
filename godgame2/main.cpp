@@ -325,7 +325,7 @@ int main()
 		glStencilMask(0xFF);
 		if (player->isWriting) {
 			//std::cout << Player::written << std::endl;
-			RenderText(textShader, player->written, 25.0f, 100.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
+			RenderText(textShader, player->written, 25.0f, 25.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "Write your equation using the variables x,y,z for example x-y, finish with ENTER", 25.0f, 850.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "Available methods:", 25.0f, 750.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
 			RenderText(textShader, "< > + - / * ^ %", 25.0f, 700.0f, 1.0f, textColor, textVAO, textVBO, textProjection);
